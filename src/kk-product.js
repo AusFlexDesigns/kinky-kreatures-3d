@@ -125,7 +125,8 @@ const CSS = `
 .kkp-pay{font-size:14px;color:var(--soft2);margin-top:4px}
 .kkp-hook{color:var(--text)}
 .kkp-opt{border:0;margin:0;padding:0;min-width:0}
-.kkp-opt legend{display:flex;justify-content:space-between;gap:10px;width:100%;padding:0;margin-bottom:10px;font:800 13px/1.3 Montserrat,Arial,sans-serif;letter-spacing:1.5px}
+.kkp-opt legend{display:flex;justify-content:space-between;gap:10px;width:100%;padding:0;margin-bottom:10px;font:800 13px/1.3 Montserrat,Arial,sans-serif;letter-spacing:1.5px;text-transform:uppercase}
+.kkp-opt legend span+span{text-transform:none}
 .kkp-opt legend span+span{font-family:Assistant,Arial,sans-serif;font-weight:600;letter-spacing:0;color:var(--lav)}
 .kkp-chips{display:grid;grid-template-columns:repeat(var(--cols,4),minmax(0,1fr));gap:8px}
 .kkp-chip{min-height:58px;padding:10px 8px;border-radius:12px;border:2px solid rgba(159,125,232,.35);background:transparent;color:#fff;text-align:center}
@@ -134,10 +135,10 @@ const CSS = `
 .kkp-chip span{display:block;font-size:12.5px;opacity:.8;margin-top:2px}
 .kkp-chip[aria-pressed="true"]{background:#fff;border-color:#fff;color:#0B0614}
 .kkp-chip.na{opacity:.45}
-.kkp-fixed{font-size:14px;color:var(--soft)}
+.kkp-fixed{font-size:14px;color:var(--soft);margin-top:-8px}
 .kkp-col{position:relative;display:flex;flex-direction:column;gap:8px}
 .kkp-col-head{display:flex;justify-content:space-between;align-items:baseline}
-.kkp-col-head label{font:800 13px/1.3 Montserrat,Arial,sans-serif;letter-spacing:1.5px}
+.kkp-col-head label{font:800 13px/1.3 Montserrat,Arial,sans-serif;letter-spacing:1.5px;text-transform:uppercase}
 .kkp-col-head span{font-size:13px;color:var(--lav)}
 .kkp-field{position:relative}
 .kkp-field input{width:100%;font:16px Assistant,Arial,sans-serif;padding:13px 44px 13px 14px;border-radius:12px;border:1px solid var(--line2);background:var(--ink);color:#fff}
@@ -611,7 +612,7 @@ class KKProductPage extends HTMLElement {
     // AR labels + viewer
     if (this._has3D) {
       const sl = sc ? this._chip(this._sizeOpt, sc).label : '', bl = bc ? this._chip(this._baseOpt, bc).label : '';
-      $$(r, '[data-arlabel]').forEach((el) => { el.textContent = `VIEW ${sl ? sl + ' ' : ''}IN YOUR ROOM`; });
+      $$(r, '[data-arlabel]').forEach((el) => { el.textContent = `VIEW ${sl ? sl.toUpperCase() + ' ' : ''}IN YOUR ROOM`; });
       $$(r, '[data-arsize]').forEach((el) => { el.textContent = [sl, bl].filter(Boolean).join(' · '); });
       $$(r, '[data-arwhat]').forEach((el) => { el.textContent = [sl, bl].filter(Boolean).join(' · '); });
       const len = $(r, '[data-arlen]'); if (len) len.textContent = sz ? `${Math.round(sz.lengthCm)} cm · TRUE SIZE` : 'TRUE SIZE';
