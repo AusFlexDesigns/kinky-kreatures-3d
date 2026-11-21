@@ -273,8 +273,8 @@ const CSS = `
 .kkp-bars em{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#8858ED,#FF7AB6)}
 .kkp-bars button:not([disabled]):hover,.kkp-bars button[aria-pressed="true"]{background:rgba(201,180,255,.12)}
 .kkp-bars button[disabled]{cursor:default;opacity:.5}
-.kkp-rev-write{display:flex;align-items:center;justify-content:center;gap:10px;height:50px;border-radius:14px;border:2px solid var(--lav);background:transparent;color:#fff!important;text-decoration:none;font:800 14px/1 Montserrat,Arial,sans-serif;letter-spacing:1px}
-.kkp-rev-write:hover{background:var(--lav);color:#0B0614!important}
+.kkp .kkp-rev-write{display:flex;align-items:center;justify-content:center;gap:10px;height:50px;border-radius:14px;border:2px solid var(--lav);background:transparent;color:#fff!important;text-decoration:none;font:800 14px/1 Montserrat,Arial,sans-serif;letter-spacing:1px}
+.kkp .kkp-rev-write:hover{background:var(--lav);color:#0B0614!important}
 .kkp-rev-main{display:flex;flex-direction:column;gap:18px;min-width:0}
 .kkp-rev-ph .kkp-grp{display:flex;align-items:center;gap:6px;margin-bottom:10px}
 .kkp-rev-ph>div{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px}
@@ -301,7 +301,7 @@ const CSS = `
 .kkp-av{flex:0 0 auto;width:36px;height:36px;border-radius:999px;display:flex;align-items:center;justify-content:center;font:800 15px/1 Montserrat,Arial,sans-serif;background:linear-gradient(135deg,#8858ED,#FF7AB6)}
 .kkp-rv-who b{display:block;font-size:15px;line-height:1.2}
 .kkp-rv-who small{display:flex;align-items:center;gap:4px;font-size:12.5px;color:#9FE8B8}.kkp-rv-who small svg{color:#6BE39A}
-.kkp-rev-more{align-self:center;height:50px;padding:0 28px;border-radius:999px;border:1px solid var(--line2);background:var(--card2);font:800 13px/1 Montserrat,Arial,sans-serif;letter-spacing:1px}
+.kkp .kkp-rev-more{align-self:center;height:50px;padding:0 28px;border-radius:999px;border:1px solid var(--line2);background:var(--card2);font:800 13px/1 Montserrat,Arial,sans-serif;letter-spacing:1px}
 .kkp-rev-more:hover{border-color:var(--lav)}
 .kkp-rev-empty{align-items:flex-start;gap:16px}.kkp-rev-empty .kkp-rev-write{padding:0 22px}
 .kkp-sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -337,6 +337,7 @@ const CSS = `
   .kkp-rev-grid{grid-template-columns:minmax(0,1fr);gap:18px}
   .kkp-rev-sum{position:static;padding:20px;gap:14px;border-radius:18px}
   .kkp-rev-score>b{font-size:52px}
+  .kkp-bars{gap:2px}.kkp-bars button{padding:4px 8px}
   .kkp-rev-list{columns:1}
   .kkp-rv{padding:18px;margin-bottom:12px}
   .kkp-rev-tabs p{margin-left:0;width:100%}
