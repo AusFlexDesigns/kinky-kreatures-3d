@@ -113,7 +113,7 @@ const CSS = `
 .kkp h1,.kkp h2,.kkp h3,.kkp-ov h2{font-family:Montserrat,"Helvetica Neue",Arial,sans-serif;margin:0;color:#fff}
 .kkp p{margin:0}
 .kkp a{color:var(--lav)}.kkp a:hover{color:#fff}
-.kkp button{font:inherit;color:inherit;cursor:pointer}
+:where(.kkp) button{font:inherit;color:inherit;cursor:pointer}
 .kkp button:focus-visible,.kkp a:focus-visible,.kkp input:focus-visible,.kkp-ov button:focus-visible{outline:3px solid #fff;outline-offset:2px}
 .kkp-mont{font-family:Montserrat,"Helvetica Neue",Arial,sans-serif}
 .kkp-crumbs{font-size:14px;color:var(--soft2);margin-bottom:18px}.kkp-crumbs a{color:var(--soft2);text-decoration:none}.kkp-crumbs a:hover{color:#fff}
