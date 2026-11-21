@@ -271,6 +271,10 @@ const CSS = `
   .kkp-dets{grid-template-columns:minmax(0,1fr)}
 }
 @container kkp (max-width:400px){
+  .kkp th,.kkp td{padding:8px 5px;font-size:13px}.kkp td small{font-size:11.5px}
+  .kkp .kkp-up{display:none}
+  .kkp-ar-chips{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kkp-ar-go{font-size:12px;padding:0 12px;white-space:nowrap}
   .kkp h1{font-size:38px}
   .kkp-title{padding-right:88px}.kkp-char{width:84px}
   .kkp-chips{gap:6px}
@@ -485,8 +489,8 @@ class KKProductPage extends HTMLElement {
       <h2 id="kkp-fit">Find your size</h2>
       ${x.sizeNote ? `<p style="color:var(--soft)">${esc(x.sizeNote)}</p>` : ''}
       <div class="kkp-tablebox"><table>
-        <thead><tr><th scope="col">Size</th><th scope="col">Length</th><th scope="col">Widest</th>${sizes[0].upperCm ? '<th scope="col">Upper</th>' : ''}${sizes[0].tipCm ? '<th scope="col">Tip</th>' : ''}</tr></thead>
-        <tbody>${sizes.map((s) => `<tr><th scope="row">${esc(s.label)}</th>${['lengthCm', 'widestCm', 'upperCm', 'tipCm'].filter((k) => sizes[0][k]).map((k) => `<td>${s[k].toFixed(1)} cm<small>${(s[k] / 2.54).toFixed(1)}″</small></td>`).join('')}</tr>`).join('')}</tbody>
+        <thead><tr><th scope="col">Size</th><th scope="col">Length</th><th scope="col">Widest</th>${sizes[0].upperCm ? '<th scope="col" class="kkp-up">Upper</th>' : ''}${sizes[0].tipCm ? '<th scope="col">Tip</th>' : ''}</tr></thead>
+        <tbody>${sizes.map((s) => `<tr><th scope="row">${esc(s.label)}</th>${['lengthCm', 'widestCm', 'upperCm', 'tipCm'].filter((k) => sizes[0][k]).map((k) => `<td${k === 'upperCm' ? ' class="kkp-up"' : ''}>${s[k].toFixed(1)} cm<small>${(s[k] / 2.54).toFixed(1)}″</small></td>`).join('')}</tr>`).join('')}</tbody>
       </table></div>
     </div>
   </section>` : ''}
