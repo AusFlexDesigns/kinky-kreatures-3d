@@ -182,7 +182,7 @@ const CSS = `
 .kkp-card h3{font-size:18px;font-weight:800}
 .kkp-card p,.kkp-card li{color:var(--soft);font-size:15px}
 .kkp-about{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
-.kkp-rich{color:var(--text)}.kkp-rich p{margin:0 0 12px}.kkp-rich ul{margin:0 0 12px;padding-left:20px}.kkp-rich li{margin:4px 0}.kkp-rich li p{margin:0}.kkp-rich strong{color:#fff}
+.kkp-rich{color:var(--text);min-width:0;overflow-wrap:anywhere}.kkp-rich p{margin:0 0 12px}.kkp-rich ul{margin:0 0 12px;padding-left:22px;list-style:disc}.kkp-rich ol{margin:0 0 12px;padding-left:22px;list-style:decimal}.kkp-rich li{display:list-item}.kkp-rich li{margin:4px 0}.kkp-rich li p{margin:0}.kkp-rich strong{color:#fff}
 .kkp-fit{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:40px;align-items:stretch}
 .kkp-lineup{display:flex;flex-direction:column;justify-content:flex-end;padding:16px 20px 12px;border-radius:24px;background:radial-gradient(ellipse at 50% 100%,#23104A 0%,#0F0A1C 70%);border:1px solid var(--line);--lh:390px}
 .kkp-lu-row{position:relative;display:flex;align-items:flex-end;justify-content:space-between;padding:0 6px}
@@ -250,9 +250,13 @@ const CSS = `
   .kkp-sec{margin-top:32px}
   .kkp-sec>h2,.kkp-h2,.kkp-fit-side>h2{font-size:24px;margin-bottom:14px}
   .kkp-feat{grid-template-columns:minmax(0,1fr);gap:10px}
-  .kkp-card{padding:18px;flex-direction:row;align-items:flex-start;gap:14px}
-  .kkp-card>div{display:flex;flex-direction:column;gap:2px}
-  .kkp-card h3{font-size:15px}.kkp-card p{font-size:14px}
+  .kkp-card{padding:18px}
+  .kkp-feat .kkp-card{flex-direction:row;align-items:flex-start;gap:14px}
+  .kkp-feat .kkp-card>svg,.kkp-feat .kkp-card>img{flex:0 0 auto;width:34px;height:auto}
+  .kkp-feat .kkp-card>div{display:flex;flex-direction:column;gap:2px}
+  .kkp-card h3{font-size:15px}.kkp-card p,.kkp-rich{font-size:15px}
+  .kkp-pill{display:none}
+  .kkp-stage-ar{font-size:12px;padding:10px 14px}
   .kkp-fit{grid-template-columns:minmax(0,1fr);gap:16px}
   .kkp-lineup{--lh:175px;padding:12px 8px 8px;order:2}
   .kkp-lu b{font-size:10px;letter-spacing:.5px;height:28px}.kkp-lu-row:before{bottom:28px}
@@ -264,7 +268,6 @@ const CSS = `
   .kkp-ar-chips button{padding:0 4px}
   .kkp-ar-go{align-self:stretch;justify-content:center;font-size:13px}
   .kkp-cards{grid-template-columns:minmax(0,1fr)!important}
-  .kkp-cards .kkp-card{flex-direction:column}
   .kkp-dets{grid-template-columns:minmax(0,1fr)}
 }
 @container kkp (max-width:400px){
