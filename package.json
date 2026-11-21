@@ -6,6 +6,7 @@
     "build": "esbuild src/kk-viewer.js --bundle --minify --format=iife --target=es2020 --define:__VERSION__=\\\"$npm_config_tag\\\" --outfile=dist/kk-viewer.js"
   },
   "devDependencies": {
+    "@gltf-transform/cli": "^4.5.1",
     "esbuild": "^0.25.0",
     "three": "0.187.0"
   }

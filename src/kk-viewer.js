@@ -69,6 +69,7 @@ function loadModelViewer() {
   return modelViewerPromise;
 }
 
+const AR_ICON = 'data:image/png;base64,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';
 const ICON = {
   ruler: '<path d="M8 3h8v18H8z"/><path d="M8 7h4M8 11h3M8 15h4M8 19h3"/>',
   soda: '<path d="M8 5h8l1 2v12l-1 2H8l-1-2V7z"/><path d="M9 3h6"/>',
@@ -101,10 +102,11 @@ button{font:inherit;color:inherit;cursor:pointer}
 .bases{left:50%;bottom:16px;transform:translateX(-50%);flex-direction:row;flex-wrap:wrap;justify-content:center}
 .chip{min-height:40px;padding:0 14px;border-radius:999px;border:1.5px solid rgba(255,255,255,.28);background:rgba(21,10,51,.55);font-size:13px;font-weight:700}
 .chip[aria-pressed="true"]{background:#fff;color:#150a33;border-color:#fff}
-.ar{position:absolute;right:16px;top:16px;z-index:2;display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 16px;border-radius:999px;border:0;background:#fff;color:#150a33;font-size:14px;font-weight:800;letter-spacing:.04em}
-.ar svg{width:22px;height:22px}
+.ar{position:absolute;right:12px;top:12px;z-index:2;display:block;width:64px;height:74px;padding:4px;border:0;border-radius:14px;background:none;cursor:pointer;filter:drop-shadow(0 3px 8px rgba(0,0,0,.35));transition:transform .15s}
+.ar:hover{transform:scale(1.06)}
+.ar img{display:block;width:100%;height:100%;object-fit:contain}
 .ar[hidden]{display:none}
-.note{position:absolute;right:16px;top:72px;z-index:3;max-width:240px;margin:0;padding:10px 12px;border-radius:12px;background:#fff;color:#150a33;font-size:13px;line-height:1.4;font-weight:600}
+.note{position:absolute;right:16px;top:94px;z-index:3;max-width:240px;margin:0;padding:10px 12px;border-radius:12px;background:#fff;color:#150a33;font-size:13px;line-height:1.4;font-weight:600}
 .note[hidden]{display:none}
 .hint{position:absolute;right:16px;bottom:16px;z-index:1;margin:0;font-size:12px;font-weight:600;color:rgba(255,255,255,.7)}
 .status{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:4;margin:0;font-size:15px;font-weight:700;pointer-events:none}
@@ -143,7 +145,7 @@ class KKToyViewer extends HTMLElement {
   </div>
   <div class="col sizes" role="group" aria-label="Size"></div>
   <div class="col bases" role="group" aria-label="Base"></div>
-  <button class="ar" hidden>${svg('ar')}View in your space</button>
+  <button class="ar" hidden aria-label="View in your space with augmented reality" title="View in your space (AR)"><img src="${AR_ICON}" alt=""></button>
   <p class="note" hidden></p>
   <p class="hint">Drag to rotate · scroll or pinch to zoom</p>
   <div class="mv"></div>
@@ -252,8 +254,15 @@ class KKToyViewer extends HTMLElement {
     this._$('.ar').addEventListener('click', () => this._openAR());
   }
 
-  async _loadManifest() {
+  _loadManifest() {
     const model = (this.getAttribute('model') || '').trim().toLowerCase();
+    if (this._loading && this._loadingModel === model) return this._loading;
+    this._loadingModel = model;
+    this._loading = this._doLoadManifest(model);
+    return this._loading;
+  }
+
+  async _doLoadManifest(model) {
     if (!/^[a-z0-9-]+$/.test(model)) throw new Error('Missing or invalid model attribute');
     this._modelBase = this._assets + model + '/';
     const res = await fetch(this._modelBase + 'manifest.json'); if (!res.ok) throw new Error('Manifest ' + res.status);
