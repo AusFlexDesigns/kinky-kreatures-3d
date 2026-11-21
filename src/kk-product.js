@@ -273,7 +273,7 @@ const CSS = `
 .kkp-bars em{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#8858ED,#FF7AB6)}
 .kkp-bars button:not([disabled]):hover,.kkp-bars button[aria-pressed="true"]{background:rgba(201,180,255,.12)}
 .kkp-bars button[disabled]{cursor:default;opacity:.5}
-.kkp-rev-write{display:flex;align-items:center;justify-content:center;gap:10px;height:50px;border-radius:14px;border:2px solid var(--lav);color:#fff!important;text-decoration:none;font:800 14px/1 Montserrat,Arial,sans-serif;letter-spacing:1px}
+.kkp-rev-write{display:flex;align-items:center;justify-content:center;gap:10px;height:50px;border-radius:14px;border:2px solid var(--lav);background:transparent;color:#fff!important;text-decoration:none;font:800 14px/1 Montserrat,Arial,sans-serif;letter-spacing:1px}
 .kkp-rev-write:hover{background:var(--lav);color:#0B0614!important}
 .kkp-rev-main{display:flex;flex-direction:column;gap:18px;min-width:0}
 .kkp-rev-ph .kkp-grp{display:flex;align-items:center;gap:6px;margin-bottom:10px}
@@ -631,7 +631,7 @@ class KKProductPage extends HTMLElement {
     const verified = (r.rating && r.rating.verified_count) || r.list.filter((x) => x.is_verified).length;
     this._revPh = this._revPhotos();
     this._revFilter = 'all'; this._revShown = 0;
-    const write = `<a class="kkp-rev-write" href="#" data-fera-action="writeReview" data-product="${esc(this._p.id)}" data-revwrite>${icon('pen', 18)}WRITE A REVIEW</a>`;
+    const write = `<button type="button" class="kkp-rev-write" data-revwrite>${icon('pen', 18)}WRITE A REVIEW</button>`;
     if (!n) return `<section class="kkp-sec kkp-rev" id="kkp-reviews" aria-labelledby="kkp-revh"><h2 id="kkp-revh">Reviews</h2>
       <div class="kkp-card kkp-rev-empty"><p>No reviews for ${esc(this._x.shortName || main)} yet. Bought one? Tell everyone what you think.</p>${write}</div></section>`;
     const max = Math.max(1, ...counts);
@@ -712,10 +712,10 @@ class KKProductPage extends HTMLElement {
     } catch (e) { this._rev.total = this._rev.list.length; }
     btn.disabled = false; this._revRender(true);
   }
-  _writeReview(e) {
-    // Fera's own script opens its review form for links marked data-fera-action; if it isn't on the page, use its link
-    if (window.fera) return;
-    e.preventDefault();
+  _writeReview() {
+    // open the reviews app's own form (Fera, loaded site-wide); if it isn't on the page, use its review link
+    const f = window.fera;
+    if (f && typeof f.showContentSubmitter === 'function') { try { f.showContentSubmitter({ productId: this._p.id }); return; } catch (e) { /* fall through to the link */ } }
     const u = new URL(location.href); u.searchParams.set('fera', 'review'); u.hash = '';
     location.href = u.toString();
   }
@@ -752,7 +752,6 @@ class KKProductPage extends HTMLElement {
     r.addEventListener('click', (e) => {
       const a = e.target.closest('a');
       if (a && a.hasAttribute('data-torev')) { e.preventDefault(); const sec = $(r, '#kkp-reviews'); if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
-      if (a && a.hasAttribute('data-revwrite')) return this._writeReview(e);
       const t = e.target.closest('button'); if (!t || !r.contains(t)) return;
       if (t.dataset.o && t.dataset.c) return this._pick(t.dataset.o, t.dataset.c);
       if (t.dataset.qty) { this._qty = Math.max(1, Math.min(20, this._qty + Number(t.dataset.qty))); $(r, '[data-qtyv]').textContent = this._qty; return; }
@@ -761,6 +760,7 @@ class KKProductPage extends HTMLElement {
       if (t.dataset.rph) return this._lightbox(Number(t.dataset.rph), this._revPh, 'Customer photo');
       if (t.dataset.rtab || t.dataset.rf) { this._revFilter = t.dataset.rtab || (t.getAttribute('aria-pressed') === 'true' ? 'all' : t.dataset.rf); return this._revRender(false); }
       if (t.hasAttribute('data-revmore')) return this._revMore();
+      if (t.hasAttribute('data-revwrite')) return this._writeReview();
       if (t.hasAttribute('data-rvmore')) { const b = t.previousElementSibling; const open = b.classList.toggle('open'); t.textContent = open ? 'Show less' : 'Read more'; t.setAttribute('aria-expanded', String(open)); return; }
       if (t.dataset.gal) { this._g += Number(t.dataset.gal); return this._galUpdate(); }
       if (t.hasAttribute('data-ar')) return this._ar();
