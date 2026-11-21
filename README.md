@@ -6,7 +6,7 @@
 
 Add a **Custom Element** in the Wix editor:
 
-- **Source:** Server URL `https://cdn.jsdelivr.net/gh/AusFlexDesigns/kinky-kreatures-3d@v1/dist/kk-viewer.js`
+- **Source:** Server URL `https://cdn.jsdelivr.net/gh/AusFlexDesigns/kinky-kreatures-3d@v2/dist/kk-viewer.js`
 - **Tag name:** `kk-toy-viewer`
 - **Attribute:** `model` = the toy's folder name, e.g. `kraken`
 
@@ -24,7 +24,7 @@ Mould-quality models never go in this repo.
 
 ```
 npm install
-npx esbuild src/kk-viewer.js --bundle --minify --format=iife --target=es2020 --define:__VERSION__='"v1"' --outfile=dist/kk-viewer.js
+npx esbuild src/kk-viewer.js --bundle --minify --format=iife --target=es2020 --define:__VERSION__='"v2"' --outfile=dist/kk-viewer.js
 ```
 
 Each release gets a new tag (`v1`, `v2`, …) and the Wix element's URL is moved to it.

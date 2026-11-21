@@ -11,8 +11,13 @@ import {
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 
-const VERSION = '__VERSION__';
-const DEFAULT_ASSETS = 'https://cdn.jsdelivr.net/gh/AusFlexDesigns/kinky-kreatures-3d@' + VERSION + '/models/';
+// Models load from the same release as this script (…/dist/kk-viewer.js → …/models/), so a new tag
+// moves the viewer and its models together. __VERSION__ is filled in at build time as a fallback.
+const VERSION = typeof __VERSION__ !== 'undefined' ? __VERSION__ : 'main';
+const SCRIPT_SRC = (document.currentScript && document.currentScript.src) || '';
+const DEFAULT_ASSETS = /\/dist\/kk-viewer(\.min)?\.js(\?.*)?$/.test(SCRIPT_SRC)
+  ? SCRIPT_SRC.replace(/\/dist\/kk-viewer(\.min)?\.js(\?.*)?$/, '/models/')
+  : 'https://cdn.jsdelivr.net/gh/AusFlexDesigns/kinky-kreatures-3d@' + VERSION + '/models/';
 const MODEL_VIEWER = 'https://cdn.jsdelivr.net/npm/@google/model-viewer@4.4.0/dist/model-viewer.min.js';
 const CANS = {
   soda: { label: 'Soda can 375 ml', h: 0.115, r: 0.033, color: 0xc8202a },
