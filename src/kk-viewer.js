@@ -20,8 +20,8 @@ const DEFAULT_ASSETS = /\/dist\/kk-viewer(\.min)?\.js(\?.*)?$/.test(SCRIPT_SRC)
   : 'https://cdn.jsdelivr.net/gh/AusFlexDesigns/kinky-kreatures-3d@' + VERSION + '/models/';
 const MODEL_VIEWER = 'https://cdn.jsdelivr.net/npm/@google/model-viewer@4.4.0/dist/model-viewer.min.js';
 const CANS = {
-  soda: { label: 'Soda can 375 ml', h: 0.115, r: 0.033, color: 0xc8202a },
-  monster: { label: 'Monster can 500 ml', h: 0.168, r: 0.033, color: 0x2a2a2a },
+  soda: { label: 'Soda can 375 ml', h: 0.115, r: 0.033, color: '#c8202a' },
+  monster: { label: 'Monster can 500 ml', h: 0.157, r: 0.033, color: '#1f2a1f' },
 };
 
 // ---- scrambled model container (.kkm): decoded in memory only ----
@@ -57,6 +57,12 @@ async function decodeKkm(buf, color) {
 }
 
 let modelViewerPromise = null;
+const downloads = new Map();
+function download(url, kind) {
+  const key = kind + ' ' + url;
+  if (!downloads.has(key)) downloads.set(key, fetch(url).then((r) => { if (!r.ok) { downloads.delete(key); throw new Error(url.split('/').pop() + ' ' + r.status); } return kind === 'json' ? r.json() : r.arrayBuffer(); }));
+  return downloads.get(key);
+}
 function loadModelViewer() {
   if (customElements.get('model-viewer')) return Promise.resolve();
   if (!modelViewerPromise) {
@@ -101,6 +107,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .size small{display:block;font-size:12px;font-weight:600;letter-spacing:.02em;text-transform:none;color:rgba(255,255,255,.72)}
 .bases{left:50%;bottom:16px;transform:translateX(-50%);flex-direction:row;flex-wrap:wrap;justify-content:center}
 .chip{min-height:40px;padding:0 14px;border-radius:999px;border:1.5px solid rgba(255,255,255,.28);background:rgba(21,10,51,.55);font-size:13px;font-weight:700}
+.chip[hidden]{display:none}
 .chip[aria-pressed="true"]{background:#fff;color:#150a33;border-color:#fff}
 .ar{position:absolute;right:12px;top:12px;z-index:2;display:block;width:64px;height:74px;padding:4px;border:0;border-radius:14px;background:none;cursor:pointer;filter:drop-shadow(0 3px 8px rgba(0,0,0,.35));transition:transform .15s}
 .ar:hover{transform:scale(1.06)}
@@ -121,7 +128,8 @@ button{font:inherit;color:inherit;cursor:pointer}
   .icon{width:44px;height:44px}
   .bases{bottom:70px;left:auto;right:12px;transform:none;flex-direction:column;align-items:flex-end}
   .hint{bottom:18px;right:12px;max-width:130px;text-align:right}
-}`;
+}
+@container (max-width:360px){ .hint{display:none} }`;
 
 class KKToyViewer extends HTMLElement {
   static get observedAttributes() { return ['model', 'size']; }
@@ -225,7 +233,7 @@ class KKToyViewer extends HTMLElement {
     this._cap.onAfterRender = (rr) => rr.clearStencil(); scene.add(this._cap);
 
     this._size3 = new Vector3(0.1, 0.3, 0.1);
-    this._state = { ruler: false, can: 'none', cut: false };
+    this._state = { ruler: false, can: 'none', cut: false }; this._refs = {};
     this._cache = {};
 
     const resize = () => {
@@ -265,11 +273,11 @@ class KKToyViewer extends HTMLElement {
   async _doLoadManifest(model) {
     if (!/^[a-z0-9-]+$/.test(model)) throw new Error('Missing or invalid model attribute');
     this._modelBase = this._assets + model + '/';
-    const res = await fetch(this._modelBase + 'manifest.json'); if (!res.ok) throw new Error('Manifest ' + res.status);
-    this._manifest = await res.json(); this._cache = {};
+    this._manifest = await download(this._modelBase + 'manifest.json', 'json'); this._cache = {};
     const m = this._manifest;
     const sizes = this._$('.sizes');
-    sizes.innerHTML = m.sizes.map((s) => `<button class="size" data-s="${s.id}" aria-pressed="false">${s.label}${s.chart && s.chart.lengthCm ? `<small>${s.chart.lengthCm} cm · ${(s.chart.lengthCm / 2.54).toFixed(1)}″</small>` : ''}</button>`).join('');
+    const uniqueSizes = m.sizes.filter((s, i) => m.sizes.findIndex((t) => t.id === s.id) === i);   // one button per size, whatever bases it has
+    sizes.innerHTML = uniqueSizes.map((s) => `<button class="size" data-s="${s.id}" aria-pressed="false">${s.label}${s.chart && s.chart.lengthCm ? `<small>${s.chart.lengthCm} cm · ${(s.chart.lengthCm / 2.54).toFixed(1)}″</small>` : ''}</button>`).join('');
     sizes.querySelectorAll('[data-s]').forEach((b) => b.addEventListener('click', () => this._selectSize(b.dataset.s)));
     const bases = this._$('.bases');
     const multiBase = (m.bases || []).length > 1;
@@ -292,8 +300,7 @@ class KKToyViewer extends HTMLElement {
     const key = v.model; const st = this._$('.status');
     if (!this._cache[key]) {
       st.hidden = false; st.textContent = 'Loading 3D model…';
-      const res = await fetch(this._modelBase + v.model); if (!res.ok) throw new Error('Model ' + res.status);
-      this._cache[key] = await decodeKkm(await res.arrayBuffer(), this._manifest.color || '#7A48E8');
+      this._cache[key] = await decodeKkm((await download(this._modelBase + v.model, 'bin')).slice(0), this._manifest.color || '#7A48E8');
       this._cache[key].material.clippingPlanes = [this._cutPlane]; this._cache[key].material.clipShadows = true;
     }
     st.hidden = true;
@@ -303,7 +310,9 @@ class KKToyViewer extends HTMLElement {
     this._buildCut(mesh); this._buildExtras(); if (this._state.cut) this._setCut(true, true);
     if (!this._framed) { this._frame(); this._framed = true; } else this._dirty = true;
     this._root.querySelectorAll('[data-s]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.s === v.id)));
-    this._root.querySelectorAll('[data-b]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.b === v.base)));
+    const here = this._manifest.sizes.filter((s) => s.id === v.id).map((s) => s.base);   // bases this size comes with
+    this._root.querySelectorAll('[data-b]').forEach((b) => { b.setAttribute('aria-pressed', String(b.dataset.b === v.base)); b.hidden = !here.includes(b.dataset.b); });
+    this._$('.bases').hidden = here.length < 2;
     this._prepareAR(v);
     this.dispatchEvent(new CustomEvent('kk-size', { detail: { size: v.id, base: v.base }, bubbles: true, composed: true }));
   }
@@ -366,6 +375,18 @@ class KKToyViewer extends HTMLElement {
     m.castShadow = true; return m;
   }
 
+  _loadRef(id) {
+    this._refLoads = this._refLoads || {};
+    if (this._refLoads[id]) return;
+    this._refLoads[id] = download(this._assets + '_refs/' + id + '.kkm', 'bin')
+      .then((b) => decodeKkm(b.slice(0), CANS[id].color))
+      .then((m) => {
+        m.material.metalness = 0.45; m.material.roughness = 0.32; m.renderOrder = 0; m.position.set(0, 0, 0);
+        this._refs[id] = m; if (this._state.can === id) this._buildExtras();
+      })
+      .catch((e) => console.warn('[kk-toy-viewer] can model', e));
+  }
+
   _buildExtras() {
     const ex = this._extras; ex.clear();
     const h = this._size3.y, off = Math.max(this._size3.x, this._size3.z) / 2 + 0.03;
@@ -384,9 +405,13 @@ class KKToyViewer extends HTMLElement {
       const b = this._label((h / 0.0254).toFixed(1) + ' in', 0.03); b.position.set(xr + 0.03, h + 0.024, 0); ex.add(b);
     }
     if (this._state.can !== 'none') {
-      const spec = CANS[this._state.can], cx = off + (this._state.ruler ? 0.09 : 0.045);
-      const cn = this._can(spec); cn.position.set(cx, 0, 0.01); ex.add(cn);
-      const l = this._label((spec.h * 100).toFixed(1) + ' cm', 0.024); l.position.set(cx, spec.h + 0.02, 0.01); ex.add(l);
+      const id = this._state.can, spec = CANS[id], cx = off + (this._state.ruler ? 0.09 : 0.045);
+      // real can models (models/_refs/*.kkm); a simple drawn can stands in while one downloads or if it fails
+      let cn = this._refs[id], ch = spec.h;
+      if (cn) ch = new Box3().setFromObject(cn).getSize(new Vector3()).y;
+      else { cn = this._can(spec); this._loadRef(id); }
+      cn.position.set(cx, 0, 0.01); ex.add(cn);
+      const l = this._label((ch * 100).toFixed(1) + ' cm', 0.024); l.position.set(cx, ch + 0.02, 0.01); ex.add(l);
     }
     this._dirty = true;
   }
