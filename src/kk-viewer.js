@@ -234,7 +234,7 @@ class KKToyViewer extends HTMLElement {
   <p class="readout" hidden></p>
   <p class="sr" aria-live="polite"></p>
   <p class="note" hidden></p>
-  <p class="hint">Drag to rotate · scroll or pinch to zoom</p>
+  <p class="hint" part="hint">Drag to rotate · scroll or pinch to zoom</p>
   <div class="mv"></div>
 </div>`;
     this._$ = (s) => this._root.querySelector(s);
@@ -514,7 +514,9 @@ class KKToyViewer extends HTMLElement {
     const labels = this._state.ruler || this._state.can !== 'none';
     this._controls.target.set(0, h * (labels ? 0.54 : 0.5), 0);
     const t = Math.tan((cam.fov * Math.PI) / 360);
-    const d = Math.max((h * (labels ? 0.78 : 0.66)) / t, ((r + 0.03 + extra) * 1.3) / (t * cam.aspect));
+    // phones: leave more room around the toy so it doesn't crowd the buttons
+    const narrow = (this.getBoundingClientRect().width || 999) <= 620 ? 1.22 : 1;
+    const d = narrow * Math.max((h * (labels ? 0.78 : 0.66)) / t, ((r + 0.03 + extra) * 1.3) / (t * cam.aspect));
     cam.position.set(d * 0.5, h * 0.62, d * 0.86); this._controls.update(); this._dirty = true;
   }
 

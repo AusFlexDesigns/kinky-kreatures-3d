@@ -86,6 +86,8 @@ const ICON = {
   star: '<path fill="currentColor" stroke="none" d="M12 2.6l2.85 6.05 6.6.83-4.86 4.57 1.25 6.55L12 17.36 6.16 20.6l1.25-6.55L2.55 9.48l6.6-.83z"/>',
   bases: '<rect x="3" y="15" width="18" height="5" rx="2"/><path d="M8 15V6a4 4 0 0 1 8 0v9"/>',
 };
+// a pointing hand for the touch hints (original drawing)
+const FINGER = '<svg class="kkp-finger" width="40" height="48" viewBox="0 0 42 48" aria-hidden="true"><circle class="kkp-tap" cx="15" cy="7.5" r="7" fill="rgba(255,255,255,.45)"/><path d="M11.5 26V7.5a3.5 3.5 0 0 1 7 0V18a3.2 3.2 0 0 1 6.4 0v1.5a3.2 3.2 0 0 1 6.4 0V21a3.2 3.2 0 0 1 6.4 0v9c0 8-5 14-13 14h-3c-4.5 0-7.5-2-10-6l-6-9a3.4 3.4 0 0 1 5.6-3.8z" fill="#fff" stroke="#150A33" stroke-width="1.8" stroke-linejoin="round"/><path d="M18.5 18v6M24.9 19.5v5M31.3 21v4" stroke="#150A33" stroke-width="1.6" stroke-linecap="round"/></svg>';
 const icon = (k, size = 20) => `<svg aria-hidden="true" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICON[k]}</svg>`;
 const FEATURE_ICON = {
   tentacle: '<svg aria-hidden="true" width="40" height="40" viewBox="0 0 32 32" fill="none" stroke="#C9B4FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 30L13.6 27.7L13.4 25.6L13.4 23.6L13.6 21.9L14 20.3L14.7 18.8L15.8 17.4L17.3 15.9L18.9 14.4L20.3 13L21.5 11.6L22.5 10.2L23.3 8.7L23.6 7L23.5 5.2L22.8 3.5L21.7 2.3L20.3 1.8L18.9 1.7L17.6 2.2L16.6 3.3L16.2 4.7L16.5 6L17 6.7L17.8 7.1L18.5 7.2L19.2 7L19.7 6.6L20 6L20 5.3L19.5 5.5L19.4 5.9L19.1 6.1L18.8 6.1L18.5 6L18.2 5.9L18.1 5.6L18 5.3L18.1 4.7L18.4 4.3L18.8 4.1L19.2 4.1L19.7 4.3L20.1 4.6L20.3 5.1L20.4 5.9L20.3 6.8L19.9 7.5L19.3 8.3L18.4 9.2L17.2 10.3L15.6 11.5L13.9 12.9L12 14.6L10.3 16.6L9.1 18.8L8.3 21.2L7.8 23.7L7.7 26.2L7.7 28.9L7.9 30.9Z"/><circle cx="10.3" cy="27.3" r="1.5"/><circle cx="10.8" cy="21.2" r="1.4"/><circle cx="13.5" cy="16" r="1.2"/><circle cx="18.1" cy="12" r="1.1"/><circle cx="21" cy="8.8" r="0.9"/><circle cx="21.8" cy="5.5" r="0.8"/></svg>',
@@ -119,7 +121,7 @@ const CSS = `
 .kkp-crumbs{font-size:14px;color:var(--soft2);margin-bottom:18px}.kkp-crumbs a{color:var(--soft2);text-decoration:none}.kkp-crumbs a:hover{color:#fff}
 .kkp-hero{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);grid-template-areas:"stage buy" "photos buy";gap:14px 40px;align-items:start}
 .kkp-stage{grid-area:stage;position:relative;height:640px;border-radius:24px;overflow:hidden;background:radial-gradient(ellipse at 50% 38%,#4B23A1 0%,#23104A 55%,#120A22 100%);border:1px solid var(--line)}
-.kkp-stage kk-toy-viewer{position:absolute;inset:0;width:100%;height:100%;--kk-bg:transparent;--kk-accent:#FF5FA2}
+.kkp-stage kk-toy-viewer{position:absolute;inset:0;width:100%;height:100%;min-height:0;--kk-bg:transparent;--kk-accent:#FF5FA2}
 .kkp-stage>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .kkp-pill{position:absolute;top:16px;left:16px;z-index:3;font:700 12px/1 Montserrat,Arial,sans-serif;letter-spacing:1.5px;padding:10px 14px;border-radius:999px;background:rgba(6,5,6,.55);pointer-events:none}
 .kkp-stage-ar{position:absolute;top:14px;right:14px;z-index:3;display:flex;align-items:center;gap:8px;font:700 13px/1 Montserrat,Arial,sans-serif;letter-spacing:.6px;padding:11px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.35);background:rgba(6,5,6,.5);color:#fff}
@@ -250,6 +252,26 @@ const CSS = `
 .kkp details{padding:20px 24px;border-radius:18px;background:var(--card);border:1px solid var(--line)}
 .kkp summary{cursor:pointer;font:800 14px/1.3 Montserrat,Arial,sans-serif;letter-spacing:1px;text-transform:uppercase}
 .kkp details .kkp-rich{margin-top:12px;font-size:15px}
+.kkp-lane,.kkp-spin{display:none}
+.kkp-touch .kkp-lane{display:block;position:absolute;right:0;top:64px;bottom:0;width:60px;z-index:3;touch-action:pan-y;background:linear-gradient(90deg,rgba(6,5,6,0),rgba(6,5,6,.38))}
+.kkp-lane-track{position:absolute;right:20px;top:14px;bottom:78px;width:4px;border-radius:4px;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.5) 0 5px,transparent 5px 11px)}
+.kkp-lane-track:before,.kkp-lane-track:after{content:'';position:absolute;left:50%;width:9px;height:9px;border:solid rgba(255,255,255,.75);border-width:2.5px 2.5px 0 0;transform:translateX(-50%) rotate(-45deg)}
+.kkp-lane-track:before{top:-6px}.kkp-lane-track:after{bottom:-6px;transform:translateX(-50%) rotate(135deg)}
+.kkp-lane-lbl{position:absolute;right:15px;bottom:14px;writing-mode:vertical-rl;transform:rotate(180deg);font:800 10px/1 Montserrat,Arial,sans-serif;letter-spacing:2px;color:rgba(255,255,255,.8)}
+.kkp-finger{display:block;filter:drop-shadow(0 3px 6px rgba(0,0,0,.55))}
+.kkp-lane .kkp-finger{position:absolute;right:6px;top:45%;opacity:0}
+.kkp-stage.hint .kkp-lane .kkp-finger{animation:kkp-up 1.9s ease-in-out 3}
+.kkp-spin{position:absolute;left:50%;top:46%;z-index:3;transform:translate(-50%,-50%);pointer-events:none;flex-direction:column;align-items:center;gap:2px;transition:opacity .4s}
+.kkp-touch .kkp-stage.hint .kkp-spin{display:flex}
+.kkp-spin .kkp-finger{animation:kkp-side 2.2s ease-in-out 3;margin-top:-4px}
+.kkp-spin-arc{filter:drop-shadow(0 2px 4px rgba(0,0,0,.6))}
+.kkp-spin-lbl{margin-top:8px;padding:6px 12px;border-radius:999px;background:rgba(6,5,6,.7);font:700 11px/1.2 Montserrat,Arial,sans-serif;letter-spacing:.5px;white-space:nowrap}
+.kkp-tap{animation:kkp-tap 1.9s ease-out infinite;transform-origin:15px 7.5px}
+@keyframes kkp-up{0%{transform:translateY(70px);opacity:0}12%{transform:translateY(70px);opacity:1}72%{transform:translateY(-70px);opacity:1}88%,100%{transform:translateY(-80px);opacity:0}}
+@keyframes kkp-side{0%,100%{transform:translateX(-34px)}50%{transform:translateX(34px)}}
+@keyframes kkp-tap{0%{transform:scale(.6);opacity:.9}60%,100%{transform:scale(1.6);opacity:0}}
+@media (prefers-reduced-motion:reduce){.kkp-stage.hint .kkp-lane .kkp-finger{animation:none;opacity:1}.kkp-spin .kkp-finger,.kkp-tap{animation:none}}
+.kkp-touch .kkp-stage kk-toy-viewer::part(hint){display:none}
 .kkp-stars{position:relative;display:inline-flex;vertical-align:middle;line-height:0;flex:0 0 auto}
 .kkp-stars svg{display:block;margin-right:1px}
 .kkp-stars .bg svg{fill:rgba(201,180,255,.22)}
@@ -525,6 +547,8 @@ class KKProductPage extends HTMLElement {
       ${this._has3D ? `<p class="kkp-pill" aria-hidden="true">INTERACTIVE 3D</p>
       <kk-toy-viewer model="${esc(x.model)}" controls="external"${this._viewerSize ? ` size="${esc(this._viewerSize)}"` : ''}${this._viewerBase ? ` base="${esc(this._viewerBase)}"` : ''}></kk-toy-viewer>
       <button class="kkp-stage-ar" data-ar>${icon('cube', 18)}<span data-arlabel></span></button>
+      <div class="kkp-lane" aria-hidden="true"><i class="kkp-lane-track"></i>${FINGER}<span class="kkp-lane-lbl">SCROLL</span></div>
+      <div class="kkp-spin" aria-hidden="true"><svg class="kkp-spin-arc" width="120" height="32" viewBox="0 0 120 32" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 24Q60 -2 108 24" stroke-dasharray="2 7"/><path d="M12 24l1-9M12 24l9-1M108 24l-1-9M108 24l-9-1"/></svg>${FINGER}<span class="kkp-spin-lbl">Drag to spin · pinch to zoom</span></div>
       ${this._arLanding && isPhone() ? `<button class="kkp-arprompt" data-ar data-arprompt>${icon('cube', 18)}<span>View <span data-arsize></span> in your room</span></button>` : ''}`
       : (this._media[0] ? `<img src="${esc(wixImg(this._media[0].url, 1200, 1100))}" alt="${esc(this._media[0].alt || p.name)}">` : '')}
     </div>
@@ -606,6 +630,7 @@ class KKProductPage extends HTMLElement {
     let root = this._rootEl;
     if (!root) { root = document.createElement('div'); root.className = 'kkp'; this.appendChild(root); this._rootEl = root; }
     root.innerHTML = html;
+    root.classList.toggle('kkp-touch', isPhone());
     this._fitWidth();
     this._bind();
     this._update();
@@ -783,8 +808,21 @@ class KKProductPage extends HTMLElement {
       colBox.addEventListener('keydown', (e) => { if (e.key === 'Escape') { this._picker(false); input.focus(); } });
     }
     const viewer = $(r, 'kk-toy-viewer'); this._viewer = viewer;
+    this._touchHints();
     this._galUpdate();
     window.addEventListener('resize', () => this._galUpdate());
+  }
+
+  // phones: show the scroll lane and spin hints once the 3D comes into view, until the first touch
+  _touchHints() {
+    const r = this._rootEl, stage = $(r, '.kkp-stage');
+    if (!stage || !$(r, '.kkp-lane') || !r.classList.contains('kkp-touch')) return;
+    let done = false, timer = null;
+    const stop = () => { done = true; stage.classList.remove('hint'); clearTimeout(timer); if (io) io.disconnect(); };
+    const start = () => { if (done) return; stage.classList.add('hint'); timer = setTimeout(stop, 6800); };
+    stage.addEventListener('pointerdown', (e) => { if (!e.target.closest('.kkp-lane')) stop(); }, { capture: true });
+    const io = 'IntersectionObserver' in window ? new IntersectionObserver((es) => { if (es.some((x) => x.isIntersecting)) { io.disconnect(); start(); } }, { threshold: 0.6 }) : null;
+    if (io) io.observe(stage); else start();
   }
 
   _pick(optId, choiceId) {
