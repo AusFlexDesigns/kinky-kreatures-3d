@@ -61,6 +61,27 @@ def simplify(v, f, target, aggressiveness=5):
     return trimesh.Trimesh(np.asarray(lv, np.float64), np.asarray(lf), process=True)
 
 
+def voxel_solid(mesh, pitch):
+    """One closed surface from overlapping or not-quite-closed pieces (working sculpts, CAD exports):
+    mark the voxels the surface passes through, close small gaps, fill the inside, re-mesh the outside."""
+    from skimage.measure import marching_cubes
+    n = int(mesh.area / (pitch * 0.5) ** 2)
+    pts, _ = trimesh.sample.sample_surface(mesh, min(n, 6000000), seed=2)
+    pts = np.vstack([pts, mesh.vertices])
+    origin = mesh.bounds[0] - 4 * pitch
+    shape = np.ceil((mesh.bounds[1] - mesh.bounds[0]) / pitch).astype(int) + 9
+    vox = np.zeros(shape, bool); ijk = np.floor((pts - origin) / pitch).astype(int); del pts
+    vox[ijk[:, 0], ijk[:, 1], ijk[:, 2]] = True; del ijk
+    vox = ndimage.binary_closing(vox, iterations=1)
+    vox = ndimage.binary_fill_holes(vox)
+    f = ndimage.gaussian_filter(vox.astype(np.float32), 0.8); del vox
+    verts, faces, _, _ = marching_cubes(f, 0.5)
+    out = trimesh.Trimesh(verts * pitch + origin, faces[:, ::-1], process=True)
+    if out.volume < 0: out.invert()
+    parts = out.split(only_watertight=False)
+    return max(parts, key=lambda p: p.area) if len(parts) > 1 else out
+
+
 # ---------- glTF ----------
 def write_glb(path, attrs, idx, image=None, color=(0.478, 0.282, 0.910, 1.0)):
     chunks, views, accs, attr_map = [], [], [], {}
@@ -200,8 +221,7 @@ def main():
     ext = high.extents
     base = high
     if a.voxel:
-        vg = high.voxelized(pitch=a.voxel / 1000).fill(); base = vg.marching_cubes; base.apply_transform(vg.transform)
-        trimesh.smoothing.filter_taubin(base, iterations=10)
+        base = voxel_solid(high, a.voxel / 1000)
     # display model (.kkm)
     low = simplify(np.asarray(base.vertices), np.asarray(base.faces), a.display, 4)
     P, N, UV, idx = unwrap(low, a.display_res, 6)

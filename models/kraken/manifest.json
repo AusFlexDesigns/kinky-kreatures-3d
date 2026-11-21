@@ -3,16 +3,85 @@
   "color": "#7A48E8",
   "defaultSize": "large",
   "sizes": [
-    { "id": "large", "label": "Large", "base": "butt", "model": "large-butt.kkm", "ar": "large-butt-ar.glb",
-      "chart": { "lengthCm": 29.0, "widestCm": 9.1, "upperCm": 4.6, "tipCm": 2.0 } },
-    { "id": "large", "label": "Large", "base": "suction", "model": "large-suction.kkm", "ar": "large-suction-ar.glb",
-      "chart": { "lengthCm": 29.0, "widestCm": 9.1, "upperCm": 4.6, "tipCm": 2.0 } },
-    { "id": "large", "label": "Large", "base": "machine", "model": "large-machine.kkm", "ar": "large-machine-ar.glb",
-      "chart": { "lengthCm": 29.0, "widestCm": 9.1, "upperCm": 4.6, "tipCm": 2.0 } }
+    {
+      "id": "xsmall",
+      "label": "XSmall",
+      "model": "xsmall.kkm",
+      "ar": "xsmall-ar.glb",
+      "chart": {
+        "lengthCm": 20.9
+      }
+    },
+    {
+      "id": "small",
+      "label": "Small",
+      "model": "small.kkm",
+      "ar": "small-ar.glb",
+      "chart": {
+        "lengthCm": 25.9
+      }
+    },
+    {
+      "id": "medium",
+      "label": "Medium",
+      "model": "medium.kkm",
+      "ar": "medium-ar.glb",
+      "chart": {
+        "lengthCm": 29.7
+      }
+    },
+    {
+      "id": "large",
+      "label": "Large",
+      "base": "butt",
+      "model": "large-butt.kkm",
+      "ar": "large-butt-ar.glb",
+      "chart": {
+        "lengthCm": 29.0,
+        "widestCm": 9.1,
+        "upperCm": 4.6,
+        "tipCm": 2.0
+      }
+    },
+    {
+      "id": "large",
+      "label": "Large",
+      "base": "suction",
+      "model": "large-suction.kkm",
+      "ar": "large-suction-ar.glb",
+      "chart": {
+        "lengthCm": 29.0,
+        "widestCm": 9.1,
+        "upperCm": 4.6,
+        "tipCm": 2.0
+      }
+    },
+    {
+      "id": "large",
+      "label": "Large",
+      "base": "machine",
+      "model": "large-machine.kkm",
+      "ar": "large-machine-ar.glb",
+      "chart": {
+        "lengthCm": 29.0,
+        "widestCm": 9.1,
+        "upperCm": 4.6,
+        "tipCm": 2.0
+      }
+    }
   ],
   "bases": [
-    { "id": "butt", "label": "Butt base" },
-    { "id": "suction", "label": "Suction cup base" },
-    { "id": "machine", "label": "Machine base" }
+    {
+      "id": "butt",
+      "label": "Butt base"
+    },
+    {
+      "id": "suction",
+      "label": "Suction cup base"
+    },
+    {
+      "id": "machine",
+      "label": "Machine base"
+    }
   ]
 }

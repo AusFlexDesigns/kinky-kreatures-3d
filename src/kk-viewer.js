@@ -21,8 +21,8 @@ const DEFAULT_ASSETS = /\/dist\/kk-viewer(\.min)?\.js(\?.*)?$/.test(SCRIPT_SRC)
   : 'https://cdn.jsdelivr.net/gh/AusFlexDesigns/kinky-kreatures-3d@' + VERSION + '/models/';
 const MODEL_VIEWER = 'https://cdn.jsdelivr.net/npm/@google/model-viewer@4.4.0/dist/model-viewer.min.js';
 const CANS = {
-  soda: { label: 'Soda can 375 ml', h: 0.115, r: 0.033, color: '#c8202a' },
-  monster: { label: 'Monster can 500 ml', h: 0.157, r: 0.033, color: '#1f2a1f' },
+  soda: { label: 'Soda can 375 ml', h: 0.115, r: 0.033, color: '#9ea3ab' },
+  monster: { label: 'Monster can 500 ml', h: 0.157, r: 0.033, color: '#9ea3ab' },
 };
 
 // ---- scrambled model container (.kkm): decoded in memory only ----
@@ -535,8 +535,8 @@ class KKToyViewer extends HTMLElement {
   _can(spec) {
     const { h, r } = spec;
     const pts = [[0, 0], [r * 0.82, 0], [r, 0.006], [r, h - 0.016], [r * 0.8, h - 0.003], [r * 0.8, h], [r * 0.74, h - 0.004], [0, h - 0.004]].map((p) => new Vector2(p[0], p[1]));
-    const m = new Mesh(new LatheGeometry(pts, 48), new MeshStandardMaterial({ color: spec.color, roughness: 0.3, metalness: 0.35 }));
-    m.castShadow = true; return m;
+    const m = new Mesh(new LatheGeometry(pts, 48), new MeshStandardMaterial({ color: spec.color, roughness: 0.35, metalness: 0.35, transparent: true, opacity: 0.5, depthWrite: false }));
+    m.renderOrder = 7; return m;
   }
 
   _loadRef(id) {
@@ -545,7 +545,8 @@ class KKToyViewer extends HTMLElement {
     this._refLoads[id] = download(this._assets + '_refs/' + id + '.kkm', 'bin')
       .then((b) => decodeKkm(b.slice(0), CANS[id].color))
       .then((m) => {
-        m.material.metalness = 0.45; m.material.roughness = 0.32; m.renderOrder = 0; m.position.set(0, 0, 0);
+        Object.assign(m.material, { metalness: 0.35, roughness: 0.35, transparent: true, opacity: 0.5, depthWrite: false });
+        m.castShadow = false; m.renderOrder = 7; m.position.set(0, 0, 0);
         this._refs[id] = m; if (this._state.can === id) this._buildExtras();
       })
       .catch((e) => console.warn('[kk-toy-viewer] can model', e));
