@@ -1,0 +1,12 @@
+{
+  "name": "kinky-kreatures-3d",
+  "private": true,
+  "description": "3D toy viewer (Wix custom element) and web models for kinkykreatures.au",
+  "scripts": {
+    "build": "esbuild src/kk-viewer.js --bundle --minify --format=iife --target=es2020 --define:__VERSION__=\\\"$npm_config_tag\\\" --outfile=dist/kk-viewer.js"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "three": "0.187.0"
+  }
+}
