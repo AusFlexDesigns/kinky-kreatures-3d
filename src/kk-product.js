@@ -138,6 +138,7 @@ const CSS = `
 .kkp-tile img{width:100%;height:100%;object-fit:cover;display:block}
 .kkp-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:44px;height:44px;border-radius:999px;border:1px solid rgba(255,255,255,.4);background:rgba(6,5,6,.8);display:flex;align-items:center;justify-content:center;color:#fff}
 .kkp-arrow[disabled]{opacity:.3;cursor:default}
+.kkp-dots{display:none;justify-content:center;gap:6px;margin-top:4px}.kkp-dots i{width:6px;height:6px;border-radius:9px;background:rgba(201,180,255,.3);transition:width .2s,background .2s}.kkp-dots i.on{width:18px;background:var(--lav)}
 .kkp-arrow.l{left:-14px}.kkp-arrow.r{right:-14px}
 .kkp-buy{grid-area:buy;grid-row:1/span 2;position:sticky;top:24px;display:flex;flex-direction:column;gap:22px;padding:30px;border-radius:24px;background:var(--card);border:1px solid var(--line)}
 .kkp-title{position:relative;display:flex;flex-direction:column;gap:6px;padding-right:150px;min-height:100px}
@@ -343,9 +344,14 @@ const CSS = `
   .kkp-sw{grid-template-columns:repeat(6,minmax(0,1fr))}
   .kkp-pk-two{grid-template-columns:1fr}
   .kkp-trust{grid-template-columns:repeat(2,minmax(0,1fr));font-size:13px;padding:14px 0;border-bottom:1px solid var(--line)}
-  .kkp-tile{flex-basis:calc((100% - 8px)/2);height:190px}
-  .kkp-car-track{gap:8px}
-  .kkp-arrow.l{left:6px}.kkp-arrow.r{right:6px}
+  /* phones: swipe the photo row (native scrolling), a third photo peeks in to show there's more */
+  .kkp-car-vp{margin:0 -16px;padding:0 16px;border-radius:0;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 16px;-webkit-overflow-scrolling:touch;scrollbar-width:none;overscroll-behavior-x:contain}
+  .kkp-car-vp::-webkit-scrollbar{display:none}
+  .kkp-car-track{gap:8px;transform:none!important;transition:none}
+  .kkp-car-track:after{content:'';flex:0 0 8px}
+  .kkp-tile{flex-basis:44%;height:190px;scroll-snap-align:start}
+  .kkp-arrow{display:none!important}
+  .kkp-dots{display:flex}
   .kkp-rowhead h2{font-size:16px}.kkp-rowhead p{font-size:12px}
   .kkp-sec{margin-top:32px}
   .kkp-sec>h2,.kkp-h2,.kkp-fit-side>h2{font-size:24px;margin-bottom:14px}
@@ -559,6 +565,7 @@ class KKProductPage extends HTMLElement {
         <button class="kkp-arrow l" data-gal="-1" aria-label="Previous photos">${icon('left')}</button>
         <button class="kkp-arrow r" data-gal="1" aria-label="Next photos">${icon('right')}</button>
       </div>
+      <div class="kkp-dots" aria-hidden="true">${this._media.map(() => '<i></i>').join('')}</div>
     </div>` : ''}
     <div class="kkp-buy">
       <div class="kkp-title${x.character ? '' : ' nochar'}">
@@ -811,6 +818,8 @@ class KKProductPage extends HTMLElement {
     this._touchHints();
     this._galUpdate();
     window.addEventListener('resize', () => this._galUpdate());
+    const vp = $(r, '.kkp-car-vp');
+    if (vp) { let raf = 0; vp.addEventListener('scroll', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(() => this._galDots()); }, { passive: true }); }
   }
 
   // phones: show the scroll lane and spin hints once the 3D comes into view, until the first touch
@@ -904,7 +913,16 @@ class KKProductPage extends HTMLElement {
   // photos
   _galUpdate() {
     const r = this._rootEl, track = $(r, '.kkp-car-track'); if (!track) return;
-    const n = this._media.length, vis = r.getBoundingClientRect().width <= 960 ? 2 : 4, max = Math.max(0, n - vis);
+    const n = this._media.length;
+    if (r.getBoundingClientRect().width <= 960) {
+      // phones: the row scrolls natively by swiping
+      const pos = $(r, '[data-galpos]'); if (pos) pos.textContent = `${n} photos · swipe for more, tap to enlarge`;
+      $$(r, '.kkp-tile').forEach((t) => { t.tabIndex = 0; });
+      this._galDots();
+      return;
+    }
+    const vpEl = $(r, '.kkp-car-vp'); if (vpEl && vpEl.scrollLeft) vpEl.scrollLeft = 0;
+    const vis = 4, max = Math.max(0, n - vis);
     this._g = Math.max(0, Math.min(max, this._g));
     const gap = vis === 2 ? 8 : 12;
     track.style.transform = `translateX(calc(${-this._g} * ((100% - ${gap * (vis - 1)}px) / ${vis} + ${gap}px)))`;
@@ -912,6 +930,13 @@ class KKProductPage extends HTMLElement {
     $$(r, '[data-gal]').forEach((b) => { b.hidden = n <= vis; });
     const pos = $(r, '[data-galpos]'); if (pos) pos.textContent = `${n} photos · click any photo to enlarge`;
     $$(r, '.kkp-tile').forEach((t, i) => { t.tabIndex = i >= this._g && i < this._g + vis ? 0 : -1; });
+  }
+
+  _galDots() {
+    const r = this._rootEl, vp = $(r, '.kkp-car-vp'), tiles = $$(r, '.kkp-tile'); if (!vp || !tiles.length) return;
+    const w = tiles[0].getBoundingClientRect().width + 8;
+    const first = Math.round(vp.scrollLeft / w), vis = Math.max(1, Math.floor((vp.clientWidth - 16) / w + 0.3));
+    $$(r, '.kkp-dots i').forEach((d, i) => d.classList.toggle('on', i >= first && i < first + vis));
   }
 
   _lightbox(i, list, kind) {
