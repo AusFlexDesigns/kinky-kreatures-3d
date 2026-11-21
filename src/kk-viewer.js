@@ -426,11 +426,33 @@ class KKToyViewer extends HTMLElement {
   }
 
   _loadManifest() {
-    const model = (this.getAttribute('model') || '').trim().toLowerCase();
+    let model = (this.getAttribute('model') || '').trim().toLowerCase();
+    if (!model || model === 'auto') return this._loadForPage();
     if (this._loading && this._loadingModel === model) return this._loading;
     this._loadingModel = model;
     this._loading = this._doLoadManifest(model);
     return this._loading;
+  }
+
+  // model="auto" (or no model): on a store product page, pick the toy from the page address via models/index.json
+  async _loadForPage() {
+    if (this._loading && this._loadingModel === '#auto') return this._loading;
+    this._loadingModel = '#auto';
+    this._loading = (async () => {
+      const slug = decodeURIComponent(location.pathname.split('/').filter(Boolean).pop() || '').toLowerCase();
+      const index = await download(this._assets + 'index.json', 'json');
+      const model = (index.products || {})[slug];
+      if (!model) { this._noModel(); return; }
+      return this._doLoadManifest(model);
+    })();
+    return this._loading;
+  }
+
+  _noModel() {
+    // nothing to show for this product: stay out of the way and tell the page (Velo can collapse the element)
+    this._$('.wrap').hidden = true; this.style.display = 'none';
+    if (this._renderer) this._renderer.setAnimationLoop(null);
+    this.dispatchEvent(new CustomEvent('kk-no-model', { bubbles: true, composed: true }));
   }
 
   async _doLoadManifest(model) {
