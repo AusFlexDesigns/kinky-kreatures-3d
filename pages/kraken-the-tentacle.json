@@ -1,0 +1,47 @@
+{
+  "model": "kraken",
+  "shortName": "Kraken",
+  "eyebrow": "TENTACLE · MADE TO ORDER",
+  "hook": "A tentacle dildo, grinder and masturbator in one — every sucker is sculpted to really grip.",
+  "character": "assets/characters/kraken.webp",
+  "sizeOption": "PICK SIZE",
+  "baseOption": "PICK BASE",
+  "optionLabels": { "PICK SIZE": "Size", "PICK BASE": "Base", "DENSITY": "Density" },
+  "default": { "PICK SIZE": "Large", "PICK BASE": "Suction Cup" },
+  "chips": {
+    "PICK SIZE": {
+      "XSmall": { "label": "XSmall", "sub": "21 cm" },
+      "Small": { "label": "Small", "sub": "26 cm" },
+      "Medium": { "label": "Medium", "sub": "29 cm" },
+      "Large": { "label": "Large", "sub": "29 cm" }
+    },
+    "PICK BASE": {
+      "No Base - Flat Bottom": { "label": "Flat bottom", "sub": "No base" },
+      "Internal Masturbator": { "label": "Masturbator", "sub": "Internal cavity" },
+      "Suction Cup": { "label": "Suction cup", "sub": "Sticks to smooth surfaces" },
+      "Fuck Machine & Suction Cup": { "label": "Machine + suction", "sub": "Vac-U-Lock compatible" }
+    }
+  },
+  "viewer": {
+    "sizes": { "XSmall": "xsmall", "Small": "small", "Medium": "medium", "Large": "large" },
+    "bases": { "Internal Masturbator": "butt", "Suction Cup": "suction", "Fuck Machine & Suction Cup": "machine" }
+  },
+  "colours": { "modifier": "Colours", "max": 2 },
+  "features": [
+    { "icon": "tentacle", "title": "Suckers that grip", "text": "Every sucker is sculpted to really suck and stick to your skin." },
+    { "icon": "hexagon", "title": "Three toys in one", "text": "Dildo, grinder and wearable — for solo play or with a partner." },
+    { "icon": "bases", "title": "Four sizes, four bases", "text": "From XSmall to Large, with flat, masturbator, suction or machine bases." },
+    { "icon": "aumade", "title": "Australian Made Certified", "text": "Handmade in Australia from soft-touch, skin-safe silicone. Every pour is one of a kind." }
+  ],
+  "sizeNote": "Medium and Large are the same length — Large is the thicker of the two. Use the diameter ring in the 3D viewer to check the width at any point, or see it at true size in your room with AR.",
+  "sizes": [
+    { "choice": "XSmall", "label": "XSmall", "lengthCm": 21.0, "widestCm": 5.3, "upperCm": 2.6, "tipCm": 1.2 },
+    { "choice": "Small", "label": "Small", "lengthCm": 26.0, "widestCm": 6.6, "upperCm": 3.2, "tipCm": 1.2 },
+    { "choice": "Medium", "label": "Medium", "lengthCm": 29.0, "widestCm": 7.8, "upperCm": 3.6, "tipCm": 1.6 },
+    { "choice": "Large", "label": "Large", "lengthCm": 29.0, "widestCm": 9.1, "upperCm": 4.6, "tipCm": 2.0 }
+  ],
+  "lineupImage": "assets/lineup/kraken.webp",
+  "lineupAspect": 0.402,
+  "hideSections": ["Sizes & Dimensions"],
+  "cardSections": ["Base Options", "Materials & Colours", "Ways to Play"]
+}

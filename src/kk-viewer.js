@@ -203,10 +203,12 @@ button{font:inherit;color:inherit;cursor:pointer}
   .chip{min-height:34px;padding:0 11px;font-size:11px}
   .readout{font-size:13px}
 }
-@container (max-width:360px){ .hint{display:none} }`;
+@container (max-width:360px){ .hint{display:none} }
+:host([controls="external"]) .sizes,:host([controls="external"]) .bases,:host([controls="external"]) .ar{display:none!important}
+:host([controls="external"]) .note{top:64px}`;
 
 class KKToyViewer extends HTMLElement {
-  static get observedAttributes() { return ['model', 'size']; }
+  static get observedAttributes() { return ['model', 'size', 'base']; }
 
   connectedCallback() {
     if (this._root) return;
@@ -252,7 +254,9 @@ class KKToyViewer extends HTMLElement {
   attributeChangedCallback(name, oldV, newV) {
     if (!this._started || oldV === newV) return;
     if (name === 'model') this._loadManifest().catch((e) => this._fail(e));
+    if (!this._manifest) return;   // size/base set before the model loads are read when it does
     if (name === 'size' && newV) this._selectSize(newV);
+    if (name === 'base' && newV) this._selectBase(newV);
   }
 
   get _assets() {
@@ -469,6 +473,7 @@ class KKToyViewer extends HTMLElement {
     bases.hidden = !multiBase;
     bases.innerHTML = multiBase ? m.bases.map((b) => `<button class="chip" data-b="${b.id}" aria-pressed="false">${b.label}</button>`).join('') : '';
     bases.querySelectorAll('[data-b]').forEach((b) => b.addEventListener('click', () => this._selectBase(b.dataset.b)));
+    if (this.getAttribute('base')) this._baseId = this.getAttribute('base');
     const want = this.getAttribute('size') || m.defaultSize || m.sizes[0].id;
     await this._selectSize(want);
   }
@@ -489,7 +494,7 @@ class KKToyViewer extends HTMLElement {
       this._cache[key].material.clippingPlanes = [this._cutPlane]; this._cache[key].material.clipShadows = true;
     }
     st.hidden = true;
-    const mesh = this._cache[key]; this._current = v; this._baseId = v.base;
+    const mesh = this._cache[key]; this._current = v; this._baseId = v.base || this._baseId;
     this._toy.clear(); this._toy.add(mesh);
     new Box3().setFromObject(mesh).getSize(this._size3);
     this._buildCut(mesh); this._buildExtras(); if (this._state.cut) this._setCut(true, true);
@@ -629,6 +634,20 @@ class KKToyViewer extends HTMLElement {
       console.warn('[kk-toy-viewer] AR unavailable', e);
     }
   }
+
+  // ---- public API for a page that draws its own size/base buttons (controls="external") ----
+  /** Show a size and base. Either may be omitted to keep the current one. */
+  select(sizeId, baseId) {
+    if (baseId) this._baseId = baseId;
+    if (!this._manifest) { if (sizeId) this.setAttribute('size', sizeId); if (baseId) this.setAttribute('base', baseId); return Promise.resolve(); }
+    return this._show(this._variant(sizeId || (this._current && this._current.id), this._baseId));
+  }
+  /** Open augmented reality for the toy on screen (phones). Returns false if AR isn't available here. */
+  openAR() {
+    if (this._mv && this._mv.canActivateAR) { this._mv.activateAR(); return true; }
+    this._openAR(); return false;
+  }
+  get arReady() { return !!(this._mv && this._mv.canActivateAR); }
 
   _openAR() {
     const note = this._$('.note');
