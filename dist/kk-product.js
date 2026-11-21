@@ -147,7 +147,7 @@
 .kkp summary{cursor:pointer;font:800 14px/1.3 Montserrat,Arial,sans-serif;letter-spacing:1px;text-transform:uppercase}
 .kkp details .kkp-rich{margin-top:12px;font-size:15px}
 .kkp-lane,.kkp-spin{display:none}
-.kkp-touch .kkp-lane{display:block;position:absolute;right:0;top:64px;bottom:0;width:60px;z-index:3;touch-action:pan-y;background:linear-gradient(90deg,rgba(6,5,6,0),rgba(6,5,6,.38))}
+.kkp-touch .kkp-lane{display:block;position:absolute;right:0;top:64px;bottom:0;width:60px;z-index:3;touch-action:pan-y;border-top-left-radius:16px;background:linear-gradient(90deg,rgba(6,5,6,0),rgba(6,5,6,.32))}
 .kkp-lane-track{position:absolute;right:20px;top:14px;bottom:78px;width:4px;border-radius:4px;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.5) 0 5px,transparent 5px 11px)}
 .kkp-lane-track:before,.kkp-lane-track:after{content:'';position:absolute;left:50%;width:9px;height:9px;border:solid rgba(255,255,255,.75);border-width:2.5px 2.5px 0 0;transform:translateX(-50%) rotate(-45deg)}
 .kkp-lane-track:before{top:-6px}.kkp-lane-track:after{bottom:-6px;transform:translateX(-50%) rotate(135deg)}
