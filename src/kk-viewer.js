@@ -2,6 +2,7 @@
 // Usage on a page: <kk-toy-viewer model="kraken"></kk-toy-viewer>
 // Optional attributes: size="large", assets="https://.../models/" (override where models load from).
 import {
+  Raycaster, TorusGeometry, Quaternion,
   WebGLRenderer, Scene, PerspectiveCamera, PMREMGenerator, DirectionalLight, Mesh, PlaneGeometry, ShadowMaterial,
   Group, Box3, Vector3, Vector2, Plane, MeshStandardMaterial, MeshBasicMaterial, BufferGeometry, BufferAttribute,
   Float32BufferAttribute, LineSegments, LineBasicMaterial, Sprite, SpriteMaterial, CanvasTexture, LatheGeometry, Texture,
@@ -56,6 +57,71 @@ async function decodeKkm(buf, color) {
   const mesh = new Mesh(g, mat); mesh.castShadow = true; mesh.renderOrder = 6; return mesh;
 }
 
+
+// ---- diameter gauge: cross-sections taken square to the toy's centre line ----
+function sliceTri(pos, idx, c, n, u, v, out) {
+  const P = (i) => [pos[i * 3], pos[i * 3 + 1], pos[i * 3 + 2]];
+  for (let t = 0; t < idx.length; t += 3) {
+    const a = P(idx[t]), b = P(idx[t + 1]), d = P(idx[t + 2]);
+    const s = [a, b, d].map((p) => (p[0] - c[0]) * n[0] + (p[1] - c[1]) * n[1] + (p[2] - c[2]) * n[2]);
+    const tri = [a, b, d];
+    for (let e = 0; e < 3; e++) {
+      const i = e, j = (e + 1) % 3;
+      if ((s[i] > 0) === (s[j] > 0)) continue;
+      const k = s[i] / (s[i] - s[j]), pi = tri[i], pj = tri[j];
+      const q = [pi[0] + (pj[0] - pi[0]) * k - c[0], pi[1] + (pj[1] - pi[1]) * k - c[1], pi[2] + (pj[2] - pi[2]) * k - c[2]];
+      out.push([q[0] * u[0] + q[1] * u[1] + q[2] * u[2], q[0] * v[0] + q[1] * v[1] + q[2] * v[2]]);
+    }
+  }
+  return out;
+}
+function hull2(pts) {
+  const p = pts.slice().sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+  if (p.length < 3) return p;
+  const cr = (o, a, b) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
+  const lo = [], up = [];
+  for (const q of p) { while (lo.length >= 2 && cr(lo[lo.length - 2], lo[lo.length - 1], q) <= 0) lo.pop(); lo.push(q); }
+  for (let i = p.length - 1; i >= 0; i--) { const q = p[i]; while (up.length >= 2 && cr(up[up.length - 2], up[up.length - 1], q) <= 0) up.pop(); up.push(q); }
+  return lo.slice(0, -1).concat(up.slice(0, -1));
+}
+const norm3 = (a) => { const l = Math.hypot(a[0], a[1], a[2]) || 1; return [a[0] / l, a[1] / l, a[2] / l]; };
+const cross3 = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+function computeSections(geometry, count = 90) {
+  const pos = geometry.attributes.position.array, idx = geometry.index.array;
+  geometry.computeBoundingBox(); const bb = geometry.boundingBox, h = bb.max.y - bb.min.y;
+  // centre line from horizontal slices, smoothed
+  const ys = [], cs = [];
+  for (let i = 0; i < count; i++) {
+    const y = bb.min.y + h * (0.03 + 0.94 * (i / (count - 1)));
+    const pts = sliceTri(pos, idx, [0, y, 0], [0, 1, 0], [1, 0, 0], [0, 0, 1], []);
+    if (pts.length < 6) continue;
+    let sx = 0, sz = 0; for (const q of pts) { sx += q[0]; sz += q[1]; }
+    ys.push(y); cs.push([sx / pts.length, y, sz / pts.length]);
+  }
+  const sm = cs.map((_, i) => { let a = [0, 0, 0], n = 0; for (let j = Math.max(0, i - 4); j <= Math.min(cs.length - 1, i + 4); j++) { a = [a[0] + cs[j][0], a[1] + cs[j][1], a[2] + cs[j][2]]; n++; } return [a[0] / n, a[1] / n, a[2] / n]; });
+  const out = [];
+  for (let i = 0; i < sm.length; i++) {
+    const p0 = sm[Math.max(0, i - 2)], p1 = sm[Math.min(sm.length - 1, i + 2)];
+    const n = norm3([p1[0] - p0[0], p1[1] - p0[1], p1[2] - p0[2]]);
+    const u = norm3(cross3(n, Math.abs(n[0]) < 0.9 ? [1, 0, 0] : [0, 0, 1])), v = cross3(n, u);
+    let pts = sliceTri(pos, idx, sm[i], n, u, v, []);
+    if (pts.length < 6) continue;
+    // keep the loop around the centre line, not far cuts through other parts of the toy
+    const d = pts.map((q) => Math.hypot(q[0], q[1])).sort((a, b) => a - b), lim = d[Math.floor(d.length / 2)] * 1.8;
+    pts = pts.filter((q) => Math.hypot(q[0], q[1]) <= lim);
+    const H = hull2(pts); if (H.length < 3) continue;
+    let best = 0, A = H[0], B = H[0], per = 0, cx = 0, cy = 0;
+    for (let a = 0; a < H.length; a++) {
+      const q = H[a], r = H[(a + 1) % H.length]; per += Math.hypot(r[0] - q[0], r[1] - q[1]); cx += q[0]; cy += q[1];
+      for (let b = a + 1; b < H.length; b++) { const w = Math.hypot(H[b][0] - q[0], H[b][1] - q[1]); if (w > best) { best = w; A = q; B = H[b]; } }
+    }
+    cx /= H.length; cy /= H.length;
+    const to3 = (q) => [sm[i][0] + u[0] * q[0] + v[0] * q[1], sm[i][1] + u[1] * q[0] + v[1] * q[1], sm[i][2] + u[2] * q[0] + v[2] * q[1]];
+    out.push({ y: sm[i][1], centre: to3([cx, cy]), normal: n, diameter: best, girth: per, a: to3(A), b: to3(B) });
+  }
+  return out;
+}
+
 let modelViewerPromise = null;
 const downloads = new Map();
 function download(url, kind) {
@@ -83,6 +149,7 @@ const ICON = {
   cut: '<path d="M10 3c-2 3-3 6-3 10s1 6 3 8z"/><path d="M14 3c2 3 3 6 3 10s-1 6-3 8z"/><path d="M4 12h2M18 12h2"/>',
   base: '<ellipse cx="12" cy="16" rx="8" ry="3.5"/><path d="M8 15V8c0-2 2-5 4-5s4 3 4 5v7"/>',
   reset: '<path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v5h5"/>',
+  gauge: '<path d="M9 2.5v19M15 2.5v19"/><ellipse cx="12" cy="12" rx="8.5" ry="3"/>',
   ar: '<path d="M12 2l8 4.5v9L12 20l-8-4.5v-9z"/><path d="M12 11l8-4.5M12 11v9M12 11L4 6.5"/>',
 };
 const svg = (k) => `<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICON[k]}</svg>`;
@@ -106,13 +173,18 @@ button{font:inherit;color:inherit;cursor:pointer}
 .size[aria-pressed="true"]{color:var(--kk-accent,#ff4d6d)}
 .size small{display:block;font-size:12px;font-weight:600;letter-spacing:.02em;text-transform:none;color:rgba(255,255,255,.72)}
 .bases{left:50%;bottom:16px;transform:translateX(-50%);flex-direction:row;flex-wrap:wrap;justify-content:center}
-.chip{min-height:40px;padding:0 14px;border-radius:999px;border:1.5px solid rgba(255,255,255,.28);background:rgba(21,10,51,.55);font-size:13px;font-weight:700}
+.chip{min-height:40px;padding:0 14px;border-radius:999px;border:1.5px solid rgba(255,255,255,.28);background:rgba(21,10,51,.55);font-size:12.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
 .chip[hidden]{display:none}
 .chip[aria-pressed="true"]{background:#fff;color:#150a33;border-color:#fff}
 .ar{position:absolute;right:12px;top:12px;z-index:2;display:block;width:64px;height:74px;padding:4px;border:0;border-radius:14px;background:none;cursor:pointer;filter:drop-shadow(0 3px 8px rgba(0,0,0,.35));transition:transform .15s}
 .ar:hover{transform:scale(1.06)}
 .ar img{display:block;width:100%;height:100%;object-fit:contain}
 .ar[hidden]{display:none}
+.readout{position:absolute;left:0;top:0;z-index:2;margin:0;padding:6px 10px;border-radius:10px;background:rgba(21,10,51,.82);border:1.5px solid var(--kk-accent,#ff4d6d);font-size:15px;font-weight:800;line-height:1.25;white-space:nowrap;cursor:ns-resize;touch-action:none;user-select:none;transform:translate(0,-50%)}
+.readout::before{content:'⇕';float:left;margin:2px 8px 0 0;font-size:16px;color:var(--kk-accent,#ff4d6d)}
+.readout small{display:block;font-size:11.5px;font-weight:600;color:rgba(255,255,255,.75)}
+.readout[hidden]{display:none}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .note{position:absolute;right:16px;top:94px;z-index:3;max-width:240px;margin:0;padding:10px 12px;border-radius:12px;background:#fff;color:#150a33;font-size:13px;line-height:1.4;font-weight:600}
 .note[hidden]{display:none}
 .hint{position:absolute;right:16px;bottom:16px;z-index:1;margin:0;font-size:12px;font-weight:600;color:rgba(255,255,255,.7)}
@@ -128,6 +200,8 @@ button{font:inherit;color:inherit;cursor:pointer}
   .icon{width:44px;height:44px}
   .bases{bottom:70px;left:auto;right:12px;transform:none;flex-direction:column;align-items:flex-end}
   .hint{bottom:18px;right:12px;max-width:130px;text-align:right}
+  .chip{min-height:34px;padding:0 11px;font-size:11px}
+  .readout{font-size:13px}
 }
 @container (max-width:360px){ .hint{display:none} }`;
 
@@ -145,6 +219,7 @@ class KKToyViewer extends HTMLElement {
     <button class="icon" data-t="ruler" aria-pressed="false" aria-label="Show ruler" title="Ruler">${svg('ruler')}</button>
     <button class="icon" data-t="soda" aria-pressed="false" aria-label="Show soda can for scale" title="Soda can">${svg('soda')}</button>
     <button class="icon" data-t="monster" aria-pressed="false" aria-label="Show Monster can for scale" title="Monster can">${svg('monster')}</button>
+    <button class="icon" data-g aria-pressed="false" aria-label="Measure diameter. Drag the ring, or use the up and down arrow keys" title="Diameter">${svg('gauge')}</button>
   </div>
   <div class="col views" role="group" aria-label="Views">
     <button class="icon" data-v="cut" aria-pressed="false" aria-label="Cutaway view" title="See inside">${svg('cut')}</button>
@@ -154,6 +229,8 @@ class KKToyViewer extends HTMLElement {
   <div class="col sizes" role="group" aria-label="Size"></div>
   <div class="col bases" role="group" aria-label="Base"></div>
   <button class="ar" hidden aria-label="View in your space with augmented reality" title="View in your space (AR)"><img src="${AR_ICON}" alt=""></button>
+  <p class="readout" hidden></p>
+  <p class="sr" aria-live="polite"></p>
   <p class="note" hidden></p>
   <p class="hint">Drag to rotate · scroll or pinch to zoom</p>
   <div class="mv"></div>
@@ -232,8 +309,15 @@ class KKToyViewer extends HTMLElement {
     this._cap.rotation.y = Math.PI / 2; this._cap.renderOrder = 1.1; this._cap.visible = false;
     this._cap.onAfterRender = (rr) => rr.clearStencil(); scene.add(this._cap);
 
+    this._gauge = new Group(); this._gauge.visible = false; scene.add(this._gauge);
+    this._ring = new Mesh(new TorusGeometry(1, 0.035, 12, 96), new MeshStandardMaterial({ color: 0xff4d6d, roughness: 0.35, metalness: 0.1, emissive: 0x5a0f22 }));
+    this._ringHit = new Mesh(new TorusGeometry(1, 0.45, 8, 48), new MeshBasicMaterial({ visible: false }));
+    this._span = new LineSegments(new BufferGeometry(), new LineBasicMaterial({ color: 0xffffff, depthTest: false, transparent: true }));
+    this._span.renderOrder = 9; this._ring.renderOrder = 8;
+    this._gauge.add(this._ring, this._ringHit, this._span);
+    this._ray = new Raycaster();
     this._size3 = new Vector3(0.1, 0.3, 0.1);
-    this._state = { ruler: false, can: 'none', cut: false }; this._refs = {};
+    this._state = { ruler: false, can: 'none', cut: false, gauge: false }; this._refs = {}; this._gaugeAt = 0.5;
     this._cache = {};
 
     const resize = () => {
@@ -244,7 +328,7 @@ class KKToyViewer extends HTMLElement {
     r.setAnimationLoop(() => {
       if (!this._visible) return;
       const moved = c.update();
-      if (moved || this._dirty || this._anim) { r.render(scene, cam); this._dirty = false; }
+      if (moved || this._dirty || this._anim) { r.render(scene, cam); this._dirty = false; if (this._state.gauge) this._placeReadout(); }
     });
   }
 
@@ -260,6 +344,85 @@ class KKToyViewer extends HTMLElement {
     this._$('[data-v="base"]').addEventListener('click', () => this._viewBase());
     this._$('[data-v="reset"]').addEventListener('click', () => { if (this._state.cut) { this._setCut(false); this._$('[data-v="cut"]').setAttribute('aria-pressed', 'false'); } this._frame(); });
     this._$('.ar').addEventListener('click', () => this._openAR());
+    const g = this._$('[data-g]');
+    g.addEventListener('click', () => this._setGauge(!this._state.gauge));
+    g.addEventListener('keydown', (e) => {
+      if (!this._state.gauge || (e.key !== 'ArrowUp' && e.key !== 'ArrowDown')) return;
+      e.preventDefault(); this._moveGauge(this._gaugeAt + (e.key === 'ArrowUp' ? 0.02 : -0.02));
+    });
+    this._bindGaugeDrag();
+  }
+
+  // ---- diameter gauge ----
+  _setGauge(on) {
+    this._state.gauge = on; this._$('[data-g]').setAttribute('aria-pressed', String(on));
+    this._gauge.visible = on; this._$('.readout').hidden = !on;
+    // while measuring, finger drags belong to the viewer (so the ring can slide up and down) instead of scrolling the page
+    this._renderer.domElement.style.touchAction = on ? 'none' : 'pan-y';
+    if (on) this._moveGauge(this._gaugeAt); else this._dirty = true;
+  }
+
+  _sections() {
+    const mesh = this._toy.children[0]; if (!mesh) return [];
+    if (!mesh.userData.sections) mesh.userData.sections = computeSections(mesh.geometry);
+    return mesh.userData.sections;
+  }
+
+  _moveGauge(t) {
+    const S = this._sections(); if (!S.length) return;
+    this._gaugeAt = Math.min(1, Math.max(0, t));
+    const sec = S[Math.round(this._gaugeAt * (S.length - 1))]; this._sec = sec;
+    const R = sec.diameter / 2 + 0.006;
+    this._ring.scale.set(R, R, R); this._ring.geometry.dispose();
+    this._ring.geometry = new TorusGeometry(1, 0.0022 / R, 12, 96);
+    this._ringHit.scale.set(R, R, R);
+    const q = new Quaternion().setFromUnitVectors(new Vector3(0, 0, 1), new Vector3(...sec.normal));
+    for (const o of [this._ring, this._ringHit]) { o.position.set(...sec.centre); o.quaternion.copy(q); }
+    this._span.geometry.dispose();
+    this._span.geometry = new BufferGeometry().setAttribute('position', new Float32BufferAttribute([...sec.a, ...sec.b], 3));
+    const cm = sec.diameter * 100, gcm = sec.girth * 100;
+    this._$('.readout').innerHTML = `Ø ${cm.toFixed(1)} cm · ${(cm / 2.54).toFixed(2)}″<small>Girth ${gcm.toFixed(1)} cm · ${(gcm / 2.54).toFixed(1)}″</small>`;
+    this._$('.sr').textContent = `Diameter ${cm.toFixed(1)} centimetres, ${(cm / 2.54).toFixed(2)} inches`;
+    this._dirty = true;
+  }
+
+  _placeReadout() {
+    const sec = this._sec, el = this._$('.readout'); if (!sec) return;
+    const R = sec.diameter / 2 + 0.006, cam = this._camera;
+    const right = new Vector3().setFromMatrixColumn(cam.matrixWorld, 0);
+    const p = new Vector3(...sec.centre).addScaledVector(right, R + 0.012).project(cam);
+    const st = this._$('.stage'), W = st.clientWidth, H = st.clientHeight;
+    const x = Math.min(W - el.offsetWidth - 8, Math.max(8, (p.x * 0.5 + 0.5) * W)), y = Math.min(H - 24, Math.max(24, (-p.y * 0.5 + 0.5) * H));
+    el.style.left = x + 'px'; el.style.top = y + 'px';
+  }
+
+  _bindGaugeDrag() {
+    const cv = this._renderer.domElement, wrap = this._$('.wrap');
+    const ndc = (e) => { const r = cv.getBoundingClientRect(); return new Vector2(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1); };
+    const onRing = (e) => { this._ray.setFromCamera(ndc(e), this._camera); return this._ray.intersectObject(this._ringHit, false).length > 0; };
+    const heightAt = (e) => {
+      // where the pointer meets an upright plane through the toy, facing the camera
+      this._ray.setFromCamera(ndc(e), this._camera);
+      const f = new Vector3(); this._camera.getWorldDirection(f); f.y = 0; if (f.lengthSq() < 1e-6) f.set(0, 0, -1); f.normalize();
+      const hit = new Vector3(); if (!this._ray.ray.intersectPlane(new Plane(f.negate(), 0), hit)) return null;
+      return hit.y;
+    };
+    // grab the ring itself or its measurement label, then slide up and down
+    let drag = null, el = null;
+    const start = (e, target) => { drag = e.pointerId; el = target; this._controls.enabled = false; target.setPointerCapture(e.pointerId); e.preventDefault(); e.stopPropagation(); };
+    wrap.addEventListener('pointerdown', (e) => { if (this._state.gauge && e.target === cv && onRing(e)) start(e, cv); }, true);
+    const label = this._$('.readout');
+    label.addEventListener('pointerdown', (e) => { if (this._state.gauge) start(e, label); });
+    const move = (e) => {
+      if (!this._state.gauge) return;
+      if (drag === null) { if (e.currentTarget === cv) cv.style.cursor = onRing(e) ? 'ns-resize' : ''; return; }
+      if (e.pointerId !== drag) return;
+      const y = heightAt(e); const S = this._sections(); if (y === null || !S.length) return;
+      let best = 0; S.forEach((s, i) => { if (Math.abs(s.y - y) < Math.abs(S[best].y - y)) best = i; });
+      this._moveGauge(best / (S.length - 1));
+    };
+    const end = (e) => { if (drag === null || e.pointerId !== drag) return; drag = null; el = null; this._controls.enabled = true; };
+    for (const t of [cv, label]) { t.addEventListener('pointermove', move); t.addEventListener('pointerup', end); t.addEventListener('pointercancel', end); }
   }
 
   _loadManifest() {
@@ -308,6 +471,7 @@ class KKToyViewer extends HTMLElement {
     this._toy.clear(); this._toy.add(mesh);
     new Box3().setFromObject(mesh).getSize(this._size3);
     this._buildCut(mesh); this._buildExtras(); if (this._state.cut) this._setCut(true, true);
+    if (this._state.gauge) this._moveGauge(this._gaugeAt);
     if (!this._framed) { this._frame(); this._framed = true; } else this._dirty = true;
     this._root.querySelectorAll('[data-s]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.s === v.id)));
     const here = this._manifest.sizes.filter((s) => s.id === v.id).map((s) => s.base);   // bases this size comes with
