@@ -51,15 +51,39 @@ function cleanHTML(html) {
   return root.innerHTML;
 }
 
+// ---------- reviews (Fera, the site's reviews app; public read-only key, same one the Fera widget uses) ----------
+const FERA_KEY = 'pk_bde2d8b64068b6f1ccceb589b50b6da98035f70481104f6ccce3bed28956c94a';
+const FERA = 'https://cdn.fera.ai/api/v3/public/products/';
+async function loadReviews(productId, offset = 0) {
+  const url = `${FERA}${encodeURIComponent(productId)}/reviews.json?api_key=${FERA_KEY}&sort_by=quality%3Adesc&include_aggregate_rating=true&limit=50&page_size=50&offset=${offset}`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error('reviews ' + res.status);
+  const j = await res.json();
+  const list = (j.data || []).filter((r) => !r.is_test);
+  return { rating: j.rating || null, total: (j.meta && j.meta.total_count) || list.length, list };
+}
+const withTimeout = (pr, ms) => Promise.race([pr, new Promise((res) => setTimeout(() => res(null), ms))]);
+const STAR = '<path d="M12 2.6l2.85 6.05 6.6.83-4.86 4.57 1.25 6.55L12 17.36 6.16 20.6l1.25-6.55L2.55 9.48l6.6-.83z"/>';
+function stars(rating, size = 18) {
+  const row = Array.from({ length: 5 }, () => `<svg width="${size}" height="${size}" viewBox="0 0 24 24" aria-hidden="true">${STAR}</svg>`).join('');
+  const r = Math.max(0, Math.min(5, Number(rating) || 0));
+  return `<span class="kkp-stars" role="img" aria-label="${r.toFixed(1).replace(/\.0$/, '')} out of 5 stars"><span class="bg">${row}</span><span class="fg" style="width:${(r / 5) * 100}%">${row}</span></span>`;
+}
+const revDate = (iso) => { try { return new Date(iso).toLocaleDateString('en-AU', { month: 'short', year: 'numeric' }); } catch (e) { return ''; } };
+
 // ---------- icons ----------
 const ICON = {
   cube: '<path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M12 22V12"/><path d="M21 7l-9 5-9-5"/>',
   left: '<path d="M15 5l-7 7 7 7"/>', right: '<path d="M9 5l7 7-7 7"/>', close: '<path d="M6 6l12 12M18 6L6 18"/>',
   check: '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+  verified: '<path d="M12 2l2.4 1.8 3-.2.9 2.9 2.5 1.7-1 2.8 1 2.8-2.5 1.7-.9 2.9-3-.2L12 22l-2.4-1.8-3 .2-.9-2.9-2.5-1.7 1-2.8-1-2.8 2.5-1.7.9-2.9 3 .2z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>',
+  pen: '<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M14 6l4 4"/>',
+  camera: '<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>',
   shield: '<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>',
   truck: '<rect x="2" y="7" width="12" height="10" rx="1"/><path d="M14 10h4l3 3v4h-7"/><circle cx="6" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/>',
   box: '<path d="M3 8l9-5 9 5v8l-9 5-9-5z"/><path d="M3 8l9 5 9-5"/>',
   palette: '<circle cx="13.5" cy="6.5" r="1.5"/><circle cx="17.5" cy="10.5" r="1.5"/><circle cx="8.5" cy="7.5" r="1.5"/><circle cx="6.5" cy="12.5" r="1.5"/><path d="M12 2a10 10 0 0 0 0 20c1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.3-.3-.4-.5-.8-.5-1.3 0-1.1.9-2 2-2h2.4A5.6 5.6 0 0 0 22 9.8C22 5.5 17.5 2 12 2z"/>',
+  star: '<path fill="currentColor" stroke="none" d="M12 2.6l2.85 6.05 6.6.83-4.86 4.57 1.25 6.55L12 17.36 6.16 20.6l1.25-6.55L2.55 9.48l6.6-.83z"/>',
   bases: '<rect x="3" y="15" width="18" height="5" rx="2"/><path d="M8 15V6a4 4 0 0 1 8 0v9"/>',
 };
 const icon = (k, size = 20) => `<svg aria-hidden="true" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICON[k]}</svg>`;
@@ -226,6 +250,60 @@ const CSS = `
 .kkp details{padding:20px 24px;border-radius:18px;background:var(--card);border:1px solid var(--line)}
 .kkp summary{cursor:pointer;font:800 14px/1.3 Montserrat,Arial,sans-serif;letter-spacing:1px;text-transform:uppercase}
 .kkp details .kkp-rich{margin-top:12px;font-size:15px}
+.kkp-stars{position:relative;display:inline-flex;vertical-align:middle;line-height:0;flex:0 0 auto}
+.kkp-stars svg{display:block;margin-right:1px}
+.kkp-stars .bg svg{fill:rgba(201,180,255,.22)}
+.kkp-stars .fg{position:absolute;inset:0 auto 0 0;overflow:hidden;white-space:nowrap;display:flex}
+.kkp-stars .fg svg{fill:#FFC64D;flex:0 0 auto}
+.kkp-stars .bg{display:flex}
+.kkp-rate{display:inline-flex;align-items:center;gap:10px;margin-top:6px;font-size:15px;color:var(--text)!important;text-decoration:none;width:max-content}
+.kkp-rate b{font-weight:800;color:#fff}.kkp-rate span{border-bottom:1px solid transparent}.kkp-rate:hover span{border-bottom-color:var(--lav)}
+.kkp-rev-grid{display:grid;grid-template-columns:330px minmax(0,1fr);gap:28px;align-items:start}
+.kkp-rev-sum{position:sticky;top:24px;display:flex;flex-direction:column;gap:18px;padding:28px;border-radius:24px;background:linear-gradient(160deg,#21104A 0%,#0F0A1C 70%);border:1px solid var(--line2)}
+.kkp-rev-score{display:flex;align-items:center;gap:16px}
+.kkp-rev-score>b{font:900 64px/1 Montserrat,Arial,sans-serif;letter-spacing:-1px}
+.kkp-rev-score p{font-size:15px;color:var(--soft);margin-top:6px}
+.kkp-rev-ver{display:flex;align-items:center;gap:8px;font-size:14px;color:#BFF5D0}.kkp-rev-ver svg{color:#6BE39A;flex:0 0 auto}
+.kkp-bars{display:flex;flex-direction:column;gap:6px}
+.kkp-bars button{display:grid;grid-template-columns:38px minmax(0,1fr) 26px;align-items:center;gap:10px;padding:6px 8px;margin:0 -8px;border:0;border-radius:10px;background:transparent;font-size:14px;color:var(--text)}
+.kkp-bars button span:first-child{display:flex;align-items:center;gap:4px;font-weight:700}
+.kkp-bars button span:first-child svg{color:#FFC64D}
+.kkp-bars button span:last-child{text-align:right;color:var(--soft2)}
+.kkp-bars i{display:block;height:8px;border-radius:99px;background:rgba(201,180,255,.16);overflow:hidden}
+.kkp-bars em{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#8858ED,#FF7AB6)}
+.kkp-bars button:not([disabled]):hover,.kkp-bars button[aria-pressed="true"]{background:rgba(201,180,255,.12)}
+.kkp-bars button[disabled]{cursor:default;opacity:.5}
+.kkp-rev-write{display:flex;align-items:center;justify-content:center;gap:10px;height:50px;border-radius:14px;border:2px solid var(--lav);color:#fff!important;text-decoration:none;font:800 14px/1 Montserrat,Arial,sans-serif;letter-spacing:1px}
+.kkp-rev-write:hover{background:var(--lav);color:#0B0614!important}
+.kkp-rev-main{display:flex;flex-direction:column;gap:18px;min-width:0}
+.kkp-rev-ph .kkp-grp{display:flex;align-items:center;gap:6px;margin-bottom:10px}
+.kkp-rev-ph>div{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px}
+.kkp-rev-ph button,.kkp-rv-ph button{flex:0 0 auto;width:96px;height:96px;padding:0;border-radius:14px;overflow:hidden;border:1px solid var(--line2);background:#120A22;cursor:zoom-in}
+.kkp-rev-ph img,.kkp-rv-ph img{width:100%;height:100%;object-fit:cover;display:block}
+.kkp-rev-tabs{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.kkp-rev-tabs>button{padding:9px 16px;border-radius:999px;border:1px solid var(--line2);background:transparent;font-size:14px;font-weight:600}
+.kkp-rev-tabs>button span{color:var(--soft2);margin-left:4px}
+.kkp-rev-tabs>button[aria-pressed="true"]{background:#fff;color:#0B0614;border-color:#fff}.kkp-rev-tabs>button[aria-pressed="true"] span{color:#5A4E73}
+.kkp-rev-tabs p{font-size:14px;color:var(--soft2);margin-left:auto}
+.kkp-rev-tabs p button{border:0;background:none;color:var(--lav);text-decoration:underline;padding:0 0 0 6px}
+.kkp-rev-list{columns:2 300px;column-gap:16px}
+.kkp-rv{break-inside:avoid;display:flex;flex-direction:column;gap:10px;margin:0 0 16px;padding:22px;border-radius:20px;background:var(--card);border:1px solid var(--line)}
+.kkp-rv-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.kkp-rv-top time{font-size:13px;color:var(--soft2)}
+.kkp-rv h3{font-size:17px;font-weight:800;line-height:1.3}
+.kkp-rv-body{font-size:15.5px;color:var(--text);white-space:pre-line}
+.kkp-rv-body.clamp:not(.open){display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden}
+.kkp-rv-more{align-self:flex-start;padding:0;border:0;background:none;color:var(--lav);font-size:14px;font-weight:700;text-decoration:underline}
+.kkp-rv-ph{display:flex;gap:8px;flex-wrap:wrap}.kkp-rv-ph button{width:76px;height:76px;border-radius:12px}
+.kkp-rv-reply{padding:12px 14px;border-radius:12px;background:rgba(136,88,237,.14);border-left:3px solid var(--btn);font-size:14.5px;color:var(--text)}
+.kkp-rv-reply b{font-size:13px;color:var(--lav)}
+.kkp-rv-who{display:flex;align-items:center;gap:10px;padding-top:12px;margin-top:2px;border-top:1px solid var(--line)}
+.kkp-av{flex:0 0 auto;width:36px;height:36px;border-radius:999px;display:flex;align-items:center;justify-content:center;font:800 15px/1 Montserrat,Arial,sans-serif;background:linear-gradient(135deg,#8858ED,#FF7AB6)}
+.kkp-rv-who b{display:block;font-size:15px;line-height:1.2}
+.kkp-rv-who small{display:flex;align-items:center;gap:4px;font-size:12.5px;color:#9FE8B8}.kkp-rv-who small svg{color:#6BE39A}
+.kkp-rev-more{align-self:center;height:50px;padding:0 28px;border-radius:999px;border:1px solid var(--line2);background:var(--card2);font:800 13px/1 Montserrat,Arial,sans-serif;letter-spacing:1px}
+.kkp-rev-more:hover{border-color:var(--lav)}
+.kkp-rev-empty{align-items:flex-start;gap:16px}.kkp-rev-empty .kkp-rev-write{padding:0 22px}
 .kkp-sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 /* ---- tablet / phone ---- */
 @container kkp (max-width:960px){
@@ -256,6 +334,13 @@ const CSS = `
   .kkp-feat .kkp-card>div{display:flex;flex-direction:column;gap:2px}
   .kkp-card h3{font-size:15px}.kkp-card p,.kkp-rich{font-size:15px}
   .kkp-pill{display:none}
+  .kkp-rev-grid{grid-template-columns:minmax(0,1fr);gap:18px}
+  .kkp-rev-sum{position:static;padding:20px;gap:14px;border-radius:18px}
+  .kkp-rev-score>b{font-size:52px}
+  .kkp-rev-list{columns:1}
+  .kkp-rv{padding:18px;margin-bottom:12px}
+  .kkp-rev-tabs p{margin-left:0;width:100%}
+  .kkp-rev-ph button{width:84px;height:84px}
   .kkp-stage-ar{font-size:12px;padding:10px 14px}
   .kkp-fit{grid-template-columns:minmax(0,1fr);gap:16px}
   .kkp-lineup{--lh:175px;padding:12px 8px 8px;order:2}
@@ -364,8 +449,11 @@ class KKProductPage extends HTMLElement {
     let p;
     try { p = JSON.parse(this.getAttribute('product')); } catch (e) { console.warn('[kk-product-page] bad product JSON', e); return; }
     if (!p || !p.id) return;
-    const x = await loadExtras(this.getAttribute('slug') || p.slug);
-    this._p = p; this._x = x || {};
+    const [x, rev] = await Promise.all([
+      loadExtras(this.getAttribute('slug') || p.slug),
+      withTimeout(loadReviews(p.id).catch((e) => { console.warn('[kk-product-page] reviews unavailable', e); return null; }), 5000),
+    ]);
+    this._p = p; this._x = x || {}; this._rev = rev;
     this._prepare();
     this._render();
   }
@@ -452,6 +540,7 @@ class KKProductPage extends HTMLElement {
         ${x.character ? `<img class="kkp-char" src="${esc(BASE + x.character)}" alt="" aria-hidden="true">` : ''}
         ${x.eyebrow ? `<p class="kkp-eyebrow">${esc(x.eyebrow)}</p>` : ''}
         <h1>${esc(main)}${sub ? `<span class="kkp-sr"> – </span><span class="kkp-h1sub">${esc(sub)}</span>` : ''}</h1>
+        ${this._revCount ? `<a class="kkp-rate" href="#kkp-reviews" data-torev>${stars(this._revAvg, 17)}<span><b>${this._revAvg.toFixed(1)}</b> · ${this._revCount} review${this._revCount === 1 ? '' : 's'}</span></a>` : ''}
       </div>
       <div><p class="kkp-price" data-price></p><p class="kkp-pay" data-pay></p></div>
       ${x.hook ? `<p class="kkp-hook">${esc(x.hook)}</p>` : ''}
@@ -511,6 +600,7 @@ class KKProductPage extends HTMLElement {
 
   ${cards.length ? `<section class="kkp-sec kkp-cards" style="--n:${Math.min(cards.length, 3)}">${cards.map((s) => `<div class="kkp-card"><h2>${esc(s.title)}</h2><div class="kkp-rich">${cleanHTML(s.html)}</div></div>`).join('')}</section>` : ''}
   ${dets.length ? `<section class="kkp-dets" aria-label="More information">${dets.map((s) => `<details><summary>${esc(s.title)}</summary><div class="kkp-rich">${cleanHTML(s.html)}</div></details>`).join('')}</section>` : ''}
+  ${this._rev ? this._reviewsHTML(main) : ''}
 </div>`;
     let root = this._rootEl;
     if (!root) { root = document.createElement('div'); root.className = 'kkp'; this.appendChild(root); this._rootEl = root; }
@@ -518,7 +608,116 @@ class KKProductPage extends HTMLElement {
     this._fitWidth();
     this._bind();
     this._update();
+    if (this._rev) this._revRender(false);
     if (this._has3D) loadViewer().catch((e) => console.warn('[kk-product-page] viewer failed', e));
+  }
+
+  // ---------- reviews ----------
+  get _revCount() { const r = this._rev; return r ? ((r.rating && r.rating.count) || r.total || 0) : 0; }
+  get _revAvg() { const r = this._rev; if (!r) return 0; if (r.rating && r.rating.average) return Number(r.rating.average); const l = r.list; return l.length ? l.reduce((a, b) => a + b.rating, 0) / l.length : 0; }
+  _revPhotos() {
+    const out = [];
+    (this._rev.list || []).forEach((rv) => (rv.media || []).forEach((m) => {
+      if (m.type && m.type !== 'photo') return;
+      if (!m.url) return;
+      const who = (rv.customer && rv.customer.display_name) || 'a customer';
+      out.push({ url: m.url, thumb: m.thumbnail_url || m.url, alt: m.alt_text || `Photo from ${who}'s review`, cap: `From ${who}'s review`, review: rv.id });
+    }));
+    return out;
+  }
+  _reviewsHTML(main) {
+    const r = this._rev, n = this._revCount, avg = this._revAvg;
+    const counts = (r.rating && r.rating.counts) || [1, 2, 3, 4, 5].map((k) => r.list.filter((x) => x.rating === k).length);
+    const verified = (r.rating && r.rating.verified_count) || r.list.filter((x) => x.is_verified).length;
+    this._revPh = this._revPhotos();
+    this._revFilter = 'all'; this._revShown = 0;
+    const write = `<a class="kkp-rev-write" href="#" data-fera-action="writeReview" data-product="${esc(this._p.id)}" data-revwrite>${icon('pen', 18)}WRITE A REVIEW</a>`;
+    if (!n) return `<section class="kkp-sec kkp-rev" id="kkp-reviews" aria-labelledby="kkp-revh"><h2 id="kkp-revh">Reviews</h2>
+      <div class="kkp-card kkp-rev-empty"><p>No reviews for ${esc(this._x.shortName || main)} yet. Bought one? Tell everyone what you think.</p>${write}</div></section>`;
+    const max = Math.max(1, ...counts);
+    return `<section class="kkp-sec kkp-rev" id="kkp-reviews" aria-labelledby="kkp-revh">
+    <h2 id="kkp-revh">Reviews</h2>
+    <div class="kkp-rev-grid">
+      <aside class="kkp-rev-sum" aria-label="Rating summary">
+        <div class="kkp-rev-score"><b>${avg.toFixed(1)}</b><div>${stars(avg, 22)}<p>${n} review${n === 1 ? '' : 's'}</p></div></div>
+        ${verified ? `<p class="kkp-rev-ver">${icon('verified', 18)}${verified === n ? 'Every review is from a verified buyer' : `${verified} from verified buyers`}</p>` : ''}
+        <div class="kkp-bars" role="group" aria-label="Show reviews by star rating">${[5, 4, 3, 2, 1].map((k) => { const c = counts[k - 1] || 0; return `<button data-rf="${k}" aria-pressed="false"${c ? '' : ' disabled'}><span>${k} ${icon('star', 13)}</span><i><em style="width:${(c / max) * 100}%"></em></i><span>${c}</span></button>`; }).join('')}</div>
+        ${write}
+      </aside>
+      <div class="kkp-rev-main">
+        ${this._revPh.length ? `<div class="kkp-rev-ph"><p class="kkp-grp">${icon('camera', 15)} Customer photos</p><div>${this._revPh.map((m, i) => `<button data-rph="${i}" aria-label="Enlarge customer photo ${i + 1} of ${this._revPh.length}"><img src="${esc(m.thumb)}" alt="" loading="lazy" decoding="async"></button>`).join('')}</div></div>` : ''}
+        <div class="kkp-rev-tabs" role="group" aria-label="Filter reviews">
+          <button data-rtab="all" aria-pressed="true">All <span>${n}</span></button>
+          ${this._revPh.length ? `<button data-rtab="photos" aria-pressed="false">With photos <span>${new Set(this._revPh.map((m) => m.review)).size}</span></button>` : ''}
+          <button data-rtab="text" aria-pressed="false">Written reviews <span>${r.list.filter((x) => (x.body || '').trim() || (x.heading || '').trim()).length}</span></button>
+          <p data-revstate aria-live="polite"></p>
+        </div>
+        <div class="kkp-rev-list" data-revlist></div>
+        <button class="kkp-rev-more" data-revmore hidden></button>
+      </div>
+    </div>
+  </section>`;
+  }
+  _revItems() {
+    const f = this._revFilter, list = this._rev.list.slice();
+    // reviews with words or photos first, star-only ratings after (keeps the store's quality order otherwise)
+    const weight = (x) => ((x.body || x.heading) ? 0 : 1) + ((x.media || []).length ? -0.5 : 0);
+    list.sort((a, b) => weight(a) - weight(b));
+    if (f === 'photos') return list.filter((x) => (x.media || []).some((m) => m.url));
+    if (f === 'text') return list.filter((x) => (x.body || '').trim() || (x.heading || '').trim());
+    if (/^[1-5]$/.test(f)) return list.filter((x) => x.rating === Number(f));
+    return list;
+  }
+  _revCard(x) {
+    const who = (x.customer && x.customer.display_name) || 'Anonymous';
+    const body = (x.body || '').trim(), long = body.length > 280;
+    const ph = (x.media || []).filter((m) => m.url).map((m) => this._revPh.findIndex((p) => p.url === m.url)).filter((i) => i >= 0);
+    const reply = x.store_reply && x.store_reply.body ? x.store_reply : null;
+    return `<article class="kkp-rv">
+      <div class="kkp-rv-top">${stars(x.rating, 16)}<time datetime="${esc((x.created_at || '').slice(0, 10))}">${esc(revDate(x.created_at))}</time></div>
+      ${x.heading ? `<h3>${esc(x.heading)}</h3>` : ''}
+      ${body ? `<p class="kkp-rv-body${long ? ' clamp' : ''}">${esc(body)}</p>${long ? '<button class="kkp-rv-more" data-rvmore aria-expanded="false">Read more</button>' : ''}` : ''}
+      ${ph.length ? `<div class="kkp-rv-ph">${ph.map((i) => `<button data-rph="${i}" aria-label="Enlarge photo from ${esc(who)}'s review"><img src="${esc(this._revPh[i].thumb)}" alt="" loading="lazy"></button>`).join('')}</div>` : ''}
+      ${reply ? `<div class="kkp-rv-reply"><p><b>Reply from ${esc(reply.name || 'Kinky Kreatures')}</b></p><p>${esc(reply.body)}</p></div>` : ''}
+      <div class="kkp-rv-who"><span class="kkp-av" aria-hidden="true">${esc(who.trim().charAt(0).toUpperCase() || '?')}</span><span><b>${esc(who)}</b>${x.is_verified ? `<small>${icon('verified', 14)}Verified buyer</small>` : ''}</span></div>
+    </article>`;
+  }
+  _revRender(more) {
+    const r = this._rootEl, box = $(r, '[data-revlist]'); if (!box) return;
+    const items = this._revItems();
+    const step = r.getBoundingClientRect().width <= 960 ? 4 : 6;
+    this._revShown = more ? this._revShown + step : Math.min(step, items.length);
+    const shown = items.slice(0, this._revShown);
+    box.innerHTML = shown.map((x) => this._revCard(x)).join('');
+    const left = items.length - shown.length, fetchable = this._rev.total - this._rev.list.length;
+    const btn = $(r, '[data-revmore]');
+    btn.hidden = left <= 0 && !(this._revFilter === 'all' && fetchable > 0);
+    btn.textContent = left > 0 ? `SHOW ${Math.min(left, step)} MORE REVIEW${Math.min(left, step) === 1 ? '' : 'S'}` : 'LOAD MORE REVIEWS';
+    const f = this._revFilter;
+    $$(r, '[data-rtab]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.rtab === f)));
+    $$(r, '[data-rf]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.rf === f)));
+    const st = $(r, '[data-revstate]');
+    if (st) st.innerHTML = /^[1-5]$/.test(f) ? `Showing ${items.length} ${f}-star review${items.length === 1 ? '' : 's'} <button data-rtab="all">Clear</button>` : '';
+  }
+  async _revMore() {
+    const left = this._revItems().length - this._revShown;
+    if (left > 0) return this._revRender(true);
+    const btn = $(this._rootEl, '[data-revmore]'); btn.disabled = true; btn.textContent = 'LOADING…';
+    try {
+      const next = await loadReviews(this._p.id, this._rev.list.length);
+      const seen = new Set(this._rev.list.map((x) => x.id));
+      this._rev.list.push(...next.list.filter((x) => !seen.has(x.id)));
+      if (!next.list.length) this._rev.total = this._rev.list.length;
+      this._revPh = this._revPhotos();
+    } catch (e) { this._rev.total = this._rev.list.length; }
+    btn.disabled = false; this._revRender(true);
+  }
+  _writeReview(e) {
+    // Fera's own script opens its review form for links marked data-fera-action; if it isn't on the page, use its link
+    if (window.fera) return;
+    e.preventDefault();
+    const u = new URL(location.href); u.searchParams.set('fera', 'review'); u.hash = '';
+    location.href = u.toString();
   }
 
   _optHTML(o) {
@@ -551,11 +750,18 @@ class KKProductPage extends HTMLElement {
   _bind() {
     const r = this._rootEl;
     r.addEventListener('click', (e) => {
+      const a = e.target.closest('a');
+      if (a && a.hasAttribute('data-torev')) { e.preventDefault(); const sec = $(r, '#kkp-reviews'); if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
+      if (a && a.hasAttribute('data-revwrite')) return this._writeReview(e);
       const t = e.target.closest('button'); if (!t || !r.contains(t)) return;
       if (t.dataset.o && t.dataset.c) return this._pick(t.dataset.o, t.dataset.c);
       if (t.dataset.qty) { this._qty = Math.max(1, Math.min(20, this._qty + Number(t.dataset.qty))); $(r, '[data-qtyv]').textContent = this._qty; return; }
       if (t.hasAttribute('data-add')) return this._add();
       if (t.dataset.open) return this._lightbox(Number(t.dataset.open));
+      if (t.dataset.rph) return this._lightbox(Number(t.dataset.rph), this._revPh, 'Customer photo');
+      if (t.dataset.rtab || t.dataset.rf) { this._revFilter = t.dataset.rtab || (t.getAttribute('aria-pressed') === 'true' ? 'all' : t.dataset.rf); return this._revRender(false); }
+      if (t.hasAttribute('data-revmore')) return this._revMore();
+      if (t.hasAttribute('data-rvmore')) { const b = t.previousElementSibling; const open = b.classList.toggle('open'); t.textContent = open ? 'Show less' : 'Read more'; t.setAttribute('aria-expanded', String(open)); return; }
       if (t.dataset.gal) { this._g += Number(t.dataset.gal); return this._galUpdate(); }
       if (t.hasAttribute('data-ar')) return this._ar();
       if (t.dataset.col) return this._toggleColour(t.dataset.col);
@@ -669,20 +875,20 @@ class KKProductPage extends HTMLElement {
     $$(r, '.kkp-tile').forEach((t, i) => { t.tabIndex = i >= this._g && i < this._g + vis ? 0 : -1; });
   }
 
-  _lightbox(i) {
-    const m = this._media, n = m.length;
+  _lightbox(i, list, kind) {
+    const m = list || this._media, n = m.length, what = kind || 'Photo';
     const show = (k) => {
       i = (k + n) % n;
       const ov = this._ov; if (!ov) return;
       $(ov, 'figure img').src = wixImg(m[i].url, 1600, 1600, 'fit');
       $(ov, 'figure img').alt = m[i].alt || this._p.name;
-      $(ov, 'figcaption').textContent = `${i + 1} of ${n}`;
+      $(ov, 'figcaption').textContent = [m[i].cap, `${i + 1} of ${n}`].filter(Boolean).join(' · ');
       $$(ov, '[data-th]').forEach((b) => b.setAttribute('aria-current', String(Number(b.dataset.th) === i)));
     };
-    this._overlay(`<div class="kkp-lb"><button class="kkp-lb-nav" data-lb="-1" aria-label="Previous photo">${icon('left', 26)}</button>
+    this._overlay(`<div class="kkp-lb"><button class="kkp-lb-nav" data-lb="-1" aria-label="Previous photo"${n > 1 ? '' : ' hidden'}>${icon('left', 26)}</button>
       <figure><img alt=""><figcaption></figcaption>
-      <div class="kkp-thumbs">${m.map((x, k) => `<button data-th="${k}" aria-label="Photo ${k + 1}"><img src="${esc(wixImg(x.url, 120, 120))}" alt="" loading="lazy"></button>`).join('')}</div></figure>
-      <button class="kkp-lb-nav" data-lb="1" aria-label="Next photo">${icon('right', 26)}</button></div>`, null, (ov) => {
+      ${n > 1 ? `<div class="kkp-thumbs">${m.map((x, k) => `<button data-th="${k}" aria-label="${what} ${k + 1}"><img src="${esc(wixImg(x.thumb || x.url, 120, 120))}" alt="" loading="lazy"></button>`).join('')}</div>` : ''}</figure>
+      <button class="kkp-lb-nav" data-lb="1" aria-label="Next photo"${n > 1 ? '' : ' hidden'}>${icon('right', 26)}</button></div>`, null, (ov) => {
       ov.addEventListener('click', (e) => {
         const b = e.target.closest('button'); if (!b) return;
         if (b.dataset.lb) show(i + Number(b.dataset.lb));
