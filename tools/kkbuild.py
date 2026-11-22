@@ -1,4 +1,4 @@
-"""Turn one mould model (OBJ/STL, millimetres, Y up) into the web files for the 3D viewer.
+"""Turn one mould model (OBJ/STL/FBX and other formats Assimp reads; Y up) into the web files for the 3D viewer.
 
     python kkbuild.py <model.obj|stl> <out_dir> <id> [--color #7A48E8] [--display 4000] [--ar 12000] [--no-ar]
 
@@ -29,11 +29,40 @@ def load_obj_fast(path):
     return verts, faces
 
 
-def load_mesh(path, upright=False):
-    if path.lower().endswith('.obj'):
+ASSIMP_EXT = ('.fbx', '.dae', '.3ds', '.blend', '.gltf', '.glb', '.3mf', '.x3d', '.ply')
+
+
+def via_assimp(path):
+    """FBX and friends: flatten every mesh into world space (node transforms applied) as a temporary OBJ."""
+    tmp = tempfile.mkdtemp()
+    out = os.path.join(tmp, 'flat.obj')
+    r = subprocess.run(['assimp', 'export', path, out, '-ptv', '-tri', '-jiv'], capture_output=True, text=True)
+    if r.returncode or not os.path.exists(out):
+        raise SystemExit(f'assimp could not read {path}: {r.stderr.strip() or r.stdout.strip()[-300:]}')
+    info = subprocess.run(['assimp', 'info', path], capture_output=True, text=True).stdout
+    meshes = [l.split()[-1] for l in info.splitlines() if l.strip().startswith('Meshes:') and l.split()[-1].isdigit()]
+    print(json.dumps({"source_meshes": int(meshes[0]) if meshes else None}), file=sys.stderr)   # more than 1: check nothing extra is in the file
+    return out
+
+
+def to_mm(v, units):
+    """Scale to millimetres. 'auto' judges by size: a toy is 60-600 mm long."""
+    longest = float((v.max(0) - v.min(0)).max())
+    if units == 'auto':
+        units = 'm' if longest < 1.5 else 'cm' if longest < 60 else 'mm'
+    k = {'mm': 1, 'cm': 10, 'm': 1000, 'in': 25.4}[units]
+    print(json.dumps({"units": units, "longest_mm": round(longest * k, 1)}), file=sys.stderr)
+    return v * k
+
+
+def load_mesh(path, upright=False, units='auto'):
+    if path.lower().endswith(ASSIMP_EXT):
+        v, f = load_obj_fast(via_assimp(path))
+    elif path.lower().endswith('.obj'):
         v, f = load_obj_fast(path)
     else:
         m = trimesh.load(path, force='mesh', process=False); v, f = np.asarray(m.vertices, np.float64), np.asarray(m.faces)
+    v = to_mm(v, units)
     m = trimesh.Trimesh(v, f, process=True)           # merges duplicate vertices so decimation keeps a closed surface
     v = np.asarray(m.vertices)
     if upright:                                       # stand the longest dimension up (cans exported lying down)
@@ -210,11 +239,11 @@ def main():
     ap.add_argument('src'); ap.add_argument('out_dir'); ap.add_argument('id')
     ap.add_argument('--display', type=int, default=4000); ap.add_argument('--display-res', type=int, default=1024)
     ap.add_argument('--ar', type=int, default=12000); ap.add_argument('--ar-res', type=int, default=2048)
-    ap.add_argument('--no-ar', action='store_true'); ap.add_argument('--upright', action='store_true'); ap.add_argument('--voxel', type=float, default=0, help='rebuild the surface from voxels of this size in mm (CAD exports that will not decimate)'); ap.add_argument('--color', default='#7A48E8')
+    ap.add_argument('--no-ar', action='store_true'); ap.add_argument('--upright', action='store_true'); ap.add_argument('--units', default='auto', choices=['auto', 'mm', 'cm', 'm', 'in']); ap.add_argument('--voxel', type=float, default=0, help='rebuild the surface from voxels of this size in mm (CAD exports that will not decimate)'); ap.add_argument('--color', default='#7A48E8')
     a = ap.parse_args()
     col = [int(a.color[i:i + 2], 16) / 255 for i in (1, 3, 5)]; col = [c ** 2.2 for c in col] + [1.0]   # sRGB -> linear for glTF
     os.makedirs(a.out_dir, exist_ok=True)
-    v, f = load_mesh(a.src, a.upright)
+    v, f = load_mesh(a.src, a.upright, a.units)
     full = len(f)
     high = simplify(v, f, 600000, aggressiveness=7); del v, f            # still far finer than the bake resolution
     detail = Detail(high)
