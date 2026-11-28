@@ -1,0 +1,86 @@
+{
+ "shortName": "Saddleback",
+ "eyebrow": "KATERPILLAR GRINDER · MADE TO ORDER",
+ "hook": "A grinding pad textured like a caterpillar, with a suction cup base and two bullet zones.",
+ "optionLabels": {
+  "PICK SIZE": "Size",
+  "PICK BASE": "Base",
+  "DENSITY": "Density"
+ },
+ "chips": {
+  "DENSITY": {
+   "Soft": {
+    "label": "Soft",
+    "sub": "Our standard"
+   },
+   "Ultra Soft": {
+    "label": "Ultra soft",
+    "sub": "Extra squish"
+   }
+  },
+  "PICK SIZE": {
+   "Small": {
+    "label": "Small",
+    "sub": "15 cm"
+   },
+   "Medium": {
+    "label": "Medium",
+    "sub": "21 cm"
+   },
+   "Large": {
+    "label": "Large",
+    "sub": "29 cm"
+   },
+   "XSmall": {
+    "label": "XSmall",
+    "sub": "18 cm"
+   },
+   "XLarge": {
+    "label": "XLarge",
+    "sub": "30 cm"
+   }
+  }
+ },
+ "viewer": {},
+ "colours": {
+  "modifier": "Colour",
+  "max": 2
+ },
+ "features": [
+  {
+   "icon": "scales",
+   "title": "Caterpillar textures",
+   "text": "Ridges and bumps inspired by a caterpillar's markings."
+  },
+  {
+   "icon": "vibe",
+   "title": "Two vibrator zones",
+   "text": "Add bullet vibrators (sold separately) for custom intensity."
+  },
+  {
+   "icon": "suction",
+   "title": "Suction cup base",
+   "text": "Secure it on any smooth surface – even a shower wall."
+  },
+  {
+   "icon": "aumade",
+   "title": "Australian Made Certified",
+   "text": "Handmade in Australia from soft-touch, skin-safe silicone. Every pour is one of a kind."
+  }
+ ],
+ "description": "<p>Explore the extraordinary world of grinding with Saddleback – a grinding pad adorned with a lush tapestry of textures inspired by a caterpillar's markings.</p><p>A robust suction cup base holds it on any flat, smooth surface for hands-free grinding, and two zones take bullet vibrators (sold separately) for gentle or powerful buzz.</p><h3>Explore Saddleback in 3D</h3><p>Spin it, slide the diameter ring to measure it at any point, compare it with a soda or Monster can, and tap the AR button on your phone to see it at real size in your room.</p><h3>Why you'll love Saddleback</h3><ul><li>Ridges and bumps made for grinding</li><li>Suction cup base for hands-free play</li><li>Two bullet vibrator zones (vibrators sold separately)</li><li>Soft or ultra-soft silicone</li><li>Handmade in Australia from skin-safe silicone – Australian Made Certified</li></ul><h3>Make it yours</h3><p>Pick your density, then list two colours and/or glitters (the colour charts are in the gallery). No colours listed? We'll choose a stunning combination for you. Made to order – ships in 2–5 business days in plain, unmarked packaging.</p>",
+ "sections": [
+  {
+   "title": "Materials & Colours",
+   "html": "<p>Saddleback is handmade in Australia from high-grade, skin-safe, soft-touch silicone (choose soft or ultra soft). All our silicone toys are <strong>Australian Made Certified</strong>.</p><p><strong>Colours:</strong> list two colours and/or glitters when you order – see the colour charts in the gallery. The charts are a reference guide only: colours shift once mixed into silicone, and every pour is unique. If no colours are listed, we'll select a stunning combination for you.</p>"
+  },
+  {
+   "title": "Ways to Play",
+   "html": "<p><strong>Grind:</strong> stick it down and let the textures do the work.</p><p><strong>Add vibration:</strong> one or two bullet vibrators (sold separately).</p><p>Great for solo play or as an adventurous addition to couple's play.</p>"
+  }
+ ],
+ "cardSections": [
+  "Materials & Colours",
+  "Ways to Play"
+ ]
+}

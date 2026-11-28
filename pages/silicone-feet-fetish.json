@@ -1,0 +1,108 @@
+{
+ "shortName": "DuoSole",
+ "eyebrow": "FOOT FETISH · MADE TO ORDER",
+ "hook": "Two sculpted women's size 8 feet pressed together – twice the temptation, twice the worship.",
+ "optionLabels": {
+  "DENSITY": "Density"
+ },
+ "chips": {
+  "DENSITY": {
+   "Soft": {
+    "label": "Soft",
+    "sub": "Our standard"
+   },
+   "Ultra Soft": {
+    "label": "Ultra soft",
+    "sub": "Extra squish"
+   }
+  },
+  "PICK SIZE": {
+   "Small": {
+    "label": "Small",
+    "sub": "15 cm"
+   },
+   "Medium": {
+    "label": "Medium",
+    "sub": "21 cm"
+   },
+   "Large": {
+    "label": "Large",
+    "sub": "29 cm"
+   },
+   "XSmall": {
+    "label": "XSmall",
+    "sub": "18 cm"
+   },
+   "XLarge": {
+    "label": "XLarge",
+    "sub": "30 cm"
+   }
+  }
+ },
+ "viewer": {
+  "base": "suction"
+ },
+ "colours": {
+  "modifier": "Colour",
+  "max": 2
+ },
+ "features": [
+  {
+   "icon": "foot",
+   "title": "Two feet, one fantasy",
+   "text": "Twin women's size 8 feet pressed together."
+  },
+  {
+   "icon": "sparkle",
+   "title": "Double the toes",
+   "text": "Twice the arches, soles and toes to worship."
+  },
+  {
+   "icon": "suction",
+   "title": "Powerful suction cup",
+   "text": "Holds firm for hands-free play."
+  },
+  {
+   "icon": "aumade",
+   "title": "Australian Made Certified",
+   "text": "Handmade in Australia from soft-touch, skin-safe silicone. Every pour is one of a kind."
+  }
+ ],
+ "description": "<p>Twice the temptation. DuoSole brings you two perfectly sculpted women's size 8 feet, pressed together in irresistible union.</p><p>Two soft soles side by side, elegant arches forming a tunnel of temptation, and double the toes begging for attention. Its strong suction cup base holds firm, daring you to take both feet at once.</p><h3>Explore DuoSole in 3D</h3><p>Spin it, slide the diameter ring to measure it at any point, compare it with a soda or Monster can, and tap the AR button on your phone to see it at real size in your room.</p><h3>Why you'll love DuoSole</h3><ul><li>Twin women's size 8 feet</li><li>Twice the arches, soles and toes</li><li>Powerful suction cup base</li><li>Soft or ultra-soft silicone</li><li>Handmade in Australia from skin-safe silicone – Australian Made Certified</li></ul><h3>Make it yours</h3><p>Pick your density, then list two colours and/or glitters (the colour charts are in the gallery). No colours listed? We'll choose a stunning combination for you. Made to order – ships in 2–5 business days in plain, unmarked packaging.</p>",
+ "sections": [
+  {
+   "title": "Materials & Colours",
+   "html": "<p>DuoSole is handmade in Australia from high-grade, skin-safe, soft-touch silicone (choose soft or ultra soft). All our silicone toys are <strong>Australian Made Certified</strong>.</p><p><strong>Colours:</strong> list two colours and/or glitters when you order – see the colour charts in the gallery. The charts are a reference guide only: colours shift once mixed into silicone, and every pour is unique. If no colours are listed, we'll select a stunning combination for you.</p>"
+  },
+  {
+   "title": "Ways to Play",
+   "html": "<p>Made for those who crave more than one foot to worship. Mount it with the suction cup for hands-free pleasure and creative positions.</p>"
+  }
+ ],
+ "cardSections": [
+  "Materials & Colours",
+  "Ways to Play"
+ ],
+ "sizeColumns": [
+  {
+   "key": "heightCm",
+   "label": "Total height"
+  },
+  {
+   "key": "widestCm",
+   "label": "Widest"
+  },
+  {
+   "key": "usableCm",
+   "label": "Usable length"
+  }
+ ],
+ "sizes": [
+  {
+   "label": "DuoSole",
+   "heightCm": 31.0,
+   "widestCm": 14.5,
+   "usableCm": 27.0
+  }
+ ]
+}

@@ -55,7 +55,7 @@ def to_mm(v, units):
     return v * k
 
 
-def load_mesh(path, upright=False, units='auto'):
+def load_mesh(path, upright=False, units='auto', zup=False):
     if path.lower().endswith(ASSIMP_EXT):
         v, f = load_obj_fast(via_assimp(path))
     elif path.lower().endswith('.obj'):
@@ -63,6 +63,7 @@ def load_mesh(path, upright=False, units='auto'):
     else:
         m = trimesh.load(path, force='mesh', process=False); v, f = np.asarray(m.vertices, np.float64), np.asarray(m.faces)
     v = to_mm(v, units)
+    if zup: v = np.stack([v[:, 0], v[:, 2], -v[:, 1]], 1)   # Z-up export (CAD / sculpt / slicer) -> Y up
     m = trimesh.Trimesh(v, f, process=True)           # merges duplicate vertices so decimation keeps a closed surface
     v = np.asarray(m.vertices)
     if upright:                                       # stand the longest dimension up (cans exported lying down)
@@ -234,16 +235,32 @@ def pack_kkm(pos, uv, idx, tex):
     return (np.frombuffer(body, np.uint8) ^ keystream(len(body), seed)).tobytes()[::-1]
 
 
+def preview(mesh, path):
+    """Front and side silhouettes of the display mesh, to check orientation by eye."""
+    import matplotlib; matplotlib.use('Agg'); import matplotlib.pyplot as plt
+    from mpl_toolkits.mplot3d.art3d import Poly3DCollection
+    v = np.asarray(mesh.vertices); f = np.asarray(mesh.faces); n = mesh.face_normals
+    shade = 0.35 + 0.65 * np.clip(n @ np.array([0.4, 0.6, 0.7]) / np.linalg.norm([0.4, 0.6, 0.7]), 0, 1)
+    fig = plt.figure(figsize=(6, 4), dpi=80)
+    for k, az in enumerate((-90, 0)):
+        ax = fig.add_subplot(1, 2, k + 1, projection='3d')
+        pc = Poly3DCollection(v[f][:, :, [0, 2, 1]], facecolors=np.c_[shade * 0.55, shade * 0.4, shade * 0.95], edgecolor='none')
+        ax.add_collection3d(pc); r = v.max(0) - v.min(0); c = (v.max(0) + v.min(0)) / 2; m = r.max() / 2
+        ax.set_xlim(c[0] - m, c[0] + m); ax.set_ylim(c[2] - m, c[2] + m); ax.set_zlim(c[1] - m, c[1] + m)
+        ax.view_init(elev=8, azim=az); ax.set_axis_off(); ax.set_box_aspect((1, 1, 1))
+    fig.savefig(path, bbox_inches='tight', facecolor='white'); plt.close(fig)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('src'); ap.add_argument('out_dir'); ap.add_argument('id')
     ap.add_argument('--display', type=int, default=4000); ap.add_argument('--display-res', type=int, default=1024)
     ap.add_argument('--ar', type=int, default=12000); ap.add_argument('--ar-res', type=int, default=2048)
-    ap.add_argument('--no-ar', action='store_true'); ap.add_argument('--upright', action='store_true'); ap.add_argument('--units', default='auto', choices=['auto', 'mm', 'cm', 'm', 'in']); ap.add_argument('--voxel', type=float, default=0, help='rebuild the surface from voxels of this size in mm (CAD exports that will not decimate)'); ap.add_argument('--color', default='#7A48E8')
+    ap.add_argument('--no-ar', action='store_true'); ap.add_argument('--upright', action='store_true'); ap.add_argument('--zup', action='store_true'); ap.add_argument('--preview', default=''); ap.add_argument('--units', default='auto', choices=['auto', 'mm', 'cm', 'm', 'in']); ap.add_argument('--voxel', type=float, default=0, help='rebuild the surface from voxels of this size in mm (CAD exports that will not decimate)'); ap.add_argument('--color', default='#7A48E8')
     a = ap.parse_args()
     col = [int(a.color[i:i + 2], 16) / 255 for i in (1, 3, 5)]; col = [c ** 2.2 for c in col] + [1.0]   # sRGB -> linear for glTF
     os.makedirs(a.out_dir, exist_ok=True)
-    v, f = load_mesh(a.src, a.upright, a.units)
+    v, f = load_mesh(a.src, a.upright, a.units, a.zup)
     full = len(f)
     high = simplify(v, f, 600000, aggressiveness=7); del v, f            # still far finer than the bake resolution
     detail = Detail(high)
@@ -260,6 +277,13 @@ def main():
     open(os.path.join(a.out_dir, a.id + '.kkm'), 'wb').write(kkm)
     info = {"id": a.id, "full_tris": int(full), "display_tris": int(len(idx)), "kkm_kb": len(kkm) // 1024,
             "length_cm": round(float(ext[1]) * 100, 1), "widest_cm": round(float(max(ext[0], ext[2])) * 100, 1)}
+    # diameter profile up the toy (cm), for size charts: widest across, at 5% height steps
+    hv = np.asarray(high.vertices); y = hv[:, 1]; H = y.max() - y.min(); prof = []
+    for t in np.linspace(0.025, 0.975, 20):
+        band = hv[np.abs(y - (y.min() + t * H)) < H * 0.012]
+        prof.append(round(float(max(np.ptp(band[:, 0]), np.ptp(band[:, 2]))) * 100, 1) if len(band) > 3 else 0)
+    info["profile_cm"] = prof
+    if a.preview: preview(low, a.preview)
     # AR model (.glb)
     if not a.no_ar:
         tmp = tempfile.mkdtemp()

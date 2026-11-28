@@ -1,0 +1,24 @@
+{
+ "shortName": "Ibis Pansexual",
+ "eyebrow": "KREATURE MERCH · T-SHIRT",
+ "optionLabels": {
+  "Size": "Size",
+  "FIT": "Fit"
+ },
+ "default": {
+  "FIT": "Womens"
+ },
+ "chips": {
+  "FIT": {
+   "Womens": {
+    "label": "Womens"
+   },
+   "Mens": {
+    "label": "Mens"
+   }
+  }
+ },
+ "trust": [
+  "plain"
+ ]
+}

@@ -1,0 +1,90 @@
+{
+ "shortName": "Horned Devil",
+ "eyebrow": "KATERPILLAR GRINDER · MADE TO ORDER",
+ "hook": "A vibrating pillow grinder covered in bumps and ridges, with straps and two bullet zones.",
+ "optionLabels": {
+  "PICK SIZE": "Size",
+  "DENSITY": "Density"
+ },
+ "chips": {
+  "DENSITY": {
+   "Soft": {
+    "label": "Soft",
+    "sub": "Our standard"
+   },
+   "Ultra Soft": {
+    "label": "Ultra soft",
+    "sub": "Extra squish"
+   }
+  },
+  "PICK SIZE": {
+   "Small": {
+    "label": "Small",
+    "sub": "15 cm"
+   },
+   "Medium": {
+    "label": "Medium",
+    "sub": "21 cm"
+   },
+   "Large": {
+    "label": "Large",
+    "sub": "29 cm"
+   },
+   "XSmall": {
+    "label": "XSmall",
+    "sub": "18 cm"
+   },
+   "XLarge": {
+    "label": "XLarge",
+    "sub": "30 cm"
+   }
+  }
+ },
+ "viewer": {},
+ "colours": {
+  "modifier": "Colour",
+  "max": 2
+ },
+ "features": [
+  {
+   "icon": "scales",
+   "title": "Bumps and ridges",
+   "text": "Vibrant textures crafted for intense stimulation."
+  },
+  {
+   "icon": "vibe",
+   "title": "Two vibrator zones",
+   "text": "Insert one or two bullet vibrators (sold separately)."
+  },
+  {
+   "icon": "hand",
+   "title": "Straps on anywhere",
+   "text": "Attach to your pillow, thigh or chair."
+  },
+  {
+   "icon": "aumade",
+   "title": "Australian Made Certified",
+   "text": "Handmade in Australia from soft-touch, skin-safe silicone. Every pour is one of a kind."
+  }
+ ],
+ "description": "<p>Unleash your wildest fantasies with the Horned Devil – a vibrating pillow grinder adorned with vibrant bumps and ridges, meticulously crafted for intense stimulation.</p><p>Adjustable straps attach it to your pillow, thigh or chair, and two separate zones take bullet vibrators (sold separately) so you can tailor the buzz.</p><h3>Explore the Horned Devil in 3D</h3><p>Spin it, slide the diameter ring to measure it at any point, compare it with a soda or Monster can, and tap the AR button on your phone to see it at real size in your room.</p><h3>Why you'll love the Horned Devil</h3><ul><li>Bumps and ridges for a stimulating grind</li><li>Two bullet vibrator zones (vibrators sold separately)</li><li>Includes 2 pillow straps and 4 silicone loop protectors</li><li>Soft or ultra-soft silicone</li><li>Handmade in Australia from skin-safe silicone – Australian Made Certified</li></ul><h3>Make it yours</h3><p>Pick your density, then list two colours and/or glitters (the colour charts are in the gallery). No colours listed? We'll choose a stunning combination for you. Made to order – ships in 2–5 business days in plain, unmarked packaging.</p>",
+ "sections": [
+  {
+   "title": "In the box",
+   "html": "<p>Horned Devil, 2 pillow straps and 4 silicone loop protectors.</p><p><strong>Bullet vibrators are sold separately.</strong></p><p><strong>Care:</strong> do not boil the pillow straps or loop protectors – boiling water damages them. Remove them before sterilising your silicone kreature.</p>"
+  },
+  {
+   "title": "Materials & Colours",
+   "html": "<p>The Horned Devil is handmade in Australia from high-grade, skin-safe, soft-touch silicone (choose soft or ultra soft). All our silicone toys are <strong>Australian Made Certified</strong>.</p><p><strong>Colours:</strong> list two colours and/or glitters when you order – see the colour charts in the gallery. The charts are a reference guide only: colours shift once mixed into silicone, and every pour is unique. If no colours are listed, we'll select a stunning combination for you.</p>"
+  },
+  {
+   "title": "Ways to Play",
+   "html": "<p><strong>Grind:</strong> strap it to a pillow and ride for a hands-free session.</p><p><strong>Add vibration:</strong> use one or two bullets for gentle or intense buzz.</p>"
+  }
+ ],
+ "cardSections": [
+  "In the box",
+  "Materials & Colours",
+  "Ways to Play"
+ ]
+}

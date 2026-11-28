@@ -1,0 +1,97 @@
+{
+ "shortName": "Kristal",
+ "eyebrow": "DRAGON EGG · MADE TO ORDER",
+ "hook": "A mythical dragon's egg inspired by the Mother of Dragons, with an intricately detailed shell.",
+ "sizeOption": "PICK SIZE",
+ "optionLabels": {
+  "PICK SIZE": "Size",
+  "PICK BASE": "Base",
+  "DENSITY": "Density"
+ },
+ "default": {
+  "PICK SIZE": "Medium"
+ },
+ "chips": {
+  "DENSITY": {
+   "Soft": {
+    "label": "Soft",
+    "sub": "Our standard"
+   },
+   "Ultra Soft": {
+    "label": "Ultra soft",
+    "sub": "Extra squish"
+   }
+  },
+  "PICK SIZE": {
+   "Small": {
+    "label": "Small",
+    "sub": "15 cm"
+   },
+   "Medium": {
+    "label": "Medium",
+    "sub": "21 cm"
+   },
+   "Large": {
+    "label": "Large",
+    "sub": "29 cm"
+   },
+   "XSmall": {
+    "label": "XSmall",
+    "sub": "18 cm"
+   },
+   "XLarge": {
+    "label": "XLarge",
+    "sub": "30 cm"
+   }
+  }
+ },
+ "viewer": {
+  "sizes": {
+   "Small": "small",
+   "Medium": "medium",
+   "Large": "large"
+  },
+  "base": "suction"
+ },
+ "colours": {
+  "modifier": "Colour",
+  "max": 2
+ },
+ "features": [
+  {
+   "icon": "egg",
+   "title": "Dragon egg design",
+   "text": "An intricately detailed exterior that stimulates visually and by touch."
+  },
+  {
+   "icon": "sparkle",
+   "title": "Made to display",
+   "text": "As striking on your bedside table as it is in play."
+  },
+  {
+   "icon": "suction",
+   "title": "Suction cup base",
+   "text": "Sticks to any smooth, flat surface for hands-free play."
+  },
+  {
+   "icon": "aumade",
+   "title": "Australian Made Certified",
+   "text": "Handmade in Australia from soft-touch, skin-safe silicone. Every pour is one of a kind."
+  }
+ ],
+ "description": "<p>Embark on an epic journey of sensual discovery with Kristal, a dragon's egg inspired by the legendary Mother of Dragons.</p><p>Every curve and contour of its mythically embellished shell is carefully crafted – the textures and patterns evoke the majesty of dragon lore, and look stunning on display between sessions.</p><h3>Explore Kristal in 3D</h3><p>Spin it, switch between sizes, slide the diameter ring to measure it at any point, compare it with a soda or Monster can, and tap the AR button on your phone to see it at real size in your room.</p><h3>Why you'll love Kristal</h3><ul><li>Intricately detailed dragon-egg shell</li><li>Three sizes: Small, Medium and Large</li><li>Suction cup base for hands-free play</li><li>Smooth, easy-to-clean silicone</li><li>Handmade in Australia from skin-safe silicone – Australian Made Certified</li></ul><h3>Make it yours</h3><p>Pick your size and density, then list two colours and/or glitters (the colour charts are in the gallery). No colours listed? We'll choose a stunning combination for you. Made to order – ships in 2–5 business days in plain, unmarked packaging.</p>",
+ "sections": [
+  {
+   "title": "Materials & Colours",
+   "html": "<p>Kristal is handmade in Australia from high-grade, skin-safe, soft-touch silicone (choose soft or ultra soft). All our silicone toys are <strong>Australian Made Certified</strong>.</p><p><strong>Colours:</strong> list two colours and/or glitters when you order – see the colour charts in the gallery. The charts are a reference guide only: colours shift once mixed into silicone, and every pour is unique. If no colours are listed, we'll select a stunning combination for you.</p>"
+  },
+  {
+   "title": "Ways to Play",
+   "html": "<p><strong>Solo or together:</strong> ideal for individual exploration or as a mythical addition to partner play.</p><p><strong>Hands-free:</strong> the suction cup base holds it to any smooth surface.</p><p><strong>Easy care:</strong> smooth silicone that's simple to clean.</p>"
+  }
+ ],
+ "cardSections": [
+  "Materials & Colours",
+  "Ways to Play"
+ ]
+}

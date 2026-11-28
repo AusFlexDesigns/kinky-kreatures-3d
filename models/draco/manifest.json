@@ -1,0 +1,37 @@
+{
+  "name": "DRACO \u2013 The Lava Dragon",
+  "color": "#7A48E8",
+  "defaultSize": "large",
+  "sizes": [
+    {
+      "id": "large",
+      "label": "Large",
+      "base": "suction",
+      "model": "large-suction.kkm",
+      "ar": "large-suction-ar.glb",
+      "chart": {
+        "lengthCm": 29.3
+      }
+    },
+    {
+      "id": "large",
+      "label": "Large",
+      "base": "flat",
+      "model": "large-flat.kkm",
+      "ar": "large-flat-ar.glb",
+      "chart": {
+        "lengthCm": 29.3
+      }
+    }
+  ],
+  "bases": [
+    {
+      "id": "suction",
+      "label": "Suction cup base"
+    },
+    {
+      "id": "flat",
+      "label": "Flat bottom"
+    }
+  ]
+}

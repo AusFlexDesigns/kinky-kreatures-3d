@@ -1,0 +1,154 @@
+{
+ "model": "cock-knots",
+ "shortName": "Cock Knots",
+ "eyebrow": "WEARABLE KNOT · MADE TO ORDER",
+ "hook": "Slip it on for a thrilling, canine-style knot – six designs, two fits.",
+ "sizeOption": "PICK KNOT",
+ "baseOption": "FIT",
+ "optionLabels": {
+  "PICK KNOT": "Knot design",
+  "FIT": "Fit",
+  "DENSITY": "Density"
+ },
+ "default": {
+  "PICK KNOT": "Wolf",
+  "FIT": "Standard - Fits Most Men"
+ },
+ "chips": {
+  "PICK KNOT": {
+   "Plain": {
+    "label": "Plain",
+    "sub": "Smooth, smallest"
+   },
+   "Wolf": {
+    "label": "Wolf",
+    "sub": "Wolf / dog knot"
+   },
+   "Tentacle": {
+    "label": "Tentacle",
+    "sub": "Suction-cup texture"
+   },
+   "Cyber": {
+    "label": "Cyber",
+    "sub": "Robotic texture"
+   },
+   "Lotus": {
+    "label": "Lotus",
+    "sub": "Bloomed petals"
+   },
+   "Bondage": {
+    "label": "Bondage",
+    "sub": "Leather-strap style"
+   }
+  },
+  "FIT": {
+   "Standard - Fits Most Men": {
+    "label": "Standard",
+    "sub": "Fits most men"
+   },
+   "Well Endowed - Fits Thicker Men": {
+    "label": "Well endowed",
+    "sub": "For thicker men"
+   }
+  }
+ },
+ "viewer": {
+  "sizes": {
+   "Plain": "plain",
+   "Wolf": "wolf",
+   "Tentacle": "tentacle",
+   "Cyber": "cyber",
+   "Lotus": "flower",
+   "Bondage": "bondage"
+  },
+  "bases": {
+   "Standard - Fits Most Men": "standard",
+   "Well Endowed - Fits Thicker Men": "well"
+  }
+ },
+ "colours": {
+  "modifier": "Colour",
+  "max": 2
+ },
+ "sizeTableLabel": "Knot",
+ "features": [
+  {
+   "icon": "knot",
+   "title": "A real knotting feel",
+   "text": "Starts gently, then builds to a full, locked-in sensation."
+  },
+  {
+   "icon": "sparkle",
+   "title": "Six designs",
+   "text": "Plain, Wolf, Tentacle, Cyber, Lotus and Bondage."
+  },
+  {
+   "icon": "ruler",
+   "title": "Two fits",
+   "text": "Standard fits most men; Well Endowed is for thicker men."
+  },
+  {
+   "icon": "aumade",
+   "title": "Australian Made Certified",
+   "text": "Handmade in Australia from soft-touch, skin-safe silicone. Every pour is one of a kind."
+  }
+ ],
+ "description": "<p>Unleash your wild side with Cock Knots – body-safe silicone wearables for an exhilarating knotting experience.</p><p>Slip it onto your member and secure it comfortably around your testicles. It starts off gently, and as excitement builds, so does the intensity – a sensation of fullness akin to the natural knotting of a canine. Perfect for roleplay and embracing the creature within.</p><h3>The designs</h3><ul><li><strong>Plain</strong> – smooth texture and the smallest. Best for beginners.</li><li><strong>Wolf</strong> – stylised to look more like a wolf/dog knot. Slightly larger than Plain.</li><li><strong>Tentacle</strong> – extra texture from little suction cups. Larger again.</li><li><strong>Cyber</strong> – robotic, mechanical texture that fits a bit longer down the shaft.</li><li><strong>Lotus</strong> – a bloomed-petal base inspired by the lotus flower.</li><li><strong>Bondage</strong> – leather-strap inspired, for leather lovers.</li></ul><h3>Explore each knot in 3D</h3><p>Spin it, switch between designs and fits, slide the diameter ring to measure it at any point, compare it with a soda or Monster can, and tap the AR button on your phone to see it at real size in your room.</p><h3>Make it yours</h3><p>Pick your design and fit, then list two colours and/or glitters (the colour charts are in the gallery). No colours listed? We'll choose a stunning combination for you. Made to order – ships in 2–5 business days in plain, unmarked packaging.</p>",
+ "sections": [
+  {
+   "title": "Choosing your fit",
+   "html": "<p><strong>Standard:</strong> made to fit most men.</p><p><strong>Well Endowed:</strong> best if you're above average and thicker.</p><p>The silicone is highly stretchy for comfort and firm enough for enjoyment.</p>"
+  },
+  {
+   "title": "Materials & Colours",
+   "html": "<p>Cock Knots is handmade in Australia from high-grade, skin-safe, soft-touch silicone (density: soft). All our silicone toys are <strong>Australian Made Certified</strong>.</p><p><strong>Colours:</strong> list two colours and/or glitters when you order – see the colour charts in the gallery. The charts are a reference guide only: colours shift once mixed into silicone, and every pour is unique. If no colours are listed, we'll select a stunning combination for you.</p>"
+  },
+  {
+   "title": "Ways to Play",
+   "html": "<p><strong>Roleplay:</strong> indulge in the primal thrill of knotting like a wild creature.</p><p><strong>Extended play:</strong> the flexible design adapts to your body for a snug, comfortable fit.</p><p><strong>Easy care:</strong> high-quality silicone that's simple to clean.</p>"
+  }
+ ],
+ "cardSections": [
+  "Choosing your fit",
+  "Materials & Colours",
+  "Ways to Play"
+ ],
+ "sizes": [
+  {
+   "choice": "Plain",
+   "label": "Plain",
+   "lengthCm": 6.2,
+   "widestCm": 8.8,
+   "tipCm": 8.4
+  },
+  {
+   "choice": "Wolf",
+   "label": "Wolf",
+   "lengthCm": 7.0,
+   "widestCm": 8.7,
+   "tipCm": 8.6
+  },
+  {
+   "choice": "Tentacle",
+   "label": "Tentacle",
+   "lengthCm": 7.3,
+   "widestCm": 9.6,
+   "tipCm": 3.7
+  }
+ ],
+ "sizeColumns": [
+  {
+   "key": "lengthCm",
+   "label": "Length"
+  },
+  {
+   "key": "widestCm",
+   "label": "Widest"
+  },
+  {
+   "key": "tipCm",
+   "label": "Near tip"
+  }
+ ],
+ "sizeNote": "Measured from our 3D models. Use the diameter ring in the 3D viewer to check the width at any point, or see it at true size in your room with AR."
+}

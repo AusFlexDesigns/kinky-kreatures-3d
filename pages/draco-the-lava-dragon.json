@@ -1,0 +1,132 @@
+{
+ "model": "draco",
+ "shortName": "Draco",
+ "eyebrow": "LAVA DRAGON · MADE TO ORDER",
+ "hook": "A lava dragon with dragon-scaled balls that touch, tickle and grind – Large is our biggest toy yet.",
+ "sizeOption": "PICK SIZE",
+ "baseOption": "PICK BASE",
+ "optionLabels": {
+  "PICK SIZE": "Size",
+  "PICK BASE": "Base",
+  "DENSITY": "Density"
+ },
+ "default": {
+  "PICK SIZE": "Medium"
+ },
+ "chips": {
+  "DENSITY": {
+   "Soft": {
+    "label": "Soft",
+    "sub": "Our standard"
+   },
+   "Ultra Soft": {
+    "label": "Ultra soft",
+    "sub": "Extra squish"
+   }
+  },
+  "PICK BASE": {
+   "No Base - Flat Bottom": {
+    "label": "Flat bottom",
+    "sub": "No base"
+   },
+   "Flat Bottom": {
+    "label": "Flat bottom",
+    "sub": "No base"
+   },
+   "Internal Masturbator": {
+    "label": "Masturbator",
+    "sub": "Internal cavity"
+   },
+   "Suction Cup": {
+    "label": "Suction cup",
+    "sub": "Sticks to smooth surfaces"
+   },
+   "Fuck Machine & Suction Cup": {
+    "label": "Machine + suction",
+    "sub": "Vac-U-Lock compatible"
+   }
+  },
+  "PICK SIZE": {
+   "Large": {
+    "label": "Large",
+    "sub": "29 cm"
+   }
+  }
+ },
+ "viewer": {
+  "sizes": {
+   "Small": "small",
+   "Medium": "medium",
+   "Large": "large"
+  },
+  "bases": {
+   "Suction Cup": "suction"
+  },
+  "base": "suction"
+ },
+ "colours": {
+  "modifier": "Colour",
+  "max": 2
+ },
+ "features": [
+  {
+   "icon": "scales",
+   "title": "Dragon-scaled balls",
+   "text": "Designed to touch, tickle and grind against you."
+  },
+  {
+   "icon": "flame",
+   "title": "Full, intense detail",
+   "text": "Multiple extruded features for depth and stimulation."
+  },
+  {
+   "icon": "ruler",
+   "title": "Ergonomic sizing",
+   "text": "Designed with anatomy-accurate 3D models for its three sizes."
+  },
+  {
+   "icon": "aumade",
+   "title": "Australian Made Certified",
+   "text": "Handmade in Australia from soft-touch, skin-safe silicone. Every pour is one of a kind."
+  }
+ ],
+ "description": "<p>Born from the fiery depths of active volcanoes, the lava dragon is a fierce guardian of hidden treasure. DRACO captures its essence in silicone – a pinnacle of intricate design and tactile sensation.</p><p>Its multiple extruded features give a full, intense experience, and its dragon-scaled balls are crafted to touch, tickle and grind against you. We designed DRACO with anatomy-accurate human 3D models to position every feature and tailor its sizing.</p><h3>Explore Draco in 3D</h3><p>Spin it, switch between sizes, slide the diameter ring to measure it at any point, compare it with a soda or Monster can, and tap the AR button on your phone to see it at real size in your room.</p><h3>Why you'll love Draco</h3><ul><li>Dragon-scaled balls that tickle and grind</li><li>Intricate, extruded detail for a full experience</li><li>Three sizes – Large is our biggest toy yet, at over 2.1 kg (4.6 lb)</li><li>Suction cup base on every size</li><li>Handmade in Australia from skin-safe silicone – Australian Made Certified</li></ul><h3>Make it yours</h3><p>Pick your size and density, then list two colours and/or glitters (the colour charts are in the gallery). No colours listed? We'll choose a stunning combination for you. Made to order – ships in 2–5 business days in plain, unmarked packaging.</p>",
+ "sections": [
+  {
+   "title": "Materials & Colours",
+   "html": "<p>Draco is handmade in Australia from high-grade, skin-safe, soft-touch silicone (choose soft or ultra soft). All our silicone toys are <strong>Australian Made Certified</strong>.</p><p><strong>Colours:</strong> list two colours and/or glitters when you order – see the colour charts in the gallery. The charts are a reference guide only: colours shift once mixed into silicone, and every pour is unique. If no colours are listed, we'll select a stunning combination for you.</p>"
+  },
+  {
+   "title": "Ways to Play",
+   "html": "<p><strong>Ride it:</strong> every size comes with a suction cup base for hands-free play on any smooth surface.</p><p><strong>Grind:</strong> the scaled balls are made to grind against you.</p><p><strong>Display it:</strong> as much a sculpture as a toy – DRACO looks the part on the shelf, too.</p>"
+  }
+ ],
+ "cardSections": [
+  "Materials & Colours",
+  "Ways to Play"
+ ],
+ "sizes": [
+  {
+   "choice": "Large",
+   "label": "Large",
+   "lengthCm": 29.3,
+   "widestCm": 18.4,
+   "tipCm": 6.0
+  }
+ ],
+ "sizeColumns": [
+  {
+   "key": "lengthCm",
+   "label": "Length"
+  },
+  {
+   "key": "widestCm",
+   "label": "Widest"
+  },
+  {
+   "key": "tipCm",
+   "label": "Near tip"
+  }
+ ],
+ "sizeNote": "Measured from our 3D models. Use the diameter ring in the 3D viewer to check the width at any point, or see it at true size in your room with AR."
+}

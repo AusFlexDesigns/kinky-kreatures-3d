@@ -1,0 +1,152 @@
+{
+ "model": "kaio",
+ "shortName": "Kaio",
+ "eyebrow": "WOLF KNOT · MADE TO ORDER",
+ "hook": "A majestic wolf with a textured shaft and a luxuriant, realistic knot – in five sizes.",
+ "sizeOption": "PICK SIZE",
+ "optionLabels": {
+  "PICK SIZE": "Size",
+  "PICK BASE": "Base",
+  "DENSITY": "Density"
+ },
+ "default": {
+  "PICK SIZE": "Medium"
+ },
+ "chips": {
+  "DENSITY": {
+   "Soft": {
+    "label": "Soft",
+    "sub": "Our standard"
+   },
+   "Ultra Soft": {
+    "label": "Ultra soft",
+    "sub": "Extra squish"
+   }
+  },
+  "PICK SIZE": {
+   "Small": {
+    "label": "Small",
+    "sub": "15 cm"
+   },
+   "Medium": {
+    "label": "Medium",
+    "sub": "21 cm"
+   },
+   "Large": {
+    "label": "Large",
+    "sub": "29 cm"
+   },
+   "XSmall": {
+    "label": "XSmall",
+    "sub": "18 cm"
+   },
+   "XLarge": {
+    "label": "XLarge",
+    "sub": "30 cm"
+   }
+  }
+ },
+ "viewer": {
+  "sizes": {
+   "XSmall": "xsmall",
+   "Small": "small",
+   "Medium": "medium",
+   "Large": "large",
+   "XLarge": "xlarge"
+  },
+  "base": "suction"
+ },
+ "colours": {
+  "modifier": "Colour",
+  "max": 2
+ },
+ "features": [
+  {
+   "icon": "knot",
+   "title": "A realistic knot",
+   "text": "A luxuriant knot that invites touch – soft, squishy and filling."
+  },
+  {
+   "icon": "scales",
+   "title": "Textured shaft",
+   "text": "Rough shaft texture against a softer knot for contrast."
+  },
+  {
+   "icon": "ruler",
+   "title": "Five sizes",
+   "text": "From XSmall for beginners to XLarge for the experienced."
+  },
+  {
+   "icon": "aumade",
+   "title": "Australian Made Certified",
+   "text": "Handmade in Australia from soft-touch, skin-safe silicone. Every pour is one of a kind."
+  }
+ ],
+ "description": "<p>Experience the untamed beauty of the wilderness with Kaio, a wolf dildo that captures the true essence of the majestic wolf.</p><p>Every detail is sculpted to capture the spirit of the wild – from the textured shaft to the luxuriant, realistic knot. Kaio is soft and squishy to the touch, with the roughness of the shaft and the softness of the knot giving you a tactile experience like no other.</p><h3>Explore Kaio in 3D</h3><p>Spin it, switch between all five sizes, slide the diameter ring to measure it at any point, compare it with a soda or Monster can, and tap the AR button on your phone to see it at real size in your room.</p><h3>Why you'll love Kaio</h3><ul><li>Realistic wolf knot</li><li>Textured shaft for extra sensation</li><li>Five sizes: XSmall to XLarge</li><li>Suction cup base for hands-free play</li><li>Soft or ultra-soft silicone</li><li>Handmade in Australia from skin-safe silicone – Australian Made Certified</li></ul><h3>Make it yours</h3><p>Pick your size and density, then list two colours and/or glitters (the colour charts are in the gallery). No colours listed? We'll choose a stunning combination for you. Made to order – ships in 2–5 business days in plain, unmarked packaging.</p>",
+ "sections": [
+  {
+   "title": "Materials & Colours",
+   "html": "<p>Kaio is handmade in Australia from high-grade, skin-safe, soft-touch silicone (choose soft or ultra soft). All our silicone toys are <strong>Australian Made Certified</strong>.</p><p><strong>Colours:</strong> list two colours and/or glitters when you order – see the colour charts in the gallery. The charts are a reference guide only: colours shift once mixed into silicone, and every pour is unique. If no colours are listed, we'll select a stunning combination for you.</p>"
+  },
+  {
+   "title": "Ways to Play",
+   "html": "<p><strong>Ride it:</strong> mount Kaio on any smooth, flat surface with the suction cup base for hands-free play.</p><p><strong>Knotting:</strong> take it slow and work up to the knot for a deep, locked-in feeling.</p><p><strong>Find your size:</strong> new to knots? Start with XSmall or Small – try them at true size with AR first.</p>"
+  }
+ ],
+ "cardSections": [
+  "Materials & Colours",
+  "Ways to Play"
+ ],
+ "sizes": [
+  {
+   "choice": "XSmall",
+   "label": "XSmall",
+   "lengthCm": 17.7,
+   "widestCm": 7.4,
+   "tipCm": 2.1
+  },
+  {
+   "choice": "Small",
+   "label": "Small",
+   "lengthCm": 19.8,
+   "widestCm": 6.8,
+   "tipCm": 2.7
+  },
+  {
+   "choice": "Medium",
+   "label": "Medium",
+   "lengthCm": 21.5,
+   "widestCm": 6.9,
+   "tipCm": 2.7
+  },
+  {
+   "choice": "Large",
+   "label": "Large",
+   "lengthCm": 23.3,
+   "widestCm": 8.2,
+   "tipCm": 3.1
+  },
+  {
+   "choice": "XLarge",
+   "label": "XLarge",
+   "lengthCm": 30.3,
+   "widestCm": 9.6,
+   "tipCm": 3.7
+  }
+ ],
+ "sizeColumns": [
+  {
+   "key": "lengthCm",
+   "label": "Length"
+  },
+  {
+   "key": "widestCm",
+   "label": "Widest"
+  },
+  {
+   "key": "tipCm",
+   "label": "Near tip"
+  }
+ ],
+ "sizeNote": "Measured from our 3D models. Use the diameter ring in the 3D viewer to check the width at any point, or see it at true size in your room with AR."
+}

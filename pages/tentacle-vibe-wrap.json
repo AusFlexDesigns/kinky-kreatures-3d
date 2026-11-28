@@ -1,0 +1,50 @@
+{
+ "shortName": "Vibe Wrap",
+ "eyebrow": "TENTACLE VIBE WRAP · MADE TO ORDER",
+ "hook": "Turn a medium-size vibrator into a pulsing, vibrating tentacle with ultra-soft suckers.",
+ "optionLabels": {
+  "DENSITY": "Density"
+ },
+ "viewer": {},
+ "colours": {
+  "modifier": "Colour",
+  "max": 2
+ },
+ "features": [
+  {
+   "icon": "vibe",
+   "title": "Fits your vibe",
+   "text": "An internal channel that fits most medium-size vibrators."
+  },
+  {
+   "icon": "tentacle",
+   "title": "Ultra-soft suckers",
+   "text": "Vibrations carry through the sinuous tentacle and suckers."
+  },
+  {
+   "icon": "wave",
+   "title": "Flexible form",
+   "text": "Bend and explore new positions and sensations."
+  },
+  {
+   "icon": "aumade",
+   "title": "Australian Made Certified",
+   "text": "Handmade in Australia from soft-touch, skin-safe silicone. Every pour is one of a kind."
+  }
+ ],
+ "description": "<p>Introducing the Tentacle Vibe Wrap. Slide in a medium-size vibrator and it becomes a pulsating, vibrating tentacle.</p><p>The internal channel gives a snug fit so vibrations carry through the sinuous tentacle and its ultra-soft suckers, while the textures add another layer of stimulation with every movement.</p><h3>Explore the Vibe Wrap in 3D</h3><p>Spin it, slide the diameter ring to measure it at any point, compare it with a soda or Monster can, and tap the AR button on your phone to see it at real size in your room.</p><h3>Why you'll love the Vibe Wrap</h3><ul><li>Fits most medium-size vibrators (vibrator not included)</li><li>Ultra-soft suckers and tentacle texture</li><li>Flexible for creative positions</li><li>One size</li><li>Handmade in Australia from skin-safe silicone – Australian Made Certified</li></ul><h3>Make it yours</h3><p>List two colours and/or glitters (the colour charts are in the gallery). No colours listed? We'll choose a stunning combination for you. Made to order – ships in 2–5 business days in plain, unmarked packaging.</p>",
+ "sections": [
+  {
+   "title": "Materials & Colours",
+   "html": "<p>The Vibe Wrap is handmade in Australia from high-grade, skin-safe, soft-touch silicone (density: ultra soft). All our silicone toys are <strong>Australian Made Certified</strong>.</p><p><strong>Colours:</strong> list two colours and/or glitters when you order – see the colour charts in the gallery. The charts are a reference guide only: colours shift once mixed into silicone, and every pour is unique. If no colours are listed, we'll select a stunning combination for you.</p>"
+  },
+  {
+   "title": "Good to know",
+   "html": "<p><strong>Vibrator not included.</strong> The channel fits most medium-size vibrators.</p><p>Use for solo exploration or as a tantalising addition to partner play.</p>"
+  }
+ ],
+ "cardSections": [
+  "Materials & Colours",
+  "Good to know"
+ ]
+}

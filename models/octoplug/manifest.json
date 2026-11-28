@@ -1,0 +1,35 @@
+{
+  "name": "OCTOPLUG",
+  "color": "#7A48E8",
+  "defaultSize": "large",
+  "sizes": [
+    {
+      "id": "small",
+      "label": "Small",
+      "model": "small.kkm",
+      "ar": "small-ar.glb",
+      "chart": {
+        "lengthCm": 9.7
+      }
+    },
+    {
+      "id": "medium",
+      "label": "Medium",
+      "model": "medium.kkm",
+      "ar": "medium-ar.glb",
+      "chart": {
+        "lengthCm": 14.5
+      }
+    },
+    {
+      "id": "large",
+      "label": "Large",
+      "model": "large.kkm",
+      "ar": "large-ar.glb",
+      "chart": {
+        "lengthCm": 19.6
+      }
+    }
+  ],
+  "bases": []
+}

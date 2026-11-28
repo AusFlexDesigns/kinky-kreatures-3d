@@ -1,0 +1,128 @@
+{
+ "model": "zilla",
+ "shortName": "Zilla",
+ "eyebrow": "DRAGON · MADE TO ORDER",
+ "hook": "A thick, chubby underworld dragon – soft and squishy, with scaled balls and a filling build.",
+ "sizeOption": "PICK SIZE",
+ "optionLabels": {
+  "PICK SIZE": "Size",
+  "PICK BASE": "Base",
+  "DENSITY": "Density"
+ },
+ "default": {
+  "PICK SIZE": "Large"
+ },
+ "chips": {
+  "DENSITY": {
+   "Soft": {
+    "label": "Soft",
+    "sub": "Our standard"
+   },
+   "Ultra Soft": {
+    "label": "Ultra soft",
+    "sub": "Extra squish"
+   }
+  },
+  "PICK SIZE": {
+   "Small": {
+    "label": "Small",
+    "sub": "15 cm"
+   },
+   "Medium": {
+    "label": "Medium",
+    "sub": "21 cm"
+   },
+   "Large": {
+    "label": "Large",
+    "sub": "29 cm"
+   }
+  }
+ },
+ "viewer": {
+  "sizes": {
+   "Small": "small",
+   "Medium": "medium",
+   "Large": "large"
+  },
+  "base": "suction"
+ },
+ "colours": {
+  "modifier": "Colour",
+  "max": 2
+ },
+ "features": [
+  {
+   "icon": "scales",
+   "title": "Scaled to the touch",
+   "text": "From a smooth shaft to the jagged scales covering its balls."
+  },
+  {
+   "icon": "knot",
+   "title": "Thick and filling",
+   "text": "A chubby, robust build for an intense, fulfilling ride."
+  },
+  {
+   "icon": "suction",
+   "title": "Suction cup base",
+   "text": "Sticks to any smooth, flat surface for hands-free play."
+  },
+  {
+   "icon": "aumade",
+   "title": "Australian Made Certified",
+   "text": "Handmade in Australia from soft-touch, skin-safe silicone. Every pour is one of a kind."
+  }
+ ],
+ "description": "<p>Meet Zilla, the underworld dragon. Inspired by the legendary Godzilla, he's sculpted with a commanding gaze, a lifelike posture and a thick, chubby form that promises a truly filling experience.</p><p>Soft and squishy to the touch, Zilla moves from a smooth shaft to jagged scales covering his balls – a tactile mix you won't find in an ordinary toy.</p><h3>Explore Zilla in 3D</h3><p>Spin it, switch between sizes, slide the diameter ring to measure it at any point, compare it with a soda or Monster can, and tap the AR button on your phone to see it at real size in your room.</p><h3>Why you'll love Zilla</h3><ul><li>Thick, chubby build for a full, intense ride</li><li>Smooth shaft and jagged scaled balls</li><li>Three sizes: Small, Medium and Large</li><li>Suction cup base for hands-free play</li><li>Soft or ultra-soft silicone</li><li>Handmade in Australia from skin-safe silicone – Australian Made Certified</li></ul><h3>Make it yours</h3><p>Pick your size and density, then list two colours and/or glitters (the colour charts are in the gallery). No colours listed? We'll choose a stunning combination for you. Made to order – ships in 2–5 business days in plain, unmarked packaging.</p>",
+ "sections": [
+  {
+   "title": "Materials & Colours",
+   "html": "<p>Zilla is handmade in Australia from high-grade, skin-safe, soft-touch silicone (choose soft or ultra soft). All our silicone toys are <strong>Australian Made Certified</strong>.</p><p><strong>Colours:</strong> list two colours and/or glitters when you order – see the colour charts in the gallery. The charts are a reference guide only: colours shift once mixed into silicone, and every pour is unique. If no colours are listed, we'll select a stunning combination for you.</p>"
+  },
+  {
+   "title": "Ways to Play",
+   "html": "<p><strong>Ride it:</strong> the suction cup base locks Zilla to any smooth, flat surface – floor, chair or shower wall – for hands-free play.</p><p><strong>Hold it:</strong> pop it off and use it by hand for full control.</p><p><strong>Texture:</strong> work the scaled balls against your skin for extra sensation.</p>"
+  }
+ ],
+ "cardSections": [
+  "Materials & Colours",
+  "Ways to Play"
+ ],
+ "sizes": [
+  {
+   "choice": "Small",
+   "label": "Small",
+   "lengthCm": 14.8,
+   "widestCm": 9.6,
+   "tipCm": 3.9
+  },
+  {
+   "choice": "Medium",
+   "label": "Medium",
+   "lengthCm": 20.8,
+   "widestCm": 13.1,
+   "tipCm": 5.5
+  },
+  {
+   "choice": "Large",
+   "label": "Large",
+   "lengthCm": 29.0,
+   "widestCm": 18.1,
+   "tipCm": 7.4
+  }
+ ],
+ "sizeColumns": [
+  {
+   "key": "lengthCm",
+   "label": "Length"
+  },
+  {
+   "key": "widestCm",
+   "label": "Widest"
+  },
+  {
+   "key": "tipCm",
+   "label": "Near tip"
+  }
+ ],
+ "sizeNote": "Measured from our 3D models. Use the diameter ring in the 3D viewer to check the width at any point, or see it at true size in your room with AR."
+}

@@ -1,0 +1,86 @@
+{
+ "shortName": "Slime",
+ "eyebrow": "MONSTER KNOT · MADE TO ORDER",
+ "hook": "An ultra-soft, slick monster with a generous knot for that deep, locked-in stretch.",
+ "optionLabels": {
+  "DENSITY": "Density"
+ },
+ "chips": {
+  "DENSITY": {
+   "Soft": {
+    "label": "Soft",
+    "sub": "Our standard"
+   },
+   "Ultra Soft": {
+    "label": "Ultra soft",
+    "sub": "Extra squish"
+   }
+  },
+  "PICK SIZE": {
+   "Small": {
+    "label": "Small",
+    "sub": "15 cm"
+   },
+   "Medium": {
+    "label": "Medium",
+    "sub": "21 cm"
+   },
+   "Large": {
+    "label": "Large",
+    "sub": "29 cm"
+   },
+   "XSmall": {
+    "label": "XSmall",
+    "sub": "18 cm"
+   },
+   "XLarge": {
+    "label": "XLarge",
+    "sub": "30 cm"
+   }
+  }
+ },
+ "viewer": {
+  "base": "suction"
+ },
+ "colours": {
+  "modifier": "Colour",
+  "max": 2
+ },
+ "features": [
+  {
+   "icon": "knot",
+   "title": "Monster knot",
+   "text": "A deliciously thick knot for that deep, locked-in sensation."
+  },
+  {
+   "icon": "wave",
+   "title": "Slick and smooth",
+   "text": "Ultra-soft silicone made for a seamless glide."
+  },
+  {
+   "icon": "suction",
+   "title": "Suction cup base",
+   "text": "Sticks to any smooth surface and won't let go."
+  },
+  {
+   "icon": "aumade",
+   "title": "Australian Made Certified",
+   "text": "Handmade in Australia from soft-touch, skin-safe silicone. Every pour is one of a kind."
+  }
+ ],
+ "description": "<p>Dare to surrender to Slime, the shape-shifting creature of pure, dripping desire. This ultra-soft monster knot is made to slip and glide its way deep inside.</p><p>Its smooth silicone ensures a seamless glide, and its generous knot gives that satisfying stretch while staying plush and accommodating.</p><h3>Explore Slime in 3D</h3><p>Spin it, slide the diameter ring to measure it at any point, compare it with a soda or Monster can, and tap the AR button on your phone to see it at real size in your room.</p><h3>Why you'll love Slime</h3><ul><li>A thick monster knot for a locked-in feeling</li><li>Ultra-soft and smooth for comfort</li><li>An otherworldly look straight from the depths of fantasy</li><li>Suction cup base for hands-free play</li><li>Handmade in Australia from skin-safe silicone – Australian Made Certified</li></ul><h3>Make it yours</h3><p>Pick your density, then list two colours and/or glitters (the colour charts are in the gallery). No colours listed? We'll choose a stunning combination for you. Made to order – ships in 2–5 business days in plain, unmarked packaging.</p>",
+ "sections": [
+  {
+   "title": "Materials & Colours",
+   "html": "<p>Slime is handmade in Australia from high-grade, skin-safe, soft-touch silicone (choose soft or ultra soft). All our silicone toys are <strong>Australian Made Certified</strong>.</p><p><strong>Colours:</strong> list two colours and/or glitters when you order – see the colour charts in the gallery. The charts are a reference guide only: colours shift once mixed into silicone, and every pour is unique. If no colours are listed, we'll select a stunning combination for you.</p>"
+  },
+  {
+   "title": "Ways to Play",
+   "html": "<p><strong>Ride it:</strong> the suction cup base holds Slime to any smooth surface.</p><p><strong>Knotting:</strong> go slow, use plenty of water-based lube and work up to the knot.</p>"
+  }
+ ],
+ "cardSections": [
+  "Materials & Colours",
+  "Ways to Play"
+ ]
+}

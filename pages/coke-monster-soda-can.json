@@ -1,0 +1,109 @@
+{
+ "shortName": "Drink Can",
+ "eyebrow": "NOVELTY INSERTABLE · MADE TO ORDER",
+ "hook": "Pop open a new realm of pleasure – the iconic shape of a soda or Monster can, in silicone.",
+ "sizeOption": "PICK CAN",
+ "optionLabels": {
+  "PICK CAN": "Can",
+  "DENSITY": "Density"
+ },
+ "chips": {
+  "DENSITY": {
+   "Soft": {
+    "label": "Soft",
+    "sub": "Our standard"
+   },
+   "Ultra Soft": {
+    "label": "Ultra soft",
+    "sub": "Extra squish"
+   }
+  },
+  "PICK SIZE": {
+   "Small": {
+    "label": "Small",
+    "sub": "15 cm"
+   },
+   "Medium": {
+    "label": "Medium",
+    "sub": "21 cm"
+   },
+   "Large": {
+    "label": "Large",
+    "sub": "29 cm"
+   },
+   "XSmall": {
+    "label": "XSmall",
+    "sub": "18 cm"
+   },
+   "XLarge": {
+    "label": "XLarge",
+    "sub": "30 cm"
+   }
+  }
+ },
+ "colours": {
+  "modifier": "Colour",
+  "max": 2
+ },
+ "features": [
+  {
+   "icon": "sparkle",
+   "title": "The real-can shape",
+   "text": "Iconic curves, textured rims and body."
+  },
+  {
+   "icon": "ruler",
+   "title": "Two sizes",
+   "text": "Classic soda or the taller Monster."
+  },
+  {
+   "icon": "heart",
+   "title": "Quirky and immersive",
+   "text": "Novelty looks with seriously immersive sensations."
+  },
+  {
+   "icon": "aumade",
+   "title": "Australian Made Certified",
+   "text": "Handmade in Australia from soft-touch, skin-safe silicone. Every pour is one of a kind."
+  }
+ ],
+ "description": "<p>Quench your thirst for excitement. Our novelty drink-can insertables capture the iconic shape and tactile familiarity of classic beverage cans, in body-safe silicone.</p><p>From the curves to the textured rims and body, every part is crafted to delight the senses and look like the real thing. Choose the classic soda can or the high-energy Monster design.</p><h3>Make it yours</h3><p>Pick your can and density, then list one or two colours and/or glitters (the colour charts are in the gallery). No colours listed? We'll choose a stunning combination for you. Made to order – ships in 2–5 business days in plain, unmarked packaging.</p>",
+ "sections": [
+  {
+   "title": "Important safety",
+   "html": "<p><strong>Vaginal use only.</strong> These novelty toys do not have a flared base or a retrieval cord. Inserting them into the rectum or any other internal cavity creates a high risk of internal loss, which may require medical intervention for removal.</p><p>Kinky Kreatures accepts no liability for misuse or failure to follow these safety guidelines. Please play safe and responsibly.</p>"
+  },
+  {
+   "title": "Materials & Colours",
+   "html": "<p>Each can is handmade in Australia from high-grade, skin-safe, soft-touch silicone (choose soft or ultra soft). All our silicone toys are <strong>Australian Made Certified</strong>.</p><p><strong>Colours:</strong> list one or two colours and/or glitters when you order – see the colour charts in the gallery. The charts are a reference guide only: colours shift once mixed into silicone, and every pour is unique. If no colours are listed, we'll select a stunning combination for you.</p>"
+  }
+ ],
+ "cardSections": [
+  "Important safety",
+  "Materials & Colours"
+ ],
+ "sizeColumns": [
+  {
+   "key": "heightCm",
+   "label": "Height"
+  },
+  {
+   "key": "widestCm",
+   "label": "Widest"
+  }
+ ],
+ "sizes": [
+  {
+   "choice": "SODA",
+   "label": "Soda",
+   "heightCm": 11.4,
+   "widestCm": 6.6
+  },
+  {
+   "choice": "MONSTER",
+   "label": "Monster",
+   "heightCm": 15.7,
+   "widestCm": 6.6
+  }
+ ]
+}

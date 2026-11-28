@@ -93,7 +93,28 @@ const FEATURE_ICON = {
   tentacle: '<svg aria-hidden="true" width="40" height="40" viewBox="0 0 32 32" fill="none" stroke="#C9B4FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 30L13.6 27.7L13.4 25.6L13.4 23.6L13.6 21.9L14 20.3L14.7 18.8L15.8 17.4L17.3 15.9L18.9 14.4L20.3 13L21.5 11.6L22.5 10.2L23.3 8.7L23.6 7L23.5 5.2L22.8 3.5L21.7 2.3L20.3 1.8L18.9 1.7L17.6 2.2L16.6 3.3L16.2 4.7L16.5 6L17 6.7L17.8 7.1L18.5 7.2L19.2 7L19.7 6.6L20 6L20 5.3L19.5 5.5L19.4 5.9L19.1 6.1L18.8 6.1L18.5 6L18.2 5.9L18.1 5.6L18 5.3L18.1 4.7L18.4 4.3L18.8 4.1L19.2 4.1L19.7 4.3L20.1 4.6L20.3 5.1L20.4 5.9L20.3 6.8L19.9 7.5L19.3 8.3L18.4 9.2L17.2 10.3L15.6 11.5L13.9 12.9L12 14.6L10.3 16.6L9.1 18.8L8.3 21.2L7.8 23.7L7.7 26.2L7.7 28.9L7.9 30.9Z"/><circle cx="10.3" cy="27.3" r="1.5"/><circle cx="10.8" cy="21.2" r="1.4"/><circle cx="13.5" cy="16" r="1.2"/><circle cx="18.1" cy="12" r="1.1"/><circle cx="21" cy="8.8" r="0.9"/><circle cx="21.8" cy="5.5" r="0.8"/></svg>',
   hexagon: '<svg aria-hidden="true" width="40" height="40" viewBox="0 0 32 32" fill="none" stroke="#C9B4FF" stroke-width="1.6" stroke-linejoin="round"><polygon points="9.2,4.3 22.7,4.3 29.5,16 22.7,27.6 9.2,27.6 2.5,16"/><path d="M16 16L9.2 4.3M16 16L22.7 4.3M16 16L29.5 16M16 16L22.7 27.6M16 16L9.2 27.6M16 16L2.5 16" stroke-width="0.9" opacity="0.6"/><polygon points="12.6,10.1 19.3,10.1 22.7,16 19.3,21.8 12.6,21.8 9.2,16" stroke-width="0.9" opacity="0.6"/><polygon points="9.2,4.3 19,10.7 25.7,16 17.8,19.2 11.4,23.9 11.6,16" fill="#FF7AB6" fill-opacity="0.5" stroke="#FF7AB6"/></svg>',
   bases: `<svg aria-hidden="true" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#C9B4FF" stroke-width="2" stroke-linecap="round">${ICON.bases}</svg>`,
+  scales: '<svg aria-hidden="true" width="40" height="40" viewBox="0 0 32 32" fill="none" stroke="#C9B4FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a6 6 0 0 1 12 0a6 6 0 0 1 12 0"/><path d="M4 20a6 6 0 0 1 12 0a6 6 0 0 1 12 0"/><path d="M10 16a6 6 0 0 1 12 0"/><path d="M10 24a6 6 0 0 1 12 0"/><path d="M4 28a6 6 0 0 1 12 0a6 6 0 0 1 12 0" stroke="#FF7AB6"/></svg>',
+  knot: '<svg aria-hidden="true" width="40" height="40" viewBox="0 0 32 32" fill="none" stroke="#C9B4FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3h6v8c3.5 1 5.5 4.5 5.5 8.5S21.8 27 16 27s-8.5-3.5-8.5-7.5S9.5 12 13 11z"/><path d="M11 30h10" stroke="#FF7AB6"/><path d="M13 16c1.5-1 4.5-1 6 0" opacity=".6"/></svg>',
+  flame: '<svg aria-hidden="true" width="40" height="40" viewBox="0 0 32 32" fill="none" stroke="#C9B4FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 30c-6 0-9.5-4-9.5-9 0-6 5-8.5 5-14 3.5 2 6 5 6.5 9 1.5-1 2.5-3 2.5-5 3 3 5 6.5 5 10.5 0 4.5-3.5 8.5-9.5 8.5z"/><path d="M16 30c-2.5 0-4-1.8-4-4 0-3 3-4 3-7 2.5 1.5 5 4 5 7 0 2.2-1.5 4-4 4z" stroke="#FF7AB6"/></svg>',
+  vibe: '<svg aria-hidden="true" width="40" height="40" viewBox="0 0 32 32" fill="none" stroke="#C9B4FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="11" y="6" width="10" height="20" rx="5"/><path d="M5 11c-1.5 3-1.5 7 0 10M27 11c1.5 3 1.5 7 0 10" stroke="#FF7AB6"/><path d="M8 13c-.8 2-.8 4 0 6M24 13c.8 2 .8 4 0 6"/></svg>',
+  foot: '<svg aria-hidden="true" width="40" height="40" viewBox="0 0 32 32" fill="none" stroke="#C9B4FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 30c-4 0-5-4-4-9s1-10 4-13c2-2 6-2 7 1s-1 7 0 11 2 10-7 10z"/><circle cx="20.5" cy="5" r="2"/><circle cx="24.5" cy="8" r="1.6"/><circle cx="26.5" cy="12" r="1.4"/><circle cx="27" cy="16" r="1.2" stroke="#FF7AB6"/></svg>',
+  hand: '<svg aria-hidden="true" width="40" height="40" viewBox="0 0 32 32" fill="none" stroke="#C9B4FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 29V15l-2.5-3.5a2 2 0 0 1 3.3-2.3L12 12V5a2 2 0 0 1 4 0v8V3.5a2 2 0 0 1 4 0V13V5a2 2 0 0 1 4 0v10c0 7-3 14-9 14z"/><circle cx="18" cy="22" r="1.3" stroke="#FF7AB6"/><circle cx="14" cy="19" r="1.1" stroke="#FF7AB6"/></svg>',
+  sparkle: '<svg aria-hidden="true" width="40" height="40" viewBox="0 0 32 32" fill="none" stroke="#C9B4FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l2.2 7.8L24 13l-7.8 2.2L14 23l-2.2-7.8L4 13l7.8-2.2z"/><path d="M25 20l1 3.5 3.5 1-3.5 1L25 29l-1-3.5-3.5-1 3.5-1z" stroke="#FF7AB6"/></svg>',
+  suction: '<svg aria-hidden="true" width="40" height="40" viewBox="0 0 32 32" fill="none" stroke="#C9B4FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3v12"/><rect x="12" y="3" width="8" height="12" rx="4"/><path d="M5 27c0-6 5-10 11-10s11 4 11 10z"/><path d="M3 29h26" stroke="#FF7AB6"/></svg>',
+  egg: '<svg aria-hidden="true" width="40" height="40" viewBox="0 0 32 32" fill="none" stroke="#C9B4FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3c6 0 10 9 10 16a10 10 0 0 1-20 0C6 12 10 3 16 3z"/><path d="M8 17l4-3 4 3 4-3 4 3M7 23l4-3 5 3 5-3 4 3" stroke="#FF7AB6"/></svg>',
+  heart: '<svg aria-hidden="true" width="40" height="40" viewBox="0 0 32 32" fill="none" stroke="#C9B4FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 28S4 21 4 12a6 6 0 0 1 12-2 6 6 0 0 1 12 2c0 9-12 16-12 16z"/><path d="M10 12a3 3 0 0 1 3-3" stroke="#FF7AB6"/></svg>',
+  ruler: '<svg aria-hidden="true" width="40" height="40" viewBox="0 0 32 32" fill="none" stroke="#C9B4FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="26" height="10" rx="2"/><path d="M8 11v4M13 11v6M18 11v4M23 11v6" stroke="#FF7AB6"/></svg>',
+  lotus: '<svg aria-hidden="true" width="40" height="40" viewBox="0 0 32 32" fill="none" stroke="#C9B4FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 26c-3-3-4-8-0-16 4 8 3 13 0 16z"/><path d="M16 26c-5 0-10-4-11-11 6 1 9 5 11 11zM16 26c5 0 10-4 11-11-6 1-9 5-11 11z"/><path d="M5 29h22" stroke="#FF7AB6"/></svg>',
+  chip: '<svg aria-hidden="true" width="40" height="40" viewBox="0 0 32 32" fill="none" stroke="#C9B4FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="14" height="14" rx="2"/><rect x="13" y="13" width="6" height="6" stroke="#FF7AB6"/><path d="M13 9V4M19 9V4M13 28v-5M19 28v-5M9 13H4M9 19H4M28 13h-5M28 19h-5"/></svg>',
+  wave: '<svg aria-hidden="true" width="40" height="40" viewBox="0 0 32 32" fill="none" stroke="#C9B4FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12c4-4 6 4 10 0s6 4 10 0 4-2 6 0"/><path d="M3 20c4-4 6 4 10 0s6 4 10 0 4-2 6 0" stroke="#FF7AB6"/></svg>',
   aumade: `<img src="${AU_MADE}" alt="Australian Made logo" width="52" height="48" loading="lazy">`,
+};
+
+const TRUST = {
+  aumade: `<li><img src="${AU_MADE}" alt="" width="32" height="30">Australian Made Certified</li>`,
+  silicone: `<li>${icon('shield')}Skin-safe silicone</li>`,
+  ships: `<li>${icon('truck')}Ships in 2–5 business days</li>`,
+  plain: `<li>${icon('box')}Plain, unmarked packaging</li>`,
 };
 
 // ---------- the colour chart (shared by every listing) ----------
@@ -220,6 +241,7 @@ const CSS = `
 .kkp-lu b{height:34px;display:flex;align-items:center;font:800 13px/1 Montserrat,Arial,sans-serif;letter-spacing:1px;text-transform:uppercase}
 .kkp-lu.ref{flex:0 0 calc(var(--lh)*.185)}.kkp-lu.ref b{color:var(--soft2)}
 .kkp-fit-side{display:flex;flex-direction:column;gap:18px}
+.kkp-fit.nolu{grid-template-columns:minmax(0,1fr);max-width:760px}
 .kkp-fit-side>h2{font-size:34px;font-weight:900;text-transform:uppercase}
 .kkp-tablebox{overflow-x:auto;border-radius:16px;border:1px solid var(--line)}
 .kkp table{width:100%;border-collapse:collapse;font-size:15px;text-align:left}
@@ -517,6 +539,13 @@ class KKProductPage extends HTMLElement {
     this._colourMod = (p.modifiers || []).find((m) => m.type === 'FREE_TEXT' && (!x.colours || !x.colours.modifier || (m.title || m.name || '').toLowerCase().includes(x.colours.modifier.toLowerCase())));
     this._colourMax = (x.colours && x.colours.max) || 2;
     this._otherMods = (p.modifiers || []).filter((m) => m !== this._colourMod && m.type === 'FREE_TEXT');
+    // choice modifiers (e.g. DENSITY on single-variant listings): not part of the variant, sent to the cart by key
+    this._choiceMods = (p.modifiers || []).filter((m) => m.type === 'TEXT_CHOICES' && (m.choices || []).length);
+    this._modSel = {};
+    for (const m of this._choiceMods) {
+      const d = m.choices.find((c) => c.name.toLowerCase() === String((x.default || {})[m.name] || '').toLowerCase());
+      this._modSel[m.key] = (d || m.choices[0]).key;
+    }
     this._media = (p.media || []).filter((m) => m.url);
   }
   _match(sel) {
@@ -531,8 +560,8 @@ class KKProductPage extends HTMLElement {
   _chip(o, c) { const m = ((this._x.chips || {})[o.name] || {})[c.name] || {}; return { label: m.label || c.name, sub: m.sub || '' }; }
   _optLabel(o) { return ((this._x.optionLabels || {})[o.name]) || o.name.replace(/^(pick|choose|select)\s+/i, ''); }
   get _has3D() { return !!this._x.model; }
-  get _viewerSize() { const c = this._choice(this._sizeOpt); return c && ((this._x.viewer || {}).sizes || {})[c.name]; }
-  get _viewerBase() { const c = this._choice(this._baseOpt); return c && ((this._x.viewer || {}).bases || {})[c.name]; }
+  get _viewerSize() { const v = this._x.viewer || {}, c = this._choice(this._sizeOpt); return (c && (v.sizes || {})[c.name]) || v.size || null; }
+  get _viewerBase() { const v = this._x.viewer || {}, c = this._choice(this._baseOpt); return (c && (v.bases || {})[c.name]) || v.base || null; }
 
   // ---------- render ----------
   _render() {
@@ -540,11 +569,21 @@ class KKProductPage extends HTMLElement {
     const [main, ...rest] = String(p.name || '').split(/\s+[-–—]\s+/);
     const sub = rest.join(' – ');
     const crumbs = (p.breadcrumbs || []).slice(-1);
-    const sections = (p.infoSections || []).filter((s) => !(x.hideSections || []).includes(s.title));
+    // copy kept in the page file (x.description / x.sections) wins over the listing's, so new text can be staged before it goes into Wix
+    const desc = x.description != null ? x.description : p.description;
+    const own = x.sections || [];
+    const ownT = own.map((s) => s.title.toLowerCase());
+    // the listing's own sections still show (shipping, refunds) unless the page file replaces them; its old "Product Info" goes once the file has its own
+    const keep = (s) => !ownT.includes(s.title.toLowerCase()) && !(own.length && /^product info$/i.test(s.title));
+    const sections = own.concat((p.infoSections || []).filter(keep)).filter((s) => !(x.hideSections || []).includes(s.title));
     const cardNames = x.cardSections || [];
     const cards = sections.filter((s) => cardNames.includes(s.title));
     const dets = sections.filter((s) => !cardNames.includes(s.title));
     const sizes = x.sizes || [];
+    const COLS = { lengthCm: 'Length', widestCm: 'Widest', upperCm: 'Upper', tipCm: 'Tip', knotCm: 'Knot', usableCm: 'Usable', heightCm: 'Height', openingCm: 'Opening' };
+    const cols = (x.sizeColumns || Object.keys(COLS).filter((k) => sizes.some((s) => s[k])).map((k) => ({ key: k })))
+      .map((c) => ({ key: c.key, label: c.label || COLS[c.key] || c.key }));
+    const lineup = x.lineupImage && sizes.length > 1 && sizes.every((s) => s.lengthCm && s.widestCm);
     const html = `
 <div class="kkp-in">
   <nav class="kkp-crumbs" aria-label="Breadcrumb"><a href="/">Home</a>${crumbs.map((c) => ` / <a href="/category/${esc(c.slug)}">${esc(c.name)}</a>`).join('')} / <span aria-current="page">${esc(main)}</span></nav>
@@ -577,6 +616,7 @@ class KKProductPage extends HTMLElement {
       <div><p class="kkp-price" data-price></p><p class="kkp-pay" data-pay></p></div>
       ${x.hook ? `<p class="kkp-hook">${esc(x.hook)}</p>` : ''}
       ${this._opts.map((o) => this._optHTML(o)).join('')}
+      ${this._choiceMods.map((m) => this._modHTML(m)).join('')}
       ${this._colourMod ? this._colourHTML() : ''}
       ${this._otherMods.map((m, i) => `<div class="kkp-col"><div class="kkp-col-head"><label for="kkp-mod${i}">${esc(m.title || m.name)}</label></div><div class="kkp-field"><input id="kkp-mod${i}" data-mod="${esc(m.key)}" maxlength="${m.max || 500}" autocomplete="off"></div></div>`).join('')}
       <div class="kkp-cart">
@@ -587,22 +627,17 @@ class KKProductPage extends HTMLElement {
         </div>
         <p class="kkp-msg" role="status" data-msg></p>
       </div>
-      <ul class="kkp-trust">
-        <li><img src="${AU_MADE}" alt="" width="32" height="30">Australian Made Certified</li>
-        <li>${icon('shield')}Skin-safe silicone</li>
-        <li>${icon('truck')}Ships in 2–5 business days</li>
-        <li>${icon('box')}Plain, unmarked packaging</li>
-      </ul>
+      <ul class="kkp-trust">${(x.trust || ['aumade', 'silicone', 'ships', 'plain']).map((k) => TRUST[k] || '').join('')}</ul>
     </div>
   </section>
 
   ${(x.features || []).length ? `<section class="kkp-sec" aria-labelledby="kkp-love"><h2 id="kkp-love">Why you'll love ${esc(x.shortName || main)}</h2>
     <div class="kkp-feat">${x.features.map((f) => `<div class="kkp-card">${FEATURE_ICON[f.icon] || ''}<div><h3>${esc(f.title)}</h3><p>${esc(f.text)}</p></div></div>`).join('')}</div></section>` : ''}
 
-  ${p.description ? `<section class="kkp-sec" aria-labelledby="kkp-about"><h2 id="kkp-about">About ${esc(x.shortName || main)}</h2><div class="kkp-card kkp-rich">${cleanHTML(p.description)}</div></section>` : ''}
+  ${desc ? `<section class="kkp-sec" aria-labelledby="kkp-about"><h2 id="kkp-about">About ${esc(x.shortName || main)}</h2><div class="kkp-card kkp-rich">${cleanHTML(desc)}</div></section>` : ''}
 
-  ${sizes.length ? `<section class="kkp-sec kkp-fit" aria-labelledby="kkp-fit">
-    ${x.lineupImage ? `<div class="kkp-lineup" aria-hidden="true"><div class="kkp-lu-row">
+  ${sizes.length ? `<section class="kkp-sec kkp-fit${lineup ? '' : ' nolu'}" aria-labelledby="kkp-fit">
+    ${lineup ? `<div class="kkp-lineup" aria-hidden="true"><div class="kkp-lu-row">
       <div class="kkp-lu ref"><div class="can"></div><b>Can</b></div>
       ${sizes.map((s) => `<div class="kkp-lu" style="--r:${(s.lengthCm / sizes.reduce((a, b) => Math.max(a, b.lengthCm), 0)).toFixed(3)};--w:${((x.lineupAspect || 0.4) * (s.lengthCm / sizes.reduce((a, b) => Math.max(a, b.lengthCm), 0)) * ((s.widestCm / s.lengthCm) / (sizes[sizes.length - 1].widestCm / sizes[sizes.length - 1].lengthCm))).toFixed(3)}"><img src="${esc(BASE + x.lineupImage)}" alt="" loading="lazy"><b>${esc(s.label)}</b></div>`).join('')}
     </div></div>` : ''}
@@ -610,8 +645,8 @@ class KKProductPage extends HTMLElement {
       <h2 id="kkp-fit">Find your size</h2>
       ${x.sizeNote ? `<p style="color:var(--soft)">${esc(x.sizeNote)}</p>` : ''}
       <div class="kkp-tablebox"><table>
-        <thead><tr><th scope="col">Size</th><th scope="col">Length</th><th scope="col">Widest</th>${sizes[0].upperCm ? '<th scope="col" class="kkp-up">Upper</th>' : ''}${sizes[0].tipCm ? '<th scope="col">Tip</th>' : ''}</tr></thead>
-        <tbody>${sizes.map((s) => `<tr><th scope="row">${esc(s.label)}</th>${['lengthCm', 'widestCm', 'upperCm', 'tipCm'].filter((k) => sizes[0][k]).map((k) => `<td${k === 'upperCm' ? ' class="kkp-up"' : ''}>${s[k].toFixed(1)} cm<small>${(s[k] / 2.54).toFixed(1)}″</small></td>`).join('')}</tr>`).join('')}</tbody>
+        <thead><tr><th scope="col">${esc(x.sizeTableLabel || 'Size')}</th>${cols.map((c) => `<th scope="col"${c.key === 'upperCm' ? ' class="kkp-up"' : ''}>${esc(c.label)}</th>`).join('')}</tr></thead>
+        <tbody>${sizes.map((s) => `<tr><th scope="row">${esc(s.label)}</th>${cols.map((c) => `<td${c.key === 'upperCm' ? ' class="kkp-up"' : ''}>${s[c.key] ? `${s[c.key].toFixed(1)} cm<small>${(s[c.key] / 2.54).toFixed(1)}″</small>` : '–'}</td>`).join('')}</tr>`).join('')}</tbody>
       </table></div>
     </div>
   </section>` : ''}
@@ -753,6 +788,15 @@ class KKProductPage extends HTMLElement {
     location.href = u.toString();
   }
 
+  _modHTML(m) {
+    const o = { name: m.name };
+    if (m.choices.length < 2) return `<p class="kkp-fixed">${esc(this._optLabel(o))}: ${esc(m.choices[0].name)}</p>`;
+    const wide = m.choices.some((c) => (this._chip(o, c).label || '').length > 9) || m.choices.length > 4;
+    const cols = wide ? 2 : Math.min(m.choices.length, 4);
+    return `<fieldset class="kkp-opt"><legend><span>${esc(this._optLabel(o))}</span></legend>
+      <div class="kkp-chips" style="--cols:${cols}">${m.choices.map((c) => { const ch = this._chip(o, c); return `<button class="kkp-chip${wide ? ' wide' : ''}" data-m="${esc(m.key)}" data-mk="${esc(c.key)}" aria-pressed="${this._modSel[m.key] === c.key}"><b>${esc(ch.label)}</b>${ch.sub ? `<span>${esc(ch.sub)}</span>` : ''}</button>`; }).join('')}</div></fieldset>`;
+  }
+
   _optHTML(o) {
     if (o.choices.length < 2) return o.choices[0] ? `<p class="kkp-fixed">${esc(this._optLabel(o))}: ${esc(o.choices[0].name)}</p>` : '';
     const wide = o.choices.some((c) => (this._chip(o, c).label || '').length > 9) || o.choices.length > 4;
@@ -769,7 +813,7 @@ class KKProductPage extends HTMLElement {
     return `<div class="kkp-col" data-colours>
       <div class="kkp-col-head"><label for="kkp-colours">Colours</label><span data-colcount></span></div>
       <div class="kkp-field"><input id="kkp-colours" data-coltext autocomplete="off" maxlength="${(this._colourMod && this._colourMod.max) || 500}" placeholder="Pick from the chart or type, e.g. Purple + Glitter Gold" aria-describedby="kkp-colhint" aria-haspopup="dialog">${icon('palette')}</div>
-      <p class="kkp-hint" id="kkp-colhint">Pick up to ${this._colourMax} colours or glitters from our chart, or type your own. Leave it blank and we'll choose a stunning combo for you.</p>
+      <p class="kkp-hint" id="kkp-colhint">Pick up to ${this._colourMax} colours or glitters from our chart, or type your own.${(this._x.colours || {}).hint ? ' ' + esc(this._x.colours.hint) : ''} Leave it blank and we'll choose a stunning combo for you.</p>
       <div class="kkp-picker" role="dialog" aria-label="Colour picker" hidden>
         <div class="kkp-pk-head"><p>PICK UP TO ${this._colourMax} COLOURS</p><div style="display:flex;gap:8px;align-items:center"><span class="kkp-count" data-colpill></span><button type="button" class="kkp-ghost" data-colclear>Clear</button></div></div>
         ${grp(solid[0], solid[1])}${grp(glitter[0], glitter[1])}
@@ -787,6 +831,7 @@ class KKProductPage extends HTMLElement {
       if (a && a.hasAttribute('data-torev')) { e.preventDefault(); const sec = $(r, '#kkp-reviews'); if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
       const t = e.target.closest('button'); if (!t || !r.contains(t)) return;
       if (t.dataset.o && t.dataset.c) return this._pick(t.dataset.o, t.dataset.c);
+      if (t.dataset.m && t.dataset.mk) { this._modSel[t.dataset.m] = t.dataset.mk; $$(r, '[data-m]').forEach((b) => b.setAttribute('aria-pressed', String(this._modSel[b.dataset.m] === b.dataset.mk))); return this._update(); }
       if (t.dataset.qty) { this._qty = Math.max(1, Math.min(20, this._qty + Number(t.dataset.qty))); $(r, '[data-qtyv]').textContent = this._qty; return; }
       if (t.hasAttribute('data-add')) return this._add();
       if (t.dataset.open) return this._lightbox(Number(t.dataset.open));
@@ -863,10 +908,12 @@ class KKProductPage extends HTMLElement {
     } else { price.textContent = 'Unavailable'; pay.textContent = ''; }
     // size details + summary + add button
     const sc = this._choice(this._sizeOpt), bc = this._choice(this._baseOpt);
-    const sz = sc && (this._x.sizes || []).find((s) => s.choice === sc.name);
-    const dimsTxt = sz ? `${sz.lengthCm.toFixed(1)} cm long · ${sz.widestCm.toFixed(1)} cm widest` : '';
+    const allSz = this._x.sizes || [];
+    const sz = (sc && allSz.find((s) => s.choice === sc.name)) || (!sc && allSz.length === 1 ? allSz[0] : null);
+    const dimsTxt = sz && sz.lengthCm ? [`${sz.lengthCm.toFixed(1)} cm long`, sz.widestCm ? `${sz.widestCm.toFixed(1)} cm widest` : ''].filter(Boolean).join(' · ') : '';
     $$(r, '[data-dims],[data-ardims]').forEach((el) => { el.textContent = dimsTxt; });
     const parts = this._opts.filter((o) => o.choices.length > 1).map((o) => this._chip(o, this._choice(o) || {}).label).filter(Boolean);
+    for (const m of this._choiceMods) { const c = m.choices.find((k) => k.key === this._modSel[m.key]); if (c && m.choices.length > 1) parts.push(c.name); }
     const sum = $(r, '[data-summary]'); if (sum) sum.textContent = [this._x.shortName || '', ...parts].filter(Boolean).join(' · ');
     const add = $(r, '[data-add]');
     if (add && !this._adding) { add.textContent = v ? `ADD TO CART · ${money(v.formatted)}` : 'UNAVAILABLE'; add.disabled = !v || v.inStock === false; if (v && v.inStock === false) add.textContent = 'OUT OF STOCK'; }
@@ -1030,7 +1077,7 @@ class KKProductPage extends HTMLElement {
     this._adding = true; this._reqId = String(Date.now());
     const add = $(this._rootEl, '[data-add]'); add.disabled = true; add.textContent = 'ADDING…'; msg.textContent = '';
     this._addTimer = setTimeout(() => this._cartStatus(JSON.stringify({ id: this._reqId, ok: false, message: 'That took too long. Please try again.' })), 20000);
-    this.dispatchEvent(new CustomEvent('kk-add-to-cart', { bubbles: true, detail: { id: this._reqId, productId: this._p.id, variantId: v.id, quantity: this._qty, customTextFields: custom } }));
+    this.dispatchEvent(new CustomEvent('kk-add-to-cart', { bubbles: true, detail: { id: this._reqId, productId: this._p.id, variantId: v.id, quantity: this._qty, customTextFields: custom, modifierChoices: { ...this._modSel } } }));
   }
   _cartStatus(json) {
     let s; try { s = JSON.parse(json); } catch (e) { return; }

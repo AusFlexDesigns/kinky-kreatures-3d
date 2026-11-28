@@ -1,0 +1,49 @@
+{
+ "shortName": "Grinding Glove",
+ "eyebrow": "TENTACLE GLOVE · MADE TO ORDER",
+ "hook": "Turn your hand into an instrument of pleasure – tentacle suckers for grinding and more.",
+ "optionLabels": {
+  "DENSITY": "Density"
+ },
+ "colours": {
+  "modifier": "Colour",
+  "max": 2
+ },
+ "features": [
+  {
+   "icon": "tentacle",
+   "title": "Delicate suckers",
+   "text": "Strategically placed for maximum stimulation."
+  },
+  {
+   "icon": "hand",
+   "title": "Fits like a glove",
+   "text": "Contours to your hand – universal sizing."
+  },
+  {
+   "icon": "heart",
+   "title": "Made for couples",
+   "text": "Palm grinding, finger play and partner massage."
+  },
+  {
+   "icon": "aumade",
+   "title": "Australian Made Certified",
+   "text": "Handmade in Australia from soft-touch, skin-safe silicone. Every pour is one of a kind."
+  }
+ ],
+ "description": "<p>Indulge in a hypnotic trance with the Tentacle Grinding Glove – a unique twist for your sensual adventures.</p><p>Delicate suckers are positioned for maximum stimulation, and the glove contours to your hand, turning it into an instrument of pure pleasure. Slip it on like a regular glove for palm grinding, finger play or a mesmerising massage.</p><h3>Why you'll love the Grinding Glove</h3><ul><li>Tentacle suckers for a hypnotic massage</li><li>Universal sizing</li><li>Ultra-soft, skin-like silicone</li><li>Easy to clean</li><li>Handmade in Australia from skin-safe silicone – Australian Made Certified</li></ul><h3>Make it yours</h3><p>List two colours and/or glitters (the colour charts are in the gallery). No colours listed? We'll choose a stunning combination for you. Made to order – ships in 2–5 business days in plain, unmarked packaging.</p>",
+ "sections": [
+  {
+   "title": "Materials & Colours",
+   "html": "<p>The Grinding Glove is handmade in Australia from high-grade, skin-safe, soft-touch silicone (density: soft). All our silicone toys are <strong>Australian Made Certified</strong>.</p><p><strong>Colours:</strong> list two colours and/or glitters when you order – see the colour charts in the gallery. The charts are a reference guide only: colours shift once mixed into silicone, and every pour is unique. If no colours are listed, we'll select a stunning combination for you.</p>"
+  },
+  {
+   "title": "Ways to Play",
+   "html": "<p><strong>Solo:</strong> palm grinding and finger play.</p><p><strong>With a partner:</strong> a mesmerising, hypnotic massage across erogenous zones.</p>"
+  }
+ ],
+ "cardSections": [
+  "Materials & Colours",
+  "Ways to Play"
+ ]
+}

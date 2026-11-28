@@ -1,0 +1,108 @@
+{
+ "shortName": "Sole",
+ "eyebrow": "FOOT FETISH · MADE TO ORDER",
+ "hook": "A perfectly sculpted women's size 8 foot – made for worship, devotion and indulgence.",
+ "optionLabels": {
+  "DENSITY": "Density"
+ },
+ "chips": {
+  "DENSITY": {
+   "Soft": {
+    "label": "Soft",
+    "sub": "Our standard"
+   },
+   "Ultra Soft": {
+    "label": "Ultra soft",
+    "sub": "Extra squish"
+   }
+  },
+  "PICK SIZE": {
+   "Small": {
+    "label": "Small",
+    "sub": "15 cm"
+   },
+   "Medium": {
+    "label": "Medium",
+    "sub": "21 cm"
+   },
+   "Large": {
+    "label": "Large",
+    "sub": "29 cm"
+   },
+   "XSmall": {
+    "label": "XSmall",
+    "sub": "18 cm"
+   },
+   "XLarge": {
+    "label": "XLarge",
+    "sub": "30 cm"
+   }
+  }
+ },
+ "viewer": {
+  "base": "suction"
+ },
+ "colours": {
+  "modifier": "Colour",
+  "max": 2
+ },
+ "features": [
+  {
+   "icon": "foot",
+   "title": "Realistic size 8",
+   "text": "Sculpted to mirror the natural beauty of a woman's foot."
+  },
+  {
+   "icon": "sparkle",
+   "title": "Worship-ready detail",
+   "text": "Elegant arches, smooth soles and delicate toes."
+  },
+  {
+   "icon": "suction",
+   "title": "Powerful suction cup",
+   "text": "Locks down firmly on any smooth surface."
+  },
+  {
+   "icon": "aumade",
+   "title": "Australian Made Certified",
+   "text": "Handmade in Australia from soft-touch, skin-safe silicone. Every pour is one of a kind."
+  }
+ ],
+ "description": "<p>Bow before Sole, the ultimate fetish creation designed for worship, devotion and indulgence.</p><p>A perfectly sculpted women's size 8 foot – elegant arches, smooth soles and delicate toes.</p><p>With a powerful suction cup base, Sole stands firm – ready to be adored, kissed or mounted.</p><h3>Explore Sole in 3D</h3><p>Spin it, slide the diameter ring to measure it at any point, compare it with a soda or Monster can, and tap the AR button on your phone to see it at real size in your room.</p><h3>Why you'll love Sole</h3><ul><li>Realistic women's size 8 foot</li><li>Worship-ready arches, soles and toes</li><li>Powerful suction cup base</li><li>Soft or ultra-soft silicone</li><li>Handmade in Australia from skin-safe silicone – Australian Made Certified</li></ul><h3>Make it yours</h3><p>Pick your density, then list two colours and/or glitters (the colour charts are in the gallery). No colours listed? We'll choose a stunning combination for you. Made to order – ships in 2–5 business days in plain, unmarked packaging.</p>",
+ "sections": [
+  {
+   "title": "Materials & Colours",
+   "html": "<p>Sole is handmade in Australia from high-grade, skin-safe, soft-touch silicone (choose soft or ultra soft). All our silicone toys are <strong>Australian Made Certified</strong>.</p><p><strong>Colours:</strong> list two colours and/or glitters when you order – see the colour charts in the gallery. The charts are a reference guide only: colours shift once mixed into silicone, and every pour is unique. If no colours are listed, we'll select a stunning combination for you.</p>"
+  },
+  {
+   "title": "Ways to Play",
+   "html": "<p>Ideal for foot worship, domination play or creative solo sessions. Mount it on any smooth surface with the suction cup for hands-free devotion.</p>"
+  }
+ ],
+ "cardSections": [
+  "Materials & Colours",
+  "Ways to Play"
+ ],
+ "sizeColumns": [
+  {
+   "key": "heightCm",
+   "label": "Total height"
+  },
+  {
+   "key": "widestCm",
+   "label": "Widest"
+  },
+  {
+   "key": "usableCm",
+   "label": "Usable length"
+  }
+ ],
+ "sizes": [
+  {
+   "label": "Sole",
+   "heightCm": 28.0,
+   "widestCm": 12.5,
+   "usableCm": 23.0
+  }
+ ]
+}

@@ -1,0 +1,111 @@
+{
+ "shortName": "Cyber Tech",
+ "eyebrow": "SYNDICATE COLLECTION · MADE TO ORDER",
+ "hook": "Next-level pleasure hardware: three cyberpunk pieces engineered to push your boundaries.",
+ "sizeOption": "PICK TOY",
+ "optionLabels": {
+  "PICK TOY": "Toy",
+  "DENSITY": "Density"
+ },
+ "default": {
+  "PICK TOY": "The Core Node (Long Shaft Dildo)"
+ },
+ "chips": {
+  "DENSITY": {
+   "Soft": {
+    "label": "Soft",
+    "sub": "Our standard"
+   },
+   "Ultra Soft": {
+    "label": "Ultra soft",
+    "sub": "Extra squish"
+   }
+  },
+  "PICK TOY": {
+   "The Core Node (Long Shaft Dildo)": {
+    "label": "The Core Node",
+    "sub": "Long shaft dildo"
+   },
+   "The Matrix Root (Knot Dildo)": {
+    "label": "The Matrix Root",
+    "sub": "Knot dildo"
+   },
+   "The Sub-Net (Cock Knot Wearable)": {
+    "label": "The Sub-Net",
+    "sub": "Cock knot wearable"
+   }
+  }
+ },
+ "viewer": {
+  "sizes": {
+   "The Core Node (Long Shaft Dildo)": "core-node",
+   "The Matrix Root (Knot Dildo)": "matrix-root",
+   "The Sub-Net (Cock Knot Wearable)": "sub-net"
+  },
+  "base": "suction"
+ },
+ "colours": {
+  "modifier": "Colour",
+  "max": 2
+ },
+ "sizeTableLabel": "Toy",
+ "features": [
+  {
+   "icon": "chip",
+   "title": "Cyberpunk hardware",
+   "text": "Robotic, mechanical styling with ergonomic engineering."
+  },
+  {
+   "icon": "knot",
+   "title": "Three pieces",
+   "text": "A long shaft, a knot dildo and a cock knot wearable."
+  },
+  {
+   "icon": "suction",
+   "title": "Suction cup bases",
+   "text": "The Core Node and Matrix Root mount hands-free."
+  },
+  {
+   "icon": "aumade",
+   "title": "Australian Made Certified",
+   "text": "Handmade in Australia from soft-touch, skin-safe silicone. Every pour is one of a kind."
+  }
+ ],
+ "description": "<p>Upgrade your operating system. CYBER TECH – the Syndicate Collection – merges cyberpunk aesthetics with ergonomic engineering in three distinct pieces.</p><h3>The lineup</h3><p><strong>The Core Node</strong> – a long shaft dildo built for deep exploration, with a stable suction cup base for hands-free mounting.</p><p><strong>The Matrix Root</strong> – a knot dildo with a pronounced, textured knot and a secure suction cup base for a deeply fulfilling, locked-in sensation.</p><p><strong>The Sub-Net</strong> – a snug-fitting cock knot wearable for a secure, locked-in feel during dynamic play. Insert your floppy for the latest firmware updates.</p><h3>Explore Cyber Tech in 3D</h3><p>Spin it, switch between the three pieces, slide the diameter ring to measure it at any point, compare it with a soda or Monster can, and tap the AR button on your phone to see it at real size in your room.</p><h3>Make it yours</h3><p>Pick your toy and density, then list one or two colours and/or glitters (the colour charts are in the gallery). No colours listed? We'll choose a stunning combination for you. Made to order – ships in 2–5 business days in plain, unmarked packaging.</p>",
+ "sections": [
+  {
+   "title": "Materials & Colours",
+   "html": "<p>Every Syndicate piece is handmade in Australia from high-grade, skin-safe, soft-touch silicone (choose soft or ultra soft). All our silicone toys are <strong>Australian Made Certified</strong>.</p><p><strong>Colours:</strong> list one or two colours and/or glitters when you order – see the colour charts in the gallery. The charts are a reference guide only: colours shift once mixed into silicone, and every pour is unique. If no colours are listed, we'll select a stunning combination for you.</p>"
+  },
+  {
+   "title": "Ways to Play",
+   "html": "<p><strong>Core Node:</strong> deep, hands-free riding on its suction cup base.</p><p><strong>Matrix Root:</strong> stationary play with a locked-in knot.</p><p><strong>Sub-Net:</strong> wear it for stamina and a secure, knotted feel with a partner.</p>"
+  }
+ ],
+ "cardSections": [
+  "Materials & Colours",
+  "Ways to Play"
+ ],
+ "sizes": [
+  {
+   "choice": "The Core Node (Long Shaft Dildo)",
+   "label": "Core Node",
+   "lengthCm": 24.0,
+   "tipCm": 4.7,
+   "knotCm": 5.5
+  },
+  {
+   "choice": "The Matrix Root (Knot Dildo)",
+   "label": "Matrix Root",
+   "lengthCm": 19.6,
+   "tipCm": 5.0,
+   "knotCm": 7.0
+  },
+  {
+   "choice": "The Sub-Net (Cock Knot Wearable)",
+   "label": "Sub-Net",
+   "lengthCm": 9.2,
+   "knotCm": 5.3
+  }
+ ]
+}

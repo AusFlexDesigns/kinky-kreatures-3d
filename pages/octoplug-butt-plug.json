@@ -1,0 +1,117 @@
+{
+ "model": "octoplug",
+ "shortName": "Octoplug",
+ "eyebrow": "OCTOPUS PLUG · MADE TO ORDER",
+ "hook": "An irresistibly cute octopus butt plug with a tapered tip and stimulating tentacles.",
+ "sizeOption": "PICK SIZE",
+ "optionLabels": {
+  "PICK SIZE": "Size",
+  "PICK BASE": "Base",
+  "DENSITY": "Density"
+ },
+ "default": {
+  "PICK SIZE": "Small"
+ },
+ "viewer": {
+  "sizes": {
+   "Small": "small",
+   "Medium": "medium",
+   "Large": "large"
+  }
+ },
+ "colours": {
+  "modifier": "Colour",
+  "max": 2
+ },
+ "features": [
+  {
+   "icon": "tentacle",
+   "title": "Stimulating tentacles",
+   "text": "Tentacle details for unique sensations while you wear it."
+  },
+  {
+   "icon": "sparkle",
+   "title": "Tapered tip",
+   "text": "Designed for easy insertion – beginner friendly."
+  },
+  {
+   "icon": "heart",
+   "title": "Cute, not creepy",
+   "text": "A playful octopus that combines charm and sensuality."
+  },
+  {
+   "icon": "aumade",
+   "title": "Australian Made Certified",
+   "text": "Handmade in Australia from soft-touch, skin-safe silicone. Every pour is one of a kind."
+  }
+ ],
+ "description": "<p>Unleash your aquatic fantasies with the OCTOPLUG – an irresistibly cute and adventurous silicone butt plug inspired by the mysterious allure of the deep sea.</p><p>Its tapered tip makes insertion easy, while the tentacle details give stimulating sensations as you wear it. Soft, smooth and flexible, it's ready for roleplay, underwater-themed scenes or simply a splash of fun.</p><h3>Explore Octoplug in 3D</h3><p>Spin it, switch between sizes, slide the diameter ring to measure it at any point, compare it with a soda or Monster can, and tap the AR button on your phone to see it at real size in your room.</p><h3>Why you'll love Octoplug</h3><ul><li>Playful octopus design</li><li>Tapered tip for easy, beginner-friendly insertion</li><li>Tentacle details for extra sensation</li><li>Body-safe, non-porous and easy to clean</li><li>Handmade in Australia from skin-safe silicone – Australian Made Certified</li></ul><h3>Make it yours</h3><p>Pick your size, then list two colours and/or glitters (the colour charts are in the gallery). No colours listed? We'll choose a stunning combination for you. Made to order – ships in 2–5 business days in plain, unmarked packaging.</p>",
+ "sections": [
+  {
+   "title": "Materials & Colours",
+   "html": "<p>Octoplug is handmade in Australia from high-grade, skin-safe, soft-touch silicone (density: soft). All our silicone toys are <strong>Australian Made Certified</strong>.</p><p><strong>Colours:</strong> list two colours and/or glitters when you order – see the colour charts in the gallery. The charts are a reference guide only: colours shift once mixed into silicone, and every pour is unique. If no colours are listed, we'll select a stunning combination for you.</p>"
+  },
+  {
+   "title": "Ways to Play",
+   "html": "<p><strong>Wear it:</strong> slide it in with plenty of water-based lube and enjoy the tentacles as you move.</p><p><strong>Roleplay:</strong> perfect for mischievous sea-creature scenes and kinky exploration.</p><p><strong>New to plugs?</strong> Start with Small.</p>"
+  }
+ ],
+ "cardSections": [
+  "Materials & Colours",
+  "Ways to Play"
+ ],
+ "sizes": [
+  {
+   "choice": "Small",
+   "label": "Small",
+   "lengthCm": 9.7,
+   "widestCm": 6.9,
+   "tipCm": 2.4
+  },
+  {
+   "choice": "Medium",
+   "label": "Medium",
+   "lengthCm": 14.5,
+   "widestCm": 10.4,
+   "tipCm": 3.6
+  },
+  {
+   "choice": "Large",
+   "label": "Large",
+   "lengthCm": 19.6,
+   "widestCm": 13.8,
+   "tipCm": 4.8
+  }
+ ],
+ "sizeColumns": [
+  {
+   "key": "lengthCm",
+   "label": "Length"
+  },
+  {
+   "key": "widestCm",
+   "label": "Widest"
+  },
+  {
+   "key": "tipCm",
+   "label": "Near tip"
+  }
+ ],
+ "chips": {
+  "PICK SIZE": {
+   "Small": {
+    "label": "Small",
+    "sub": "10 cm"
+   },
+   "Medium": {
+    "label": "Medium",
+    "sub": "14 cm"
+   },
+   "Large": {
+    "label": "Large",
+    "sub": "20 cm"
+   }
+  }
+ },
+ "sizeNote": "Measured from our 3D models. Use the diameter ring in the 3D viewer to check the width at any point, or see it at true size in your room with AR."
+}

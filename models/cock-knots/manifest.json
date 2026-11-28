@@ -1,0 +1,84 @@
+{
+  "name": "COCK KNOTS",
+  "color": "#7A48E8",
+  "defaultSize": "cyber",
+  "sizes": [
+    {
+      "id": "cyber",
+      "label": "Cyber",
+      "base": "standard",
+      "model": "../cyber-tech/sub-net-standard.kkm",
+      "ar": "../cyber-tech/sub-net-standard-ar.glb"
+    },
+    {
+      "id": "plain",
+      "label": "Plain",
+      "base": "standard",
+      "model": "plain-standard.kkm",
+      "ar": "plain-standard-ar.glb",
+      "chart": {
+        "lengthCm": 6.2
+      }
+    },
+    {
+      "id": "plain",
+      "label": "Plain",
+      "base": "well",
+      "model": "plain-well.kkm",
+      "ar": "plain-well-ar.glb",
+      "chart": {
+        "lengthCm": 6.2
+      }
+    },
+    {
+      "id": "tentacle",
+      "label": "Tentacle",
+      "base": "standard",
+      "model": "tentacle-standard.kkm",
+      "ar": "tentacle-standard-ar.glb",
+      "chart": {
+        "lengthCm": 7.3
+      }
+    },
+    {
+      "id": "tentacle",
+      "label": "Tentacle",
+      "base": "well",
+      "model": "tentacle-well.kkm",
+      "ar": "tentacle-well-ar.glb",
+      "chart": {
+        "lengthCm": 7.3
+      }
+    },
+    {
+      "id": "wolf",
+      "label": "Wolf",
+      "base": "standard",
+      "model": "wolf-standard.kkm",
+      "ar": "wolf-standard-ar.glb",
+      "chart": {
+        "lengthCm": 7.0
+      }
+    },
+    {
+      "id": "wolf",
+      "label": "Wolf",
+      "base": "well",
+      "model": "wolf-well.kkm",
+      "ar": "wolf-well-ar.glb",
+      "chart": {
+        "lengthCm": 7.0
+      }
+    }
+  ],
+  "bases": [
+    {
+      "id": "standard",
+      "label": "Standard fit"
+    },
+    {
+      "id": "well",
+      "label": "Well endowed fit"
+    }
+  ]
+}

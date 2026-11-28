@@ -1,0 +1,89 @@
+{
+ "shortName": "Krescent",
+ "eyebrow": "UNICORN · MADE TO ORDER",
+ "hook": "A mythical unicorn stallion with a gentle, ergonomic curve and a heart-shaped flare.",
+ "sizeOption": "PICK SIZE",
+ "optionLabels": {
+  "PICK SIZE": "Size",
+  "PICK BASE": "Base",
+  "DENSITY": "Density"
+ },
+ "default": {
+  "PICK SIZE": "Medium"
+ },
+ "chips": {
+  "DENSITY": {
+   "Soft": {
+    "label": "Soft",
+    "sub": "Our standard"
+   },
+   "Ultra Soft": {
+    "label": "Ultra soft",
+    "sub": "Extra squish"
+   }
+  },
+  "PICK SIZE": {
+   "Small": {
+    "label": "Small",
+    "sub": "15 cm"
+   },
+   "Medium": {
+    "label": "Medium",
+    "sub": "21 cm"
+   },
+   "Large": {
+    "label": "Large",
+    "sub": "29 cm"
+   }
+  }
+ },
+ "viewer": {
+  "sizes": {
+   "Small": "small",
+   "Medium": "medium",
+   "Large": "large"
+  },
+  "base": "suction"
+ },
+ "colours": {
+  "modifier": "Colour",
+  "max": 2
+ },
+ "features": [
+  {
+   "icon": "heart",
+   "title": "Heart-shaped flare",
+   "text": "A fully erect, heart-shaped flare at the head."
+  },
+  {
+   "icon": "wave",
+   "title": "Gentle curve",
+   "text": "Shaped for ergonomic bliss from base to tip."
+  },
+  {
+   "icon": "suction",
+   "title": "Suction cup base",
+   "text": "Sticks to any smooth, flat surface for hands-free play."
+  },
+  {
+   "icon": "aumade",
+   "title": "Australian Made Certified",
+   "text": "Handmade in Australia from soft-touch, skin-safe silicone. Every pour is one of a kind."
+  }
+ ],
+ "description": "<p>Embark on a journey through enchanted realms with Krescent, the unicorn – a fantasy toy that captures the ethereal essence of the mythical unicorn stallion.</p><p>From the gentle curve designed for ergonomic bliss to the fully erect, heart-shaped flare, every part of Krescent is hand-crafted to delight the senses.</p><h3>Explore Krescent in 3D</h3><p>Spin it, switch between sizes, slide the diameter ring to measure it at any point, compare it with a soda or Monster can, and tap the AR button on your phone to see it at real size in your room.</p><h3>Why you'll love Krescent</h3><ul><li>Heart-shaped flared head</li><li>Gentle, ergonomic curve</li><li>Three sizes: Small, Medium and Large</li><li>Suction cup base for hands-free play</li><li>Soft or ultra-soft silicone</li><li>Handmade in Australia from skin-safe silicone – Australian Made Certified</li></ul><h3>Make it yours</h3><p>Pick your size and density, then list two colours and/or glitters (the colour charts are in the gallery). No colours listed? We'll choose a stunning combination for you. Made to order – ships in 2–5 business days in plain, unmarked packaging.</p>",
+ "sections": [
+  {
+   "title": "Materials & Colours",
+   "html": "<p>Krescent is handmade in Australia from high-grade, skin-safe, soft-touch silicone (choose soft or ultra soft). All our silicone toys are <strong>Australian Made Certified</strong>.</p><p><strong>Colours:</strong> list two colours and/or glitters when you order – see the colour charts in the gallery. The charts are a reference guide only: colours shift once mixed into silicone, and every pour is unique. If no colours are listed, we'll select a stunning combination for you.</p>"
+  },
+  {
+   "title": "Ways to Play",
+   "html": "<p><strong>Ride it:</strong> the suction cup base holds Krescent to any smooth, flat surface for hands-free play.</p><p><strong>Hold it:</strong> use it by hand and let the curve and flare do the work.</p><p>Inclusive by design – made for all genders and preferences, solo or together.</p>"
+  }
+ ],
+ "cardSections": [
+  "Materials & Colours",
+  "Ways to Play"
+ ]
+}

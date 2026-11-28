@@ -1,0 +1,131 @@
+{
+  "name": "KAIO \u2013 The Wolf",
+  "color": "#7A48E8",
+  "defaultSize": "large",
+  "sizes": [
+    {
+      "id": "xsmall",
+      "label": "XSmall",
+      "base": "suction",
+      "model": "xsmall-suction.kkm",
+      "ar": "xsmall-suction-ar.glb",
+      "chart": {
+        "lengthCm": 17.7
+      }
+    },
+    {
+      "id": "xsmall",
+      "label": "XSmall",
+      "base": "flat",
+      "model": "xsmall-flat.kkm",
+      "ar": "xsmall-flat-ar.glb",
+      "chart": {
+        "lengthCm": 17.7
+      }
+    },
+    {
+      "id": "small",
+      "label": "Small",
+      "base": "suction",
+      "model": "small-suction.kkm",
+      "ar": "small-suction-ar.glb",
+      "chart": {
+        "lengthCm": 19.8
+      }
+    },
+    {
+      "id": "small",
+      "label": "Small",
+      "base": "flat",
+      "model": "small-flat.kkm",
+      "ar": "small-flat-ar.glb",
+      "chart": {
+        "lengthCm": 19.8
+      }
+    },
+    {
+      "id": "medium",
+      "label": "Medium",
+      "base": "suction",
+      "model": "medium-suction.kkm",
+      "ar": "medium-suction-ar.glb",
+      "chart": {
+        "lengthCm": 21.5
+      }
+    },
+    {
+      "id": "medium",
+      "label": "Medium",
+      "base": "flat",
+      "model": "medium-flat.kkm",
+      "ar": "medium-flat-ar.glb",
+      "chart": {
+        "lengthCm": 21.5
+      }
+    },
+    {
+      "id": "large",
+      "label": "Large",
+      "base": "suction",
+      "model": "large-suction.kkm",
+      "ar": "large-suction-ar.glb",
+      "chart": {
+        "lengthCm": 23.3
+      }
+    },
+    {
+      "id": "large",
+      "label": "Large",
+      "base": "flat",
+      "model": "large-flat.kkm",
+      "ar": "large-flat-ar.glb",
+      "chart": {
+        "lengthCm": 23.3
+      }
+    },
+    {
+      "id": "xlarge",
+      "label": "XLarge",
+      "base": "suction",
+      "model": "xlarge-suction.kkm",
+      "ar": "xlarge-suction-ar.glb",
+      "chart": {
+        "lengthCm": 30.3
+      }
+    },
+    {
+      "id": "xlarge",
+      "label": "XLarge",
+      "base": "flat",
+      "model": "xlarge-flat.kkm",
+      "ar": "xlarge-flat-ar.glb",
+      "chart": {
+        "lengthCm": 30.3
+      }
+    },
+    {
+      "id": "xlarge",
+      "label": "XLarge",
+      "base": "machine",
+      "model": "xlarge-machine.kkm",
+      "ar": "xlarge-machine-ar.glb",
+      "chart": {
+        "lengthCm": 30.3
+      }
+    }
+  ],
+  "bases": [
+    {
+      "id": "suction",
+      "label": "Suction cup base"
+    },
+    {
+      "id": "flat",
+      "label": "Flat bottom"
+    },
+    {
+      "id": "machine",
+      "label": "Machine base"
+    }
+  ]
+}

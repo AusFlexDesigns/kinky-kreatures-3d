@@ -1,0 +1,140 @@
+{
+ "model": "kaden",
+ "shortName": "Kaden",
+ "eyebrow": "DRAGON TAIL · MADE TO ORDER",
+ "hook": "A sinuous, scaled dragon tail – dildo, grinder and wearable, with a masturbator base option.",
+ "sizeOption": "PICK SIZE",
+ "baseOption": "PICK BASE",
+ "optionLabels": {
+  "PICK SIZE": "Size",
+  "PICK BASE": "Base",
+  "DENSITY": "Density"
+ },
+ "default": {
+  "PICK SIZE": "Large",
+  "PICK BASE": "Suction Cup"
+ },
+ "chips": {
+  "PICK BASE": {
+   "No Base - Flat Bottom": {
+    "label": "Flat bottom",
+    "sub": "No base"
+   },
+   "Flat Bottom": {
+    "label": "Flat bottom",
+    "sub": "No base"
+   },
+   "Internal Masturbator": {
+    "label": "Masturbator",
+    "sub": "Internal cavity"
+   },
+   "Suction Cup": {
+    "label": "Suction cup",
+    "sub": "Sticks to smooth surfaces"
+   },
+   "Fuck Machine & Suction Cup": {
+    "label": "Machine + suction",
+    "sub": "Vac-U-Lock compatible"
+   }
+  },
+  "PICK SIZE": {
+   "Small": {
+    "label": "Small",
+    "sub": "Slimmer tip"
+   },
+   "Large": {
+    "label": "Large",
+    "sub": "Thicker tip"
+   }
+  }
+ },
+ "viewer": {
+  "sizes": {
+   "Small": "small",
+   "Large": "large"
+  },
+  "bases": {
+   "No Base - Flat Bottom": "flat",
+   "Internal Masturbator": "mast",
+   "Suction Cup": "suction",
+   "Fuck Machine & Suction Cup": "machine"
+  }
+ },
+ "colours": {
+  "modifier": "Colour",
+  "max": 2
+ },
+ "features": [
+  {
+   "icon": "scales",
+   "title": "Intricate scales",
+   "text": "Every scale sculpted to contour to your skin."
+  },
+  {
+   "icon": "hexagon",
+   "title": "Dildo, grinder, wearable",
+   "text": "Grind on it, ride it, or wear it for a partner."
+  },
+  {
+   "icon": "bases",
+   "title": "Two sizes, four bases",
+   "text": "Flat, masturbator, suction or machine bases."
+  },
+  {
+   "icon": "aumade",
+   "title": "Australian Made Certified",
+   "text": "Handmade in Australia from soft-touch, skin-safe silicone. Every pour is one of a kind."
+  }
+ ],
+ "description": "<p>Delve into mythical realms of pleasure with Kaden, our masterfully crafted dragon tail. Every scale is sculpted to perfection for a spectrum of sensations.</p><p>Choose the internal masturbator base and Kaden becomes a dragon masturbator too. Its textured tail pattern makes it an ideal grinder, and it's designed to be worn as an extension of your own body for partnered play.</p><h3>Explore Kaden in 3D</h3><p>Spin it, switch between sizes and bases, slide the diameter ring to measure it at any point, compare it with a soda or Monster can, and tap the AR button on your phone to see it at real size in your room.</p><h3>Why you'll love Kaden</h3><ul><li>Intricately sculpted dragon scales</li><li>Dildo, grinder and wearable in one</li><li>Two sizes: Small and Large</li><li>Four bases: flat bottom, internal masturbator, suction cup, or Vac-U-Lock sex machine &amp; suction cup</li><li>Handmade in Australia from skin-safe silicone – Australian Made Certified</li></ul><h3>Make it yours</h3><p>Pick your size and base, then list two colours and/or glitters (the colour charts are in the gallery). No colours listed? We'll choose a stunning combination for you. Made to order – ships in 2–5 business days in plain, unmarked packaging.</p>",
+ "sections": [
+  {
+   "title": "Base Options",
+   "html": "<p><strong>No base – flat bottom:</strong> a clean, flat end.</p><p><strong>Internal masturbator:</strong> a cavity shaped like the dragon's anus.</p><p><strong>Suction cup:</strong> securely sticks Kaden to any smooth, flat surface.</p><p><strong>Vac-U-Lock sex machine &amp; suction cup:</strong> mounts on Vac-U-Lock compatible sex machines and doubles as a suction cup.</p>"
+  },
+  {
+   "title": "Materials & Colours",
+   "html": "<p>Kaden is handmade in Australia from high-grade, skin-safe, soft-touch silicone (density: soft). All our silicone toys are <strong>Australian Made Certified</strong>.</p><p><strong>Colours:</strong> list two colours and/or glitters when you order – see the colour charts in the gallery. The charts are a reference guide only: colours shift once mixed into silicone, and every pour is unique. If no colours are listed, we'll select a stunning combination for you.</p>"
+  },
+  {
+   "title": "Ways to Play",
+   "html": "<p><strong>Solo:</strong> use Kaden as a dildo, or choose the masturbator base.</p><p><strong>Grinding:</strong> the textured tail makes it an ideal grinder.</p><p><strong>With a partner:</strong> wear Kaden as an extension of your body and share its scales and texture.</p><p>Inclusive by design – made for all genders and preferences.</p>"
+  }
+ ],
+ "cardSections": [
+  "Base Options",
+  "Materials & Colours",
+  "Ways to Play"
+ ],
+ "sizes": [
+  {
+   "choice": "Small",
+   "label": "Small",
+   "lengthCm": 29.7,
+   "widestCm": 10.8,
+   "tipCm": 2.7
+  },
+  {
+   "choice": "Large",
+   "label": "Large",
+   "lengthCm": 29.7,
+   "widestCm": 10.8,
+   "tipCm": 3.4
+  }
+ ],
+ "sizeColumns": [
+  {
+   "key": "lengthCm",
+   "label": "Length"
+  },
+  {
+   "key": "widestCm",
+   "label": "Widest"
+  },
+  {
+   "key": "tipCm",
+   "label": "Near tip"
+  }
+ ],
+ "sizeNote": "Measured from our 3D models. Use the diameter ring in the 3D viewer to check the width at any point, or see it at true size in your room with AR."
+}
