@@ -87,18 +87,25 @@
  ],
  "sizes": [
   {
+   "choice": "Small",
+   "label": "Small",
+   "lengthCm": 20.1,
+   "widestCm": 9.4,
+   "tipCm": 4.7
+  },
+  {
    "choice": "Medium",
    "label": "Medium",
    "lengthCm": 28.0,
-   "widestCm": 13.1,
-   "tipCm": 6.5
+   "widestCm": 13.2,
+   "tipCm": 6.6
   },
   {
    "choice": "Large",
    "label": "Large",
    "lengthCm": 37.1,
-   "widestCm": 17.3,
-   "tipCm": 8.6
+   "widestCm": 17.4,
+   "tipCm": 8.7
   }
  ],
  "sizeColumns": [

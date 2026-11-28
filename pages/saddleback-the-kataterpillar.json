@@ -85,9 +85,9 @@
  "sizes": [
   {
    "label": "One size",
-   "lengthCm": 11.0,
-   "widestCm": 26.6,
-   "tipCm": 3.0
+   "lengthCm": 11.1,
+   "widestCm": 26.7,
+   "tipCm": 3.1
   }
  ],
  "sizeNote": "Measured from our 3D model. Use the diameter ring in the 3D viewer to check the width at any point, or see it at true size in your room with AR."

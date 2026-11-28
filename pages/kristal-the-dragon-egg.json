@@ -1,4 +1,5 @@
 {
+ "model": "kristal",
  "shortName": "Kristal",
  "eyebrow": "DRAGON EGG · MADE TO ORDER",
  "hook": "A mythical dragon's egg inspired by the Mother of Dragons, with an intricately detailed shell.",
@@ -91,5 +92,43 @@
  "cardSections": [
   "Materials & Colours",
   "Ways to Play"
- ]
+ ],
+ "sizes": [
+  {
+   "choice": "Small",
+   "label": "Small",
+   "lengthCm": 13.4,
+   "widestCm": 12.3,
+   "tipCm": 4.3
+  },
+  {
+   "choice": "Medium",
+   "label": "Medium",
+   "lengthCm": 15.3,
+   "widestCm": 12.3,
+   "tipCm": 5.1
+  },
+  {
+   "choice": "Large",
+   "label": "Large",
+   "lengthCm": 17.7,
+   "widestCm": 11.9,
+   "tipCm": 6.2
+  }
+ ],
+ "sizeColumns": [
+  {
+   "key": "lengthCm",
+   "label": "Length"
+  },
+  {
+   "key": "widestCm",
+   "label": "Widest"
+  },
+  {
+   "key": "tipCm",
+   "label": "Near tip"
+  }
+ ],
+ "sizeNote": "Measured from our 3D models. Use the diameter ring in the 3D viewer to check the width at any point, or see it at true size in your room with AR."
 }

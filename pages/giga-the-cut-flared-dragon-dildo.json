@@ -49,6 +49,14 @@
    "Small": {
     "label": "Small",
     "sub": "20 cm"
+   },
+   "Medium": {
+    "label": "Medium",
+    "sub": "28 cm"
+   },
+   "Large": {
+    "label": "Large",
+    "sub": "34 cm"
    }
   }
  },
@@ -115,8 +123,22 @@
    "choice": "Small",
    "label": "Small",
    "lengthCm": 20.5,
-   "widestCm": 10.5,
+   "widestCm": 10.6,
    "tipCm": 4.4
+  },
+  {
+   "choice": "Medium",
+   "label": "Medium",
+   "lengthCm": 27.7,
+   "widestCm": 14.8,
+   "tipCm": 6.3
+  },
+  {
+   "choice": "Large",
+   "label": "Large",
+   "lengthCm": 34.5,
+   "widestCm": 17.8,
+   "tipCm": 7.9
   }
  ],
  "sizeColumns": [

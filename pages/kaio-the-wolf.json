@@ -100,7 +100,7 @@
    "choice": "XSmall",
    "label": "XSmall",
    "lengthCm": 17.7,
-   "widestCm": 7.4,
+   "widestCm": 7.5,
    "tipCm": 2.1
   },
   {
@@ -122,14 +122,14 @@
    "label": "Large",
    "lengthCm": 23.3,
    "widestCm": 8.2,
-   "tipCm": 3.1
+   "tipCm": 3.2
   },
   {
    "choice": "XLarge",
    "label": "XLarge",
    "lengthCm": 30.3,
    "widestCm": 9.6,
-   "tipCm": 3.7
+   "tipCm": 3.8
   }
  ],
  "sizeColumns": [

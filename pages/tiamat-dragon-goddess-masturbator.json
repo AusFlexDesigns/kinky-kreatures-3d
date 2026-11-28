@@ -1,4 +1,5 @@
 {
+ "model": "tiamat",
  "shortName": "Tiamat",
  "eyebrow": "DRAGON GODDESS · MADE TO ORDER",
  "hook": "The five-headed dragon queen as a hand-held masturbator – curves, grip and detail to worship.",
@@ -46,5 +47,14 @@
  "cardSections": [
   "Materials & Colours",
   "Good to know"
- ]
+ ],
+ "sizes": [
+  {
+   "label": "One size",
+   "lengthCm": 18.9,
+   "widestCm": 10.0,
+   "tipCm": 8.7
+  }
+ ],
+ "sizeNote": "Measured from our 3D model. Use the diameter ring in the 3D viewer to check the width at any point, or see it at true size in your room with AR."
 }

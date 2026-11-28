@@ -39,6 +39,11 @@ def target(fname):
     return t, '-'.join(x for x in (size, base or fit) if x) or 'main'
 
 
+ORIENT = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'orient.json')))
+FORCE = set(open('/tmp/kk/force.txt').read().split()) if os.path.exists('/tmp/kk/force.txt') else set()   # always merge to one solid
+THIN = {'cock-knots', 'dragon-sheath', 'tiamat', 'black-lotus', 'vibe-wrap'}
+
+
 def join_parts(first):
     """Join <x>.stl.part1ofN .. partNofN (binary STL triangle records split on 50-byte boundaries)."""
     m = re.match(r'(.+\.stl)\.part1of(\d+)$', first)
@@ -72,6 +77,8 @@ def main():
     resf = os.path.join(work, 'results.jsonl')
     if os.path.exists(resf):
         done = {json.loads(l)['file'] for l in open(resf) if l.strip()}
+    redo = os.path.join(work, 'redo.txt')
+    if os.path.exists(redo): done -= set(open(redo).read().split())
     idle = 0
     while True:
         files = sorted(glob.glob(os.path.join(watch, '**', '*.stl'), recursive=True) +
@@ -92,13 +99,44 @@ def main():
                 rec['error'] = 'name not recognised'
             else:
                 toy, vid = t; out = os.path.join(models, toy)
-                cmd = [sys.executable, os.path.join(HERE, 'kkbuild.py'), src, out, vid, '--zup',
+                shrunk = None
+                if os.path.getsize(src) > 200e6:   # very large sculpt: build from a lean 1.5M-triangle working copy
+                    shrunk = os.path.join('/tmp/kk/shrunk', f'{toy}-{vid}.stl'); os.makedirs(os.path.dirname(shrunk), exist_ok=True)
+                    s0 = subprocess.run([sys.executable, os.path.join(HERE, 'preshrink.py'), src, shrunk], capture_output=True, text=True)
+                    if s0.returncode == 0: src_build = shrunk
+                    else: src_build = src; rec['shrink_error'] = 'exit %s: %s' % (s0.returncode, (s0.stderr or s0.stdout)[-300:])
+                else: src_build = src
+                cmd = [sys.executable, os.path.join(HERE, 'kkbuild.py'), src_build, out, vid, '--zup',
                        '--preview', os.path.join(work, 'prev', f'{toy}-{vid}.png')]
+                # sleeves, knots and masturbators have thin walls close together: keep more triangles so the
+                # simplifier never pulls the outer wall through the inner one
+                thin = toy in THIN or vid.startswith('sub-net')
+                target_tris = 12000 if thin else 4000
+                if thin: cmd += ['--display', '12000', '--display-res', '2048', '--ar', '24000']
                 t0 = time.time(); r = subprocess.run(cmd, capture_output=True, text=True)
                 rec.update(toy=toy, id=vid, secs=round(time.time() - t0))
                 lines = [l for l in r.stdout.splitlines() if l.startswith('{')]
                 if r.returncode == 0 and lines: rec.update(json.loads(lines[-1]))
                 else: rec['error'] = (r.stderr or r.stdout)[-600:]
+                # a sculpt made of overlapping pieces won't decimate (display stays far over target, surface
+                # goes jagged): merge it into one solid shell first and build again from that
+                if not rec.get('error') and (rec.get('display_tris', 0) > target_tris * 1.075 or name in FORCE):
+                    solid = os.path.join('/tmp/kk/solid', f'{toy}-{vid}.ply'); os.makedirs(os.path.dirname(solid), exist_ok=True)
+                    s1 = subprocess.run([sys.executable, os.path.join(HERE, 'solidify.py'), src_build, solid, '0.3'], capture_output=True, text=True)
+                    if s1.returncode == 0 and os.path.exists(solid):
+                        cmd[2] = solid; r = subprocess.run(cmd, capture_output=True, text=True)
+                        lines = [l for l in r.stdout.splitlines() if l.startswith('{')]
+                        if r.returncode == 0 and lines: rec.update(json.loads(lines[-1])); rec['solidified'] = True
+                        else: rec['solid_error'] = (r.stderr or r.stdout)[-400:]
+                        try: os.remove(solid)
+                        except OSError: pass
+                    else: rec['solid_error'] = 'exit %s: %s' % (s1.returncode, (s1.stderr or s1.stdout)[-400:])
+                    rec['secs'] = round(time.time() - t0)
+                turn = ORIENT.get(f'{toy}/{vid}')
+                if turn and not rec.get('error'):
+                    subprocess.run([sys.executable, os.path.join(HERE, 'reorient.py'), os.path.join(out, vid + '.kkm'), turn], check=False)
+                    rec['turned'] = turn
+                if shrunk and os.path.exists(shrunk): os.remove(shrunk); rec['preshrunk'] = True
             with open(resf, 'a') as f: f.write(json.dumps(rec) + '\n')
             done.add(name); did = True
             for s in srcs + ([src] if src not in srcs else []):

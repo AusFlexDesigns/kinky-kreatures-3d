@@ -1,4 +1,5 @@
 {
+ "model": "black-lotus",
  "shortName": "The Black Lotus",
  "eyebrow": "MASTURBATOR · MADE TO ORDER",
  "hook": "Petals that open to an inner sanctum – a lotus-flower masturbator with a textured interior.",
@@ -46,5 +47,14 @@
  "cardSections": [
   "Materials & Colours",
   "Good to know"
- ]
+ ],
+ "sizes": [
+  {
+   "label": "One size",
+   "lengthCm": 13.9,
+   "widestCm": 11.6,
+   "tipCm": 11.6
+  }
+ ],
+ "sizeNote": "Measured from our 3D model. Use the diameter ring in the 3D viewer to check the width at any point, or see it at true size in your room with AR."
 }

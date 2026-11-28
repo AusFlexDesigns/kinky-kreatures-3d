@@ -1,4 +1,5 @@
 {
+ "model": "slime",
  "shortName": "Slime",
  "eyebrow": "MONSTER KNOT · MADE TO ORDER",
  "hook": "An ultra-soft, slick monster with a generous knot for that deep, locked-in stretch.",
@@ -80,5 +81,14 @@
  "cardSections": [
   "Materials & Colours",
   "Ways to Play"
- ]
+ ],
+ "sizes": [
+  {
+   "label": "One size",
+   "lengthCm": 19.1,
+   "widestCm": 8.8,
+   "tipCm": 4.1
+  }
+ ],
+ "sizeNote": "Measured from our 3D model. Use the diameter ring in the 3D viewer to check the width at any point, or see it at true size in your room with AR."
 }

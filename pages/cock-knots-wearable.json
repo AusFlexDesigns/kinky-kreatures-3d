@@ -151,6 +151,13 @@
    "lengthCm": 8.2,
    "widestCm": 10.6,
    "tipCm": 9.5
+  },
+  {
+   "choice": "Bondage",
+   "label": "Bondage",
+   "lengthCm": 8.7,
+   "widestCm": 9.1,
+   "tipCm": 8.8
   }
  ],
  "sizeNote": "Measured from our 3D models. Use the diameter ring in the 3D viewer to check the width at any point, or see it at true size in your room with AR."

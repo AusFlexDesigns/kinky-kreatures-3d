@@ -17,13 +17,22 @@ if src.lower().endswith('.obj'):
     sys.path.insert(0, __file__.rsplit('/', 1)[0] if '/' in __file__ else '.')
     from kkbuild import load_obj_fast
     v, f = load_obj_fast(src)
+elif src.lower().endswith('.stl'):
+    sys.path.insert(0, __file__.rsplit('/', 1)[0] if '/' in __file__ else '.')
+    from preshrink import load_merged   # merge shared corners first: simplifying an unmerged STL leaves holes
+    v, f = load_merged(src)
 else:
-    m = trimesh.load(src, force='mesh', process=False); v, f = np.asarray(m.vertices), np.asarray(m.faces); del m
+    m = trimesh.load(src, force='mesh', process=True); v, f = np.asarray(m.vertices), np.asarray(m.faces); del m
 if len(f) > 3000000:
     import fast_simplification
     v, f = fast_simplification.simplify(np.asarray(v, np.float32), np.asarray(f, np.int32), target_count=1500000)
 gc.collect()
 mesh = trimesh.Trimesh(np.asarray(v, np.float64), np.asarray(f), process=False); del v, f
+
+# keep the voxel grid within memory (about 30 million cells): big toys get a slightly coarser voxel
+ext = mesh.bounds[1] - mesh.bounds[0] + 7 * pitch
+need = (np.prod(ext) / 30e6) ** (1 / 3)
+if need > pitch: print('  voxel', round(pitch, 2), '->', round(need, 2), 'mm to fit memory'); pitch = need
 
 # 1. voxels the surface passes through (dense surface samples, half a voxel apart)
 lo = mesh.bounds[0] - 3 * pitch

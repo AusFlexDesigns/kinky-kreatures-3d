@@ -1,4 +1,5 @@
 {
+ "model": "vibe-wrap",
  "shortName": "Vibe Wrap",
  "eyebrow": "TENTACLE VIBE WRAP · MADE TO ORDER",
  "hook": "Turn a medium-size vibrator into a pulsing, vibrating tentacle with ultra-soft suckers.",
@@ -46,5 +47,14 @@
  "cardSections": [
   "Materials & Colours",
   "Good to know"
- ]
+ ],
+ "sizes": [
+  {
+   "label": "One size",
+   "lengthCm": 19.8,
+   "widestCm": 7.5,
+   "tipCm": 2.5
+  }
+ ],
+ "sizeNote": "Measured from our 3D model. Use the diameter ring in the 3D viewer to check the width at any point, or see it at true size in your room with AR."
 }
