@@ -29,7 +29,7 @@ def load_obj_fast(path):
     return verts, faces
 
 
-ASSIMP_EXT = ('.fbx', '.dae', '.3ds', '.blend', '.gltf', '.glb', '.3mf', '.x3d', '.ply')
+ASSIMP_EXT = ('.fbx', '.dae', '.3ds', '.blend', '.gltf', '.glb', '.3mf', '.x3d')   # .ply goes through trimesh (assimp mis-reads some large binary PLYs)
 
 
 def via_assimp(path):
@@ -165,10 +165,16 @@ def read_glb(path):
 # ---------- baking ----------
 class Detail:
     """Dense samples of the full model's smooth normals, for nearest-surface lookups."""
-    def __init__(self, mesh, samples=2500000):
+    def __init__(self, mesh, samples=2500000, near=None, tol=0.0012):
         pts, fid = trimesh.sample.sample_surface(mesh, samples, seed=1)
         bary = trimesh.triangles.points_to_barycentric(mesh.triangles[fid], pts)
         hn = (np.asarray(mesh.vertex_normals)[mesh.faces[fid]] * bary[:, :, None]).sum(1)
+        if near is not None:
+            # detail from the original sculpt, shape from the merged solid: keep only the sculpt's outside skin
+            # (samples on the solid's surface), so pieces buried inside the body don't leak into the bake
+            sp, _ = trimesh.sample.sample_surface(near, 3000000, seed=2)
+            d, _ = cKDTree(sp).query(pts, distance_upper_bound=tol * 4)
+            keep = d < tol; pts, hn = pts[keep], hn[keep]
         self.n = hn / np.linalg.norm(hn, axis=1, keepdims=True); self.tree = cKDTree(pts)
 
 
@@ -256,14 +262,19 @@ def main():
     ap.add_argument('src'); ap.add_argument('out_dir'); ap.add_argument('id')
     ap.add_argument('--display', type=int, default=4000); ap.add_argument('--display-res', type=int, default=1024)
     ap.add_argument('--ar', type=int, default=12000); ap.add_argument('--ar-res', type=int, default=2048)
-    ap.add_argument('--no-ar', action='store_true'); ap.add_argument('--upright', action='store_true'); ap.add_argument('--zup', action='store_true'); ap.add_argument('--preview', default=''); ap.add_argument('--units', default='auto', choices=['auto', 'mm', 'cm', 'm', 'in']); ap.add_argument('--voxel', type=float, default=0, help='rebuild the surface from voxels of this size in mm (CAD exports that will not decimate)'); ap.add_argument('--color', default='#7A48E8')
+    ap.add_argument('--no-ar', action='store_true'); ap.add_argument('--upright', action='store_true'); ap.add_argument('--zup', action='store_true'); ap.add_argument('--preview', default=''); ap.add_argument('--units', default='auto', choices=['auto', 'mm', 'cm', 'm', 'in']); ap.add_argument('--voxel', type=float, default=0, help='rebuild the surface from voxels of this size in mm (CAD exports that will not decimate)'); ap.add_argument('--color', default='#7A48E8'); ap.add_argument('--detail', default='', help='bake surface detail from this mesh (the original sculpt) while src gives the shape (a merged solid)')
     a = ap.parse_args()
     col = [int(a.color[i:i + 2], 16) / 255 for i in (1, 3, 5)]; col = [c ** 2.2 for c in col] + [1.0]   # sRGB -> linear for glTF
     os.makedirs(a.out_dir, exist_ok=True)
     v, f = load_mesh(a.src, a.upright, a.units, a.zup)
     full = len(f)
     high = simplify(v, f, 600000, aggressiveness=7); del v, f            # still far finer than the bake resolution
-    detail = Detail(high)
+    if a.detail:
+        dv, df = load_mesh(a.detail, a.upright, a.units, a.zup)
+        dhigh = simplify(dv, df, 1500000, aggressiveness=7); del dv, df
+        detail = Detail(dhigh, 4000000, near=high); del dhigh
+    else:
+        detail = Detail(high)
     ext = high.extents
     base = high
     if a.voxel:

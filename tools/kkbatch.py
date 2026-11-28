@@ -124,7 +124,7 @@ def main():
                     solid = os.path.join('/tmp/kk/solid', f'{toy}-{vid}.ply'); os.makedirs(os.path.dirname(solid), exist_ok=True)
                     s1 = subprocess.run([sys.executable, os.path.join(HERE, 'solidify.py'), src_build, solid, '0.3'], capture_output=True, text=True)
                     if s1.returncode == 0 and os.path.exists(solid):
-                        cmd[2] = solid; r = subprocess.run(cmd, capture_output=True, text=True)
+                        cmd[2] = solid; r = subprocess.run(cmd + ['--detail', src_build], capture_output=True, text=True)   # shape from the solid, skin detail from the sculpt
                         lines = [l for l in r.stdout.splitlines() if l.startswith('{')]
                         if r.returncode == 0 and lines: rec.update(json.loads(lines[-1])); rec['solidified'] = True
                         else: rec['solid_error'] = (r.stderr or r.stdout)[-400:]
