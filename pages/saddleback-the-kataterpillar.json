@@ -1,4 +1,5 @@
 {
+ "model": "saddleback",
  "shortName": "Saddleback",
  "eyebrow": "KATERPILLAR GRINDER · MADE TO ORDER",
  "hook": "A grinding pad textured like a caterpillar, with a suction cup base and two bullet zones.",
@@ -10,12 +11,10 @@
  "chips": {
   "DENSITY": {
    "Soft": {
-    "label": "Soft",
-    "sub": "Our standard"
+    "label": "Soft"
    },
    "Ultra Soft": {
-    "label": "Ultra soft",
-    "sub": "Extra squish"
+    "label": "Ultra soft"
    }
   },
   "PICK SIZE": {
@@ -82,5 +81,14 @@
  "cardSections": [
   "Materials & Colours",
   "Ways to Play"
- ]
+ ],
+ "sizes": [
+  {
+   "label": "One size",
+   "lengthCm": 11.0,
+   "widestCm": 26.6,
+   "tipCm": 3.0
+  }
+ ],
+ "sizeNote": "Measured from our 3D model. Use the diameter ring in the 3D viewer to check the width at any point, or see it at true size in your room with AR."
 }

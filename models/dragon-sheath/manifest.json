@@ -1,0 +1,17 @@
+{
+  "name": "Dragon Sheath",
+  "color": "#7A48E8",
+  "defaultSize": "main",
+  "sizes": [
+    {
+      "id": "main",
+      "label": "One size",
+      "model": "main.kkm",
+      "ar": "main-ar.glb",
+      "chart": {
+        "lengthCm": 11.8
+      }
+    }
+  ],
+  "bases": []
+}

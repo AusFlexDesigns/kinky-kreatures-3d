@@ -16,12 +16,10 @@
  "chips": {
   "DENSITY": {
    "Soft": {
-    "label": "Soft",
-    "sub": "Our standard"
+    "label": "Soft"
    },
    "Ultra Soft": {
-    "label": "Ultra soft",
-    "sub": "Extra squish"
+    "label": "Ultra soft"
    }
   },
   "PICK BASE": {
@@ -47,6 +45,14 @@
    }
   },
   "PICK SIZE": {
+   "Small": {
+    "label": "Small",
+    "sub": "22 cm"
+   },
+   "Medium": {
+    "label": "Medium",
+    "sub": "26 cm"
+   },
    "Large": {
     "label": "Large",
     "sub": "29 cm"
@@ -106,6 +112,20 @@
   "Ways to Play"
  ],
  "sizes": [
+  {
+   "choice": "Small",
+   "label": "Small",
+   "lengthCm": 22.2,
+   "widestCm": 16.3,
+   "tipCm": 4.2
+  },
+  {
+   "choice": "Medium",
+   "label": "Medium",
+   "lengthCm": 25.7,
+   "widestCm": 17.8,
+   "tipCm": 4.7
+  },
   {
    "choice": "Large",
    "label": "Large",

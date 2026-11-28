@@ -71,6 +71,16 @@
   "max": 2
  },
  "sizeTableLabel": "Knot",
+ "sizeColumns": [
+  {
+   "key": "lengthCm",
+   "label": "Length"
+  },
+  {
+   "key": "widestCm",
+   "label": "Widest"
+  }
+ ],
  "features": [
   {
    "icon": "knot",
@@ -134,20 +144,13 @@
    "lengthCm": 7.3,
    "widestCm": 9.6,
    "tipCm": 3.7
-  }
- ],
- "sizeColumns": [
-  {
-   "key": "lengthCm",
-   "label": "Length"
   },
   {
-   "key": "widestCm",
-   "label": "Widest"
-  },
-  {
-   "key": "tipCm",
-   "label": "Near tip"
+   "choice": "Lotus",
+   "label": "Lotus",
+   "lengthCm": 8.2,
+   "widestCm": 10.6,
+   "tipCm": 9.5
   }
  ],
  "sizeNote": "Measured from our 3D models. Use the diameter ring in the 3D viewer to check the width at any point, or see it at true size in your room with AR."

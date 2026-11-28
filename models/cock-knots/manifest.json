@@ -11,6 +11,26 @@
       "ar": "../cyber-tech/sub-net-standard-ar.glb"
     },
     {
+      "id": "flower",
+      "label": "Flower",
+      "base": "standard",
+      "model": "flower-standard.kkm",
+      "ar": "flower-standard-ar.glb",
+      "chart": {
+        "lengthCm": 8.2
+      }
+    },
+    {
+      "id": "flower",
+      "label": "Flower",
+      "base": "well",
+      "model": "flower-well.kkm",
+      "ar": "flower-well-ar.glb",
+      "chart": {
+        "lengthCm": 8.2
+      }
+    },
+    {
       "id": "plain",
       "label": "Plain",
       "base": "standard",

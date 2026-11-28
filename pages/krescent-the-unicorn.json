@@ -1,4 +1,5 @@
 {
+ "model": "krescent",
  "shortName": "Krescent",
  "eyebrow": "UNICORN · MADE TO ORDER",
  "hook": "A mythical unicorn stallion with a gentle, ergonomic curve and a heart-shaped flare.",
@@ -14,12 +15,10 @@
  "chips": {
   "DENSITY": {
    "Soft": {
-    "label": "Soft",
-    "sub": "Our standard"
+    "label": "Soft"
    },
    "Ultra Soft": {
-    "label": "Ultra soft",
-    "sub": "Extra squish"
+    "label": "Ultra soft"
    }
   },
   "PICK SIZE": {
@@ -85,5 +84,36 @@
  "cardSections": [
   "Materials & Colours",
   "Ways to Play"
- ]
+ ],
+ "sizes": [
+  {
+   "choice": "Medium",
+   "label": "Medium",
+   "lengthCm": 28.0,
+   "widestCm": 13.1,
+   "tipCm": 6.5
+  },
+  {
+   "choice": "Large",
+   "label": "Large",
+   "lengthCm": 37.1,
+   "widestCm": 17.3,
+   "tipCm": 8.6
+  }
+ ],
+ "sizeColumns": [
+  {
+   "key": "lengthCm",
+   "label": "Length"
+  },
+  {
+   "key": "widestCm",
+   "label": "Widest"
+  },
+  {
+   "key": "tipCm",
+   "label": "Near tip"
+  }
+ ],
+ "sizeNote": "Measured from our 3D models. Use the diameter ring in the 3D viewer to check the width at any point, or see it at true size in your room with AR."
 }

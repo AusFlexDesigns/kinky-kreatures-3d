@@ -1,4 +1,5 @@
 {
+ "model": "dragon-sheath",
  "shortName": "Dragon Sheath",
  "eyebrow": "WEARABLE SHEATH · MADE TO ORDER",
  "hook": "Become the dragon – a wearable silicone sheath with a ribbed interior.",
@@ -47,5 +48,14 @@
  "cardSections": [
   "Materials & Colours",
   "Good to know"
- ]
+ ],
+ "sizes": [
+  {
+   "label": "One size",
+   "lengthCm": 11.8,
+   "widestCm": 12.8,
+   "tipCm": 5.6
+  }
+ ],
+ "sizeNote": "Measured from our 3D model. Use the diameter ring in the 3D viewer to check the width at any point, or see it at true size in your room with AR."
 }

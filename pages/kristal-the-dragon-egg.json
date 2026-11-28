@@ -14,12 +14,10 @@
  "chips": {
   "DENSITY": {
    "Soft": {
-    "label": "Soft",
-    "sub": "Our standard"
+    "label": "Soft"
    },
    "Ultra Soft": {
-    "label": "Ultra soft",
-    "sub": "Extra squish"
+    "label": "Ultra soft"
    }
   },
   "PICK SIZE": {

@@ -1,0 +1,23 @@
+{
+  "name": "SADDLEBACK",
+  "color": "#7A48E8",
+  "defaultSize": "main",
+  "sizes": [
+    {
+      "id": "main",
+      "label": "One size",
+      "base": "suction",
+      "model": "suction.kkm",
+      "ar": "suction-ar.glb",
+      "chart": {
+        "lengthCm": 11.0
+      }
+    }
+  ],
+  "bases": [
+    {
+      "id": "suction",
+      "label": "Suction cup base"
+    }
+  ]
+}

@@ -52,6 +52,16 @@
       "chart": {
         "lengthCm": 29.7
       }
+    },
+    {
+      "id": "large",
+      "label": "Large",
+      "base": "mast",
+      "model": "large-mast.kkm",
+      "ar": "large-mast-ar.glb",
+      "chart": {
+        "lengthCm": 29.7
+      }
     }
   ],
   "bases": [

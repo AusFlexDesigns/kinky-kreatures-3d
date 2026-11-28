@@ -1,0 +1,34 @@
+{
+ "model": "unicorn-head",
+ "shortName": "Unicorn Head",
+ "eyebrow": "UNICORN · COMING SOON",
+ "hook": "A new unicorn kreature – coming soon.",
+ "viewer": {
+  "base": "suction"
+ },
+ "colours": {
+  "modifier": "Colour",
+  "max": 2
+ },
+ "features": [
+  {
+   "icon": "suction",
+   "title": "Suction cup base",
+   "text": "Sticks to any smooth, flat surface for hands-free play."
+  },
+  {
+   "icon": "aumade",
+   "title": "Australian Made Certified",
+   "text": "Handmade in Australia from soft-touch, skin-safe silicone. Every pour is one of a kind."
+  }
+ ],
+ "sizes": [
+  {
+   "label": "One size",
+   "lengthCm": 28.6,
+   "widestCm": 12.6,
+   "tipCm": 3.0
+  }
+ ],
+ "sizeNote": "Measured from our 3D model. Use the diameter ring in the 3D viewer to check the width at any point, or see it at true size in your room with AR."
+}
