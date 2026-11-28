@@ -1,4 +1,5 @@
-node_modules/
 *.obj
 *.stl
 __pycache__/
+models/
+node_modules/

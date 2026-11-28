@@ -11,6 +11,8 @@ const BASE = /\/dist\/kk-product(\.min)?\.js(\?.*)?$/.test(SCRIPT_SRC)
   ? SCRIPT_SRC.replace(/dist\/kk-product(\.min)?\.js(\?.*)?$/, '')
   : 'https://cdn.jsdelivr.net/gh/AusFlexDesigns/kinky-kreatures-3d@' + VERSION + '/';
 const VIEWER_SRC = BASE + 'dist/kk-viewer.js';
+// 3D web files are served from their own repository on GitHub Pages (too big for jsDelivr's 50 MB limit)
+const MODELS = 'https://ausflexdesigns.github.io/kinky-kreatures-models/models/';
 const AU_MADE = 'https://static.wixstatic.com/media/50feb9_a60b1806a19e4adb9f56318e51970668~mv2.png/v1/crop/x_149,y_122,w_929,h_861/fill/w_96,h_89,al_c,q_85,enc_auto/australian-made.png';
 
 // ---------- small helpers ----------
@@ -590,7 +592,7 @@ class KKProductPage extends HTMLElement {
   <section class="kkp-hero" aria-label="Product">
     <div class="kkp-stage">
       ${this._has3D ? `<p class="kkp-pill" aria-hidden="true">INTERACTIVE 3D</p>
-      <kk-toy-viewer model="${esc(x.model)}" controls="external"${this._viewerSize ? ` size="${esc(this._viewerSize)}"` : ''}${this._viewerBase ? ` base="${esc(this._viewerBase)}"` : ''}></kk-toy-viewer>
+      <kk-toy-viewer model="${esc(x.model)}" assets="${esc(x.assets || MODELS)}" controls="external"${this._viewerSize ? ` size="${esc(this._viewerSize)}"` : ''}${this._viewerBase ? ` base="${esc(this._viewerBase)}"` : ''}></kk-toy-viewer>
       <button class="kkp-stage-ar" data-ar>${icon('cube', 18)}<span data-arlabel></span></button>
       <div class="kkp-lane" aria-hidden="true"><i class="kkp-lane-track"></i>${FINGER}<span class="kkp-lane-lbl">SCROLL</span></div>
       <div class="kkp-spin" aria-hidden="true"><svg class="kkp-spin-arc" width="120" height="32" viewBox="0 0 120 32" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 24Q60 -2 108 24" stroke-dasharray="2 7"/><path d="M12 24l1-9M12 24l9-1M108 24l-1-9M108 24l-9-1"/></svg>${FINGER}<span class="kkp-spin-lbl">Drag to spin · pinch to zoom</span></div>

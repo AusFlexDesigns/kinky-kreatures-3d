@@ -1,7 +1,0 @@
-{
-  "about": "Store product page address (the part after /product-page/) -> toy folder in models/. Used when the viewer's model attribute is \"auto\".",
-  "products": {
-    "kraken-the-tentacle": "kraken",
-    "copy-of-kraken-the-tentacle": "kraken"
-  }
-}
